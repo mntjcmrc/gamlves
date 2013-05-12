@@ -12,12 +12,18 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Seguridad {
 
+	/**
+	 * Algoritmo usado para crear el hash
+	 */
 	private static final String algorithm = "MD5";
+	/**
+	 * Charset usado en la contraseña
+	 */
 	private static final String charset = "UTF-8";
 	private static MessageDigest md;
 
 	/**
-	 * Por defecto usará MD5 como algoritmo y UTF-o como charset
+	 * Por defecto usará MD5 como algoritmo y UTF-8 como charset
 	 */
 	public Seguridad() {
 		try {
@@ -27,19 +33,29 @@ public class Seguridad {
 		}
 	}
 
-	// Pendiente
+	// Sin testear
 	/**
 	 * Comprueba que la contraseña dada es del usuario que se está logeando en
 	 * la aplicación.
 	 * 
-	 * @param s
-	 * @return
+	 * @param user Usuario intentando loguearse
+	 * @param pass Supuesta contraseña del usuario
+	 * @return Si es correcto el login
 	 */
-	public boolean checkLogin(String user, String pass) {
+	public static boolean checkLogin(String user, String pass) {
 		boolean check = false;
 		String passHash;
 		
 		passHash = createHash(pass);
+		
+		Usuario usuario = Datos.searchUser(user);
+		if(usuario == null){
+			
+		} else {
+			if (usuario.get_pass() == passHash){
+				check = true;
+			}
+		}
 
 		return check;
 	}
