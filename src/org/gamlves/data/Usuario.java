@@ -7,8 +7,8 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class Usuario {
-	private String _id;
+public class Usuario implements Comparable<Usuario> {
+	private int _id;
 	private String _nombre;
 	private String _user;
 	private String _pass;
@@ -25,6 +25,13 @@ public class Usuario {
 		this._nombre = nombre;
 		this._user = user;
 		this._pass = pass;
+	}
+	
+	/**
+	 * @return ID del usuario
+	 */
+	public int get_id(){
+		return this._id;
 	}
 
 	/**
@@ -54,8 +61,19 @@ public class Usuario {
 	 * 
 	 * @param id ID a asignar al usuario
 	 */
-	public void set_id(String id) {
+	public void set_id(int id) {
 		this._id = id;
+	}
+
+	@Override
+	public int compareTo(Usuario usuario) {
+		if(this.get_id() == usuario.get_id()){
+			return 0;
+		} else if (this.get_id() < usuario.get_id()){
+			return -1;
+		} else {
+			return 1;
+		}
 	}
 
 }

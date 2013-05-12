@@ -7,12 +7,12 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class Juego {
+public class Juego implements Comparable<Juego> {
 
 	/**
 	 * ID del juego
 	 */
-	private String _id;
+	private int _id;
 	/**
 	 * Nombre del juego
 	 */
@@ -27,18 +27,18 @@ public class Juego {
 	protected Juego(String nombre) {
 		this._nombre = nombre;
 	}
-	
+
 	/**
 	 * @return ID del juego
 	 */
-	public String get_id(){
+	public int get_id() {
 		return this._id;
 	}
-	
+
 	/**
 	 * @return Nombre del juego
 	 */
-	public String get_nombre(){
+	public String get_nombre() {
 		return this._nombre;
 	}
 
@@ -49,8 +49,18 @@ public class Juego {
 	 * @param id
 	 *            ID a asignar al juego
 	 */
-	protected void set_id(String id) {
+	protected void set_id(int id) {
 		this._id = id;
 	}
 
+	@Override
+	public int compareTo(Juego juego) {
+		if (this.get_id() == juego.get_id()) {
+			return 0;
+		} else if (this.get_id() < juego.get_id()) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
 }
