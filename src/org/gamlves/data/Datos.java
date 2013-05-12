@@ -19,16 +19,16 @@ public class Datos extends DriverGamlves {
 	/**
 	 * Array con todos los usuarios cargados en memoria
 	 */
-	private ArrayList<Usuario> _usuarios;
+	private static ArrayList<Usuario> _usuarios;
 	/**
 	 * Array con todos los juegos cargados en memoria
 	 */
-	private ArrayList<Juego> _juegos;
+	private static ArrayList<Juego> _juegos;
 	/**
 	 * Array con todos las relaciones entre usuarios y juegos cargadas en
 	 * memoria
 	 */
-	private ArrayList<UsuarioJuego> _usuariosjuegos;
+	private static ArrayList<UsuarioJuego> _usuariosjuegos;
 
 	/**
 	 * Crea una instancia del objeto desde el que se controlarán todos los
@@ -83,5 +83,25 @@ public class Datos extends DriverGamlves {
 			usuario = new Usuario(nombre, user, passHash);
 
 		}
+	}
+
+	/**
+	 * Devuelve un usuario con el username dado, el usuario es buscado en los
+	 * arrays en memoria
+	 * 
+	 * @param user
+	 *            Username del usuario buscado
+	 * @return Un objeto Usuario con los datos necesarios, null si no existe
+	 */
+	public static Usuario searchUser(String user) {
+		Usuario usuario = null;
+
+		for (int i = 0; i < _usuarios.size(); i++) {
+			if (user.equals(_usuarios.get(i).get_user())) {
+				usuario = _usuarios.get(i);
+			}
+		}
+
+		return usuario;
 	}
 }
