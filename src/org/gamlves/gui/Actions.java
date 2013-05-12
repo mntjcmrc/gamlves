@@ -25,13 +25,14 @@ public class Actions {
 						LoginRun.loginFrame.txtPass.getText())) {
 					String user = LoginRun.loginFrame.txtUser.getText();
 					LoginRun.loginFrame.setVisible(false);
+					
 					if (user.equals("admin")) {
 						MainRun.mainFrame = new MainFrame(true);
 					} else {
 						mainFrame = new MainFrame(false);
 					}
 					Login._user = user;
-					MainRun.mainFrame.setVisible(true);
+					new Thread(new MainRun()).start();
 
 				} else {
 					JOptionPane
