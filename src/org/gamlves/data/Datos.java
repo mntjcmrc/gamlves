@@ -15,16 +15,27 @@ import org.gamlves.db.DriverGamlves;
  * 
  */
 public class Datos extends DriverGamlves {
-	
+
+	/**
+	 * Array con todos los usuarios cargados en memoria
+	 */
 	private ArrayList<Usuario> _usuarios;
+	/**
+	 * Array con todos los juegos cargados en memoria
+	 */
 	private ArrayList<Juego> _juegos;
+	/**
+	 * Array con todos las relaciones entre usuarios y juegos cargadas en
+	 * memoria
+	 */
 	private ArrayList<UsuarioJuego> _usuariosjuegos;
 
 	/**
-	 * Crea  
+	 * Crea una instancia del objeto desde el que se controlarán todos los
+	 * datos, creando los ArrayList en los que se almacenarán los datos
 	 */
 	public Datos() {
-		
+
 		_usuarios = new ArrayList<Usuario>();
 		_juegos = new ArrayList<Juego>();
 		_usuariosjuegos = new ArrayList<UsuarioJuego>();
@@ -49,9 +60,9 @@ public class Datos extends DriverGamlves {
 		return exist;
 	}
 
-	// El id se generará automáticamente en la base de datos
 	/**
-	 * Crea un usuario con los datos dados y lo añade a la base de datos
+	 * Crea un usuario con los datos dados y lo añade a la base de datos, el id
+	 * se generará automáticamente en la base de datos
 	 * 
 	 * @param nombre
 	 *            El nombre del usuario
@@ -72,13 +83,5 @@ public class Datos extends DriverGamlves {
 			usuario = new Usuario(nombre, user, passHash);
 
 		}
-	}
-
-	private class Juego {
-
-	}
-
-	private class UsuarioJuego {
-
 	}
 }

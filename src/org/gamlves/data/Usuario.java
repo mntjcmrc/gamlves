@@ -48,6 +48,12 @@ public class Usuario {
 		return this._pass;
 	}
 
+	/**
+	 * Asigna un id al usuario, se usará una vez el usuario se cree en la base
+	 * de datos y se saque el id autogenerado
+	 * 
+	 * @param id ID a asignar al usuario
+	 */
 	public void set_id(String id) {
 		this._id = id;
 	}
