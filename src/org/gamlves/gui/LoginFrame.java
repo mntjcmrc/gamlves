@@ -19,7 +19,7 @@ import org.gamlves.data.Seguridad;
 
 public class LoginFrame extends JFrame {
 
-	private JTextField txtUser, txtPass;
+	protected JTextField txtUser, txtPass;
 	private JLabel lblUser, lblPass;
 	private JButton btnAceptar, btnCancelar;
 	String usuario, pass;
@@ -61,49 +61,10 @@ public class LoginFrame extends JFrame {
 		
 		this.add(btnAceptar);
 		this.add(btnCancelar);
-		
-		ActionListener aceptar = new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				MainFrame mainFrame;
-				
-				if(txtUser.getText().length() > 0 && txtPass.getText().length() > 0){
-					if(Seguridad.checkLogin(txtUser.getText(), txtPass.getText())){
-						String user = txtUser.getText();
-						setVisible(false);
-						if (user.equals("admin")){
-							mainFrame = new MainFrame(true);
-						} else {
-							mainFrame = new MainFrame(false);
-						}
-						Login._user = user;
-						mainFrame.setVisible(true);
-						
-					} else {
-						JOptionPane.showMessageDialog(null, "El nombre de usuario y/o la contraseña no son correctos");
-						txtUser.setText("");
-						txtPass.setText("");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Debes escribir un usuario y una contraseña");
-				}
-				
-			}
-			
-		};
-		btnAceptar.addActionListener(aceptar);
+		btnAceptar.addActionListener(Actions.loginAceptar);
 		
-		ActionListener cancelar = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-				
-			}
-			
-		};
-		btnCancelar.addActionListener(cancelar);
+		btnCancelar.addActionListener(Actions.loginCancelar);
 		
 	}
 }
