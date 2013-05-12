@@ -12,9 +12,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Seguridad {
 
-	private String algorithm = "MD5";
-	private String charset = "UTF-8";
-	private MessageDigest md;
+	private static final String algorithm = "MD5";
+	private static final String charset = "UTF-8";
+	private static MessageDigest md;
 
 	/**
 	 * Por defecto usará MD5 como algoritmo y UTF-o como charset
@@ -51,7 +51,7 @@ public class Seguridad {
 	 *            String a pasar a hash
 	 * @return Hash en forma de string
 	 */
-	protected String createHash(String s) {
+	protected static String createHash(String s) {
 
 		byte[] bytes;
 		byte[] digest;

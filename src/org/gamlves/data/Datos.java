@@ -1,22 +1,33 @@
 package org.gamlves.data;
 
+import java.util.ArrayList;
+
 import org.gamlves.db.DriverGamlves;
 
 /**
  * 
  * Clase encargada de manejar los datos provistos por DriverGamlves
  * 
+ * Esta clase manejará los datos cargándolos en memoria a través de ArrayList,
+ * con lo cual sólo se podrá usar en un entorno monousuario.
+ * 
  * @author mntjcmrc
  * 
  */
 public class Datos extends DriverGamlves {
+	
+	private ArrayList<Usuario> _usuarios;
+	private ArrayList<Juego> _juegos;
+	private ArrayList<UsuarioJuego> _usuariosjuegos;
 
-	private Seguridad sc;
-	private DriverGamlves driver;
-
+	/**
+	 * Crea  
+	 */
 	public Datos() {
-		sc = new Seguridad();
-		driver = new DriverGamlves();
+		
+		_usuarios = new ArrayList<Usuario>();
+		_juegos = new ArrayList<Juego>();
+		_usuariosjuegos = new ArrayList<UsuarioJuego>();
 	}
 
 	/**
@@ -56,11 +67,10 @@ public class Datos extends DriverGamlves {
 		} else {
 			Usuario usuario;
 			String passHash;
-			passHash = sc.createHash(pass);
+			passHash = Seguridad.createHash(pass);
 
 			usuario = new Usuario(nombre, user, passHash);
-			
-			
+
 		}
 	}
 
