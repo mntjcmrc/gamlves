@@ -24,6 +24,9 @@ public class LoginFrame extends JFrame {
 	private JButton btnAceptar, btnCancelar;
 	String usuario, pass;
 
+	/**
+	 *  
+	 */
 	public LoginFrame() {
 		
 		// Título y layout
@@ -39,9 +42,6 @@ public class LoginFrame extends JFrame {
 		setSize(new Dimension(widthWindow, heightWindow));
 		setResizable(false);
 		setBounds(X, Y, widthWindow, heightWindow);
-		
-		// Cierre
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		// Username
 		lblUser = new JLabel("Usuario: ");
@@ -93,6 +93,17 @@ public class LoginFrame extends JFrame {
 			
 		};
 		btnAceptar.addActionListener(aceptar);
+		
+		ActionListener cancelar = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+			
+		};
+		btnCancelar.addActionListener(cancelar);
 		
 	}
 }
