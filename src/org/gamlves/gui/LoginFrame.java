@@ -17,7 +17,7 @@ public class LoginFrame extends JFrame {
 	protected JTextField txtUser, txtPass;
 	private JLabel lblUser, lblPass;
 	private JButton btnAceptar, btnCancelar;
-	String usuario, pass;
+//	private String usuario, pass;
 
 	/**
 	 *  
