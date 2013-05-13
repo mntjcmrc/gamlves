@@ -90,6 +90,11 @@ public class AddPanel extends JPanel {
 		JPanel btnAddUsuario = new JPanel(new FlowLayout());
 		JButton btnAceptarAddUsuario = new JButton("Aceptar");
 		btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
+		JButton btnLimpiarAddUsuario = new JButton("Limpiar");
+		btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
+		
+		btnAddUsuario.add(btnAceptarAddUsuario);
+		btnAddUsuario.add(btnLimpiarAddUsuario);
 		
 		panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
 		panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
