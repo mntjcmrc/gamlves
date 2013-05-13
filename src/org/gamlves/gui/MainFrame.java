@@ -47,6 +47,8 @@ public class MainFrame extends JFrame {
 	 * Panel para ver los datos
 	 */
 	protected ViewPanel viewPanel;
+	
+	public JLabel lblStatus;
 
 	/**
 	 * Constructor del frame que asignará todas sus opciones, añadirá el tab
@@ -83,6 +85,8 @@ public class MainFrame extends JFrame {
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		statusPanel.setPreferredSize(new Dimension(this.getWidth(), 16));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
+		lblStatus = new JLabel("");
+		statusPanel.add(lblStatus);
 		
 		this.add(statusPanel, BorderLayout.PAGE_END);
 		
