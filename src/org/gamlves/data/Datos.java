@@ -16,6 +16,10 @@ import javax.swing.JOptionPane;
  * @author mntjcmrc
  * 
  */
+/**
+ * @author mutilx9
+ * 
+ */
 public class Datos {
 
 	/**
@@ -31,6 +35,16 @@ public class Datos {
 	 * memoria
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
+
+	/**
+	 * Representa el número de caractéres máximo que podrá tener los usernames
+	 */
+	public static final int USUARIOUSER = 15;
+	/**
+	 * Representa el número de caracteres máximo que podrá tener los nombres de
+	 * usuario
+	 */
+	public static final int USUARIONOMBRE = 30;
 
 	// private static DriverGamlves driver = new DriverGamlves();
 
