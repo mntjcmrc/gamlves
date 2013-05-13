@@ -76,6 +76,33 @@ public class Actions {
 	};
 
 	/**
+	 * Acción que lanzará el botón de opciones del panel de añadir del admin.
+	 * Versión de Usuario.
+	 */
+	protected static ActionListener showAddUsuario = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MainRun.mainFrame.addPanel.panelAddUsuario();
+
+		}
+
+	};
+
+	/**
+	 * Acción que lanzará el botón de opciones del panel de añadir del admin.
+	 * Versión de Juego.
+	 */
+	protected static ActionListener showAddJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MainRun.mainFrame.addPanel.panelAddJuego();
+
+		}
+	};
+
+	/**
 	 * Centra en la pantalla el JFrame dado
 	 * 
 	 * @param frame
