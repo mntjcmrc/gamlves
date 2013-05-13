@@ -11,10 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.gamlves.data.Datos;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
-import org.gamlves.start.LoginRun;
 import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
 
@@ -31,7 +29,6 @@ public class Actions {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			MainFrame mainFrame;
 
 			if (LoginRun.loginFrame.txtUser.getText().length() > 0
 					&& LoginRun.loginFrame.txtPass.getText().length() > 0) {
@@ -43,7 +40,7 @@ public class Actions {
 					if (user.equals("admin")) {
 						MainRun.mainFrame = new MainFrame(true);
 					} else {
-						mainFrame = new MainFrame(false);
+						MainRun.mainFrame = new MainFrame(false);
 					}
 					Login._user = user;
 					EventQueue.invokeLater(new MainRun());

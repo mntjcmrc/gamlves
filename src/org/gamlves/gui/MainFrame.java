@@ -89,10 +89,6 @@ public class MainFrame extends JFrame {
 		statusPanel.add(lblStatus);
 		
 		this.add(statusPanel, BorderLayout.PAGE_END);
-		
-
-		// Cierre
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Panel con los tabs
 		tabPanel = new JTabbedPane();
