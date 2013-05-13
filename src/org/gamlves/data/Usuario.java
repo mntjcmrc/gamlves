@@ -26,11 +26,11 @@ public class Usuario implements Comparable<Usuario> {
 		this._user = user;
 		this._pass = pass;
 	}
-	
+
 	/**
 	 * @return ID del usuario
 	 */
-	public int get_id(){
+	public int get_id() {
 		return this._id;
 	}
 
@@ -59,7 +59,8 @@ public class Usuario implements Comparable<Usuario> {
 	 * Asigna un id al usuario, se usará una vez el usuario se cree en la base
 	 * de datos y se saque el id autogenerado
 	 * 
-	 * @param id ID a asignar al usuario
+	 * @param id
+	 *            ID a asignar al usuario
 	 */
 	public void set_id(int id) {
 		this._id = id;
@@ -67,13 +68,20 @@ public class Usuario implements Comparable<Usuario> {
 
 	@Override
 	public int compareTo(Usuario usuario) {
-		if(this.get_id() == usuario.get_id()){
+		if (this.get_id() == usuario.get_id()) {
 			return 0;
-		} else if (this.get_id() < usuario.get_id()){
+		} else if (this.get_id() < usuario.get_id()) {
 			return -1;
 		} else {
 			return 1;
 		}
+	}
+
+	/**
+	 * Añadirá los datos de este usuario a la base de datos
+	 */
+	protected void addDatabase() {
+
 	}
 
 }
