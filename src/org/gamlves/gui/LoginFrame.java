@@ -34,14 +34,7 @@ public class LoginFrame extends JFrame {
 		setLayout(new FlowLayout());
 		
 		// Tamaño
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		int widthWindow = 500;
-		int heightWindow = 120;
-		int X = (screen.width / 2) - (widthWindow / 2);
-		int Y = (screen.height / 2) - (heightWindow / 2);
-		setSize(new Dimension(widthWindow, heightWindow));
-		setResizable(false);
-		setBounds(X, Y, widthWindow, heightWindow);
+		Actions.centerFrame(this, 500, 120);
 
 		// Username
 		lblUser = new JLabel("Usuario: ");

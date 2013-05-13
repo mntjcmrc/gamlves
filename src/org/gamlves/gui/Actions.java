@@ -1,9 +1,12 @@
 package org.gamlves.gui;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.gamlves.data.Datos;
@@ -59,5 +62,14 @@ public class Actions {
 		}
 
 	};
+	
+	protected static void centerFrame(JFrame frame, int widthWindow, int heightWindow){
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		int X = (screen.width / 2) - (widthWindow / 2);
+		int Y = (screen.height / 2) - (heightWindow / 2);
+		frame.setSize(new Dimension(widthWindow, heightWindow));
+		frame.setResizable(false);
+		frame.setBounds(X, Y, widthWindow, heightWindow);
+	}
 
 }
