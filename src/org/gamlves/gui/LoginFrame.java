@@ -29,7 +29,9 @@ public class LoginFrame extends JFrame {
 		setLayout(new FlowLayout());
 		
 		// Tamaño
-		Actions.centerFrame(this, 500, 120);
+		int widthFrame = 500;
+		int heightFrame = 120;
+		Actions.centerFrame(this, widthFrame, heightFrame);
 
 		// Username
 		lblUser = new JLabel("Usuario: ");
@@ -47,12 +49,13 @@ public class LoginFrame extends JFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnCancelar = new JButton("Cancelar");
 		
+		btnAceptar.addActionListener(Actions.loginAceptar);
+		btnCancelar.addActionListener(Actions.cerrar);
+		
 		this.add(btnAceptar);
 		this.add(btnCancelar);
 
-		btnAceptar.addActionListener(Actions.loginAceptar);
 		
-		btnCancelar.addActionListener(Actions.cerrar);
 		
 	}
 }
