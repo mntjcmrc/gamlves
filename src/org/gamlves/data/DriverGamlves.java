@@ -24,6 +24,10 @@ public class DriverGamlves {
 	public DriverGamlves() {
 
 	}
+	
+	protected static void disconnect(){
+		database.disconnect();
+	}
 
 	/**
 	 * Nos da los datos de todos los usuarios
@@ -255,7 +259,7 @@ public class DriverGamlves {
 	 * @return Si se ha añadido correctamente o no
 	 * @throws SQLException 
 	 */
-	protected boolean addUser(Usuario usuario) throws SQLException {
+	protected static boolean addUser(Usuario usuario) throws SQLException {
 		boolean add = false;
 		String nombre, user, pass;
 		String update;
