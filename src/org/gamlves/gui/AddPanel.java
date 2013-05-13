@@ -1,11 +1,14 @@
 package org.gamlves.gui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /**
  * Diseño del panel para la interfaz de añadir registros a la base de datos
@@ -19,6 +22,13 @@ public class AddPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 6649879111663947403L;
+	
+	private JPanel panelAddUsuario;
+	private JPanel panelAddJuego;
+	private JPanel panelCards;
+	
+	private final String ADDUSUARIO = "Usuario";
+	private final String ADDJUEGO = "Juego";
 
 	protected AddPanel(boolean admin) {
 		this.setLayout(new BorderLayout());
@@ -26,29 +36,58 @@ public class AddPanel extends JPanel {
 		// Opciones para que añadir
 		JPanel opciones = new JPanel();
 		opciones.setLayout(new FlowLayout());
-		JButton addUsuario = new JButton("Usuario");
-		addUsuario.addActionListener(Actions.showAddUsuario);
-		JButton addJuego = new JButton("Juego");
-		addJuego.addActionListener(Actions.showAddJuego);
-		opciones.add(addUsuario);
-		opciones.add(addJuego);
+		
+		JRadioButton rAddUsuario = new JRadioButton(ADDUSUARIO);
+		rAddUsuario.addActionListener(Actions.showAddUsuario);
+		rAddUsuario.setEnabled(true);
+		
+		JRadioButton rAddJuego = new JRadioButton(ADDJUEGO);
+		rAddJuego.addActionListener(Actions.showAddJuego);
+		
+		ButtonGroup add = new ButtonGroup();
+		
+		add.add(rAddUsuario);
+		add.add(rAddJuego);
+		
+		opciones.add(rAddUsuario);
+		opciones.add(rAddJuego);
+	
 		this.add(opciones, BorderLayout.PAGE_START);
+		
+		// Organización de las cartas
+		panelCards = new JPanel(new CardLayout());
+		this.add(panelCards, BorderLayout.CENTER);
+		
+		// Panel para añadir usuarios
+		panelAddUsuario = new JPanel();
+		panelAddUsuario.setLayout(new BorderLayout());
+		panelAddUsuario.add(new JLabel("testUsuario"));
+		
+		
+		// Panel para añadir juegos
+		panelAddJuego = new JPanel();
+		panelAddJuego.add(new JLabel("testJuego"));
+		
+		// Se añaden las cartas
+		panelCards.add(panelAddUsuario, ADDUSUARIO);
+		panelCards.add(panelAddJuego, ADDJUEGO);
 		
 //		this.add(new JLabel("addTest"));
 	}
 	
 	/**
-	 * Añadirá el panel para que el admin añada usuarios
+	 * Se visualizará el panel para que el admin añada usuarios
 	 */
 	protected void panelAddUsuario() {
-		JPanel addUsuario = new JPanel();
-		
+		CardLayout layout = (CardLayout) panelCards.getLayout();
+		layout.show(panelCards, ADDUSUARIO);
 	}
 	
 	/**
-	 * Añadirá el panel para que el admin añada juegos
+	 * Se visualizará el panel para que el admin añada juegos
 	 */
 	protected void panelAddJuego(){
-		
+		CardLayout layout = (CardLayout) panelCards.getLayout();
+		layout.show(panelCards, ADDJUEGO);
 	}
 }
