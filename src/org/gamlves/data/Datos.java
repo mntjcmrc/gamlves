@@ -113,9 +113,7 @@ public class Datos {
 
 	// Pendiente
 	/**
-	 * Crea un usuario con los datos dados y lo añade a la base de datos, el id
-	 * se generará automáticamente en la base de datos. Una vez esté añadido,
-	 * extrae los datos de la base de datos y añade al usuario a memoria
+	 * Crea un usuario con los datos dados y lo devuelve
 	 * 
 	 * @param nombre
 	 *            El nombre del usuario
@@ -126,21 +124,19 @@ public class Datos {
 	 *            método
 	 * @throws SQLException
 	 */
-	public static void createUser(String nombre, String user, String pass)
+	public static Usuario createUser(String nombre, String user, String pass)
 			throws SQLException {
+		Usuario usuario = null;
 
 		if (checkUser(user)) {
 			System.out.println("El usuario " + user + " ya existe");
 		} else {
-			Usuario usuario;
 			String passHash;
 			passHash = Seguridad.createHash(pass);
-
 			usuario = new Usuario(nombre, user, passHash);
-			// SEGUIR AQUÍ
-			usuario.addDatabase();
-
 		}
+
+		return usuario;
 
 	}
 
@@ -182,5 +178,73 @@ public class Datos {
 		}
 
 		return juego;
+	}
+
+	/**
+	 * Aglutina todos los pasos al crear un usuario en el sistema, estos son:
+	 * comprobar si ya existe un usuario con ese username, crear un objeto del
+	 * usuario, añadirlo en la base de datos
+	 * 
+	 * @param nombre
+	 *            Nombre que tendrá el usuario
+	 * @param user
+	 *            Username único que será comprobado en la base de datos
+	 * @param pass
+	 *            Contraseña del usuario que será convertida en hash en el
+	 *            proceso de creación
+	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
+	 *         existencia del usuario en el sistema, 2 si falla al crear el
+	 *         objeto de tipo Usuario, 3 si falla al añadir el usuario a la base
+	 *         de datos, 4 si falla al pedir los datos recién introducidos
+	 */
+	public static int userTransaction(String nombre, String user, String pass) {
+		int transaction = 0;
+
+		Usuario usuario;
+		Usuario usuarioDatabase;
+		try {
+			usuario = Datos.createUser(nombre, user, pass);
+		} catch (SQLException e) {
+			// Error al comprobar al usuario en la base de datos
+			transaction = 1;
+			return transaction;
+			// e.printStackTrace();
+		} finally {
+			DriverGamlves.disconnect();
+		}
+
+		if (!(usuario == null)) {
+			try {
+				DriverGamlves.addUser(usuario);
+			} catch (SQLException e) {
+				// Error al añadir el usuario a la base de datos
+				transaction = 3;
+				return transaction;
+				// e.printStackTrace();
+			} finally {
+				DriverGamlves.disconnect();
+			}
+
+			try {
+				usuarioDatabase = DriverGamlves.get_usuario(usuario.get_user());
+			} catch (SQLException e) {
+				// Error al pedir los datos del usuario
+				transaction = 4;
+				return transaction;
+				// e.printStackTrace();
+			} finally {
+				DriverGamlves.disconnect();
+			}
+
+			usuario.set_id(usuarioDatabase.get_id());
+			_usuarios.add(usuario);
+		} else {
+			// Error al crear el objeto
+			transaction = 2;
+			return transaction;
+		}
+
+		return transaction;
+
 	}
 }
