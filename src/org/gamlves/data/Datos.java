@@ -79,7 +79,7 @@ public class Datos {
 	 * @return Si ya existe o no
 	 * @throws SQLException
 	 */
-	public boolean checkUser(String user) throws SQLException {
+	protected static boolean checkUser(String user) throws SQLException {
 		boolean exist = false;
 
 		if (DriverGamlves.get_usuario(user) == null) {
@@ -99,7 +99,7 @@ public class Datos {
 	 * @return Si existe o no
 	 * @throws SQLException
 	 */
-	public boolean checkJuego(String id) throws SQLException {
+	protected boolean checkJuego(String id) throws SQLException {
 		boolean exist = false;
 
 		if (DriverGamlves.get_juego(id) == null) {
@@ -114,7 +114,8 @@ public class Datos {
 	// Pendiente
 	/**
 	 * Crea un usuario con los datos dados y lo añade a la base de datos, el id
-	 * se generará automáticamente en la base de datos
+	 * se generará automáticamente en la base de datos. Una vez esté añadido,
+	 * extrae los datos de la base de datos y añade al usuario a memoria
 	 * 
 	 * @param nombre
 	 *            El nombre del usuario
@@ -125,7 +126,7 @@ public class Datos {
 	 *            método
 	 * @throws SQLException
 	 */
-	public void createUser(String nombre, String user, String pass)
+	public static void createUser(String nombre, String user, String pass)
 			throws SQLException {
 
 		if (checkUser(user)) {
@@ -136,6 +137,8 @@ public class Datos {
 			passHash = Seguridad.createHash(pass);
 
 			usuario = new Usuario(nombre, user, passHash);
+			// SEGUIR AQUÍ
+			usuario.addDatabase();
 
 		}
 
