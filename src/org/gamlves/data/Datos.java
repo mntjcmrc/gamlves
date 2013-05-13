@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author mntjcmrc
  * 
  */
-public class Datos extends DriverGamlves {
+public class Datos{
 
 	/**
 	 * Array con todos los usuarios cargados en memoria
@@ -30,7 +30,7 @@ public class Datos extends DriverGamlves {
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
 	
-	private DriverGamlves driver = new DriverGamlves();
+	private static DriverGamlves driver = new DriverGamlves();
 
 	// /**
 	// * Crea una instancia del objeto desde el que se controlarán todos los
@@ -44,7 +44,7 @@ public class Datos extends DriverGamlves {
 	// }
 
 	public static void loadData() {
-		_usuarios = get_usuarios();
+		_usuarios = driver.get_usuarios();
 //		_juegos = get_juegos();
 //		_usuariosjuegos = get_usuariosjuegos();
 	}
@@ -59,7 +59,7 @@ public class Datos extends DriverGamlves {
 	public boolean checkUser(String user) {
 		boolean exist;
 
-		if (get_usuario(user) == null) {
+		if (driver.get_usuario(user) == null) {
 			exist = false;
 		} else {
 			exist = true;
