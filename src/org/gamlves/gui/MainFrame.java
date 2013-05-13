@@ -59,15 +59,9 @@ public class MainFrame extends JFrame {
 		setTitle("Gamlves");
 
 		// Tamaño
-		Actions.centerFrame(this, 500, 300);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		int widthWindow = 500;
-		int heightWindow = 300;
-		int X = (screen.width / 2) - (widthWindow / 2);
-		int Y = (screen.height / 2) - (heightWindow / 2);
-		setSize(new Dimension(widthWindow, heightWindow));
-		setResizable(false);
-		setBounds(X, Y, widthWindow, heightWindow);
+		int widthWindow = 550;
+		int heightWindow = 400;
+		Actions.centerFrame(this, widthWindow, heightWindow);
 
 		// Menús
 		JMenuBar mb = new JMenuBar();
