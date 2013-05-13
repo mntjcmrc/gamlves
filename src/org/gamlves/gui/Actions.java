@@ -65,7 +65,7 @@ public class Actions {
 	 * Acción a ejecutar cuando el botón cancelar del frame de login es pulsado.
 	 * Cierra el programa.
 	 */
-	protected static ActionListener loginCancelar = new ActionListener() {
+	protected static ActionListener cerrar = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

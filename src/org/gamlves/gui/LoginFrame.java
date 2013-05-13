@@ -52,7 +52,7 @@ public class LoginFrame extends JFrame {
 
 		btnAceptar.addActionListener(Actions.loginAceptar);
 		
-		btnCancelar.addActionListener(Actions.loginCancelar);
+		btnCancelar.addActionListener(Actions.cerrar);
 		
 	}
 }

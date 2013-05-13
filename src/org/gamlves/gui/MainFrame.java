@@ -70,6 +70,7 @@ public class MainFrame extends JFrame {
 		// Archivo
 		JMenu archivo = new JMenu("Archivo");
 		JMenuItem salir = new JMenuItem("Salir");
+		salir.addActionListener(Actions.cerrar);
 		archivo.add(salir);
 		
 		mb.add(archivo);
