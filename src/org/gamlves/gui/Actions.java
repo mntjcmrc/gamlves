@@ -5,12 +5,14 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.gamlves.data.Datos;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
 import org.gamlves.start.LoginRun;
@@ -138,4 +140,23 @@ public class Actions {
 			e.printStackTrace();
 		}
 	}
+
+	protected static ActionListener addUserAceptar = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String nombre = MainRun.mainFrame.addPanel.txtNombreUsuario
+					.getText();
+			String user = MainRun.mainFrame.addPanel.txtUser.getText();
+			String pass = MainRun.mainFrame.addPanel.txtPass.getText();
+
+			// Llamar al método para crear un usuario en la base de datos y
+			// posteriormente añadirlo a memoria
+			try {
+				Datos.createUser(nombre, user, pass);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	};
 }
