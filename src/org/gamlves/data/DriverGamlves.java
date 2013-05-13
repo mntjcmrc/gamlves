@@ -118,6 +118,13 @@ public class DriverGamlves {
 		return usuario;
 	}
 	
+	/**
+	 * Nos da los datos de un juego en base al id dado
+	 * 
+	 * @param id ID del juego
+	 * @return Datos del juego
+	 * @throws SQLException
+	 */
 	protected static Juego get_juego(String id) throws SQLException {
 		Juego juego = null;
 		ResultSet rs;
@@ -192,6 +199,14 @@ public class DriverGamlves {
 		return usuario;
 	}
 	
+	/**
+	 * Crea un objeto juego con el ResultSet dado
+	 * 
+	 * @param rs
+	 *            ResultSet en la posición del juego que se quiere crear
+	 * @return Juego con los datos de la posición del ResultSet
+	 * @throws SQLException
+	 */
 	private static Juego crear_juego(ResultSet rs) throws SQLException {
 		Juego juego = null;
 		
