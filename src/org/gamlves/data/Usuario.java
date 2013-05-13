@@ -1,5 +1,7 @@
 package org.gamlves.data;
 
+import java.sql.SQLException;
+
 /**
  * Representa a un usuario del programa, el id y user son únicos en la báse de
  * datos. El id se generará en la base de datos automáticamente.
@@ -77,11 +79,12 @@ public class Usuario implements Comparable<Usuario> {
 		}
 	}
 
-	/**
-	 * Añadirá los datos de este usuario a la base de datos
-	 */
-	protected void addDatabase() {
-
-	}
+//	/**
+//	 * Añadirá los datos de este usuario a la base de datos
+//	 * @throws SQLException 
+//	 */
+//	protected void addDatabase() throws SQLException {
+//		DriverGamlves.addUser(this);
+//	}
 
 }
