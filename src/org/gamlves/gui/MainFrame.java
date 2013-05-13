@@ -102,25 +102,8 @@ public class MainFrame extends JFrame {
 		viewPanel = new ViewPanel();
 		tabPanel.addTab("Ver datos", viewPanel);
 
-		lookAndFeel();
+		Actions.systemLookAndFeel();
 
-	}
-
-	/**
-	 * Aplicará el LookAndFeel del sistema al frame
-	 */
-	private void lookAndFeel() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
