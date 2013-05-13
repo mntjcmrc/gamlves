@@ -2,7 +2,6 @@ package org.gamlves.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -60,7 +59,7 @@ public class MainFrame extends JFrame {
 
 		// Tamaño
 		int widthWindow = 550;
-		int heightWindow = 400;
+		int heightWindow = 500;
 		Actions.centerFrame(this, widthWindow, heightWindow);
 
 		// Menús
