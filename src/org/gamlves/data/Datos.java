@@ -1,6 +1,6 @@
 package org.gamlves.data;
 
-import java.io.ObjectInputStream.GetField;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -68,6 +68,8 @@ public class Datos {
 			JOptionPane.showMessageDialog(null,
 					"Error al conectar con la base de datos");
 			e.printStackTrace();
+		} finally {
+			DriverGamlves.disconnect();
 		}
 	}
 
@@ -129,6 +131,7 @@ public class Datos {
 		Usuario usuario = null;
 
 		if (checkUser(user)) {
+//			JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario " + user + " ya existe");
 			System.out.println("El usuario " + user + " ya existe");
 		} else {
 			String passHash;
@@ -219,8 +222,10 @@ public class Datos {
 			} catch (SQLException e) {
 				// Error al añadir el usuario a la base de datos
 				transaction = 3;
+//				System.out.println("SQL Error: " + e.getErrorCode());
+				JOptionPane.showMessageDialog(null, "SQL Error: " + e.getErrorCode() + "\nAvise al administrador");
 				return transaction;
-				// e.printStackTrace();
+				
 			} finally {
 				DriverGamlves.disconnect();
 			}
