@@ -1,4 +1,4 @@
-package org.gamlves.db;
+package org.gamlves.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
