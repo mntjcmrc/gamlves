@@ -60,8 +60,11 @@ public class DB {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + database, _user, _pass);
 		} catch (SQLException e) {
-			System.out.println("Error al intentar testear la conexión con la base de datos");
-			JOptionPane.showMessageDialog(null, "Error al intentar testear la conexión con la base de datos");
+			System.out
+					.println("Error al intentar testear la conexión con la base de datos");
+			JOptionPane
+					.showMessageDialog(null,
+							"Error al intentar testear la conexión con la base de datos");
 			e.printStackTrace();
 		} finally {
 			disconnect();
@@ -94,8 +97,11 @@ public class DB {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + _database, _user, _pass);
 		} catch (SQLException e) {
-			System.out.println("Error al intentar testear la conexión con la base de datos");
-			JOptionPane.showMessageDialog(null, "Error al intentar testear la conexión con la base de datos");
+			System.out
+					.println("Error al intentar testear la conexión con la base de datos");
+			JOptionPane
+					.showMessageDialog(null,
+							"Error al intentar testear la conexión con la base de datos");
 			e.printStackTrace();
 		} finally {
 			disconnect();
