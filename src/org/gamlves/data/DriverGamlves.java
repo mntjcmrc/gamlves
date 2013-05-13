@@ -268,7 +268,7 @@ public class DriverGamlves {
 		user = usuario.get_user();
 		pass = usuario.get_pass();
 
-		update = "INSERT INTO Usuarios (Nombre, Usuario, Pass) VALUES('"
+		update = "INSERT INTO Usuarios (Nombre, User, Pass) VALUES('"
 				+ nombre + "', '" + user + "', '" + pass + "');";
 		add = database.makeUpdate(update);
 
