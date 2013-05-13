@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
 /**
  * 
  * Clase encargada de manejar los datos provistos por DriverGamlves
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author mntjcmrc
  * 
  */
-public class Datos{
+public class Datos {
 
 	/**
 	 * Array con todos los usuarios cargados en memoria
@@ -32,8 +31,8 @@ public class Datos{
 	 * memoria
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
-	
-//	private static DriverGamlves driver = new DriverGamlves();
+
+	// private static DriverGamlves driver = new DriverGamlves();
 
 	// /**
 	// * Crea una instancia del objeto desde el que se controlarán todos los
@@ -49,10 +48,11 @@ public class Datos{
 	public static void loadData() {
 		try {
 			_usuarios = DriverGamlves.get_usuarios();
-//			_juegos = get_juegos();
-//			_usuariosjuegos = get_usuariosjuegos();
+			_juegos = DriverGamlves.get_juegos();
+			// _usuariosjuegos = DriverGamlves.get_usuariosjuegos();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+			JOptionPane.showMessageDialog(null,
+					"Error al conectar con la base de datos");
 			e.printStackTrace();
 		}
 	}
@@ -63,12 +63,32 @@ public class Datos{
 	 * @param user
 	 *            Nombre de usuario a comprobar
 	 * @return Si ya existe o no
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public boolean checkUser(String user) throws SQLException {
-		boolean exist;
+		boolean exist = false;
 
 		if (DriverGamlves.get_usuario(user) == null) {
+			exist = false;
+		} else {
+			exist = true;
+		}
+
+		return exist;
+	}
+
+	/**
+	 * Comprueba que el id del juego dado no existe en la base de datos
+	 * 
+	 * @param id
+	 *            ID del juego a comprobar
+	 * @return Si existe o no
+	 * @throws SQLException
+	 */
+	public boolean checkJuego(String id) throws SQLException {
+		boolean exist = false;
+
+		if (DriverGamlves.get_juego(id) == null) {
 			exist = false;
 		} else {
 			exist = true;
@@ -89,21 +109,22 @@ public class Datos{
 	 * @param pass
 	 *            Contraseña en texto plano, se convertirá en hash en este
 	 *            método
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void createUser(String nombre, String user, String pass) throws SQLException {
-		
-			if (checkUser(user)) {
-				System.out.println("El usuario " + user + " ya existe");
-			} else {
-				Usuario usuario;
-				String passHash;
-				passHash = Seguridad.createHash(pass);
+	public void createUser(String nombre, String user, String pass)
+			throws SQLException {
 
-				usuario = new Usuario(nombre, user, passHash);
+		if (checkUser(user)) {
+			System.out.println("El usuario " + user + " ya existe");
+		} else {
+			Usuario usuario;
+			String passHash;
+			passHash = Seguridad.createHash(pass);
 
-			}
-		
+			usuario = new Usuario(nombre, user, passHash);
+
+		}
+
 	}
 
 	/**
@@ -124,5 +145,25 @@ public class Datos{
 		}
 
 		return usuario;
+	}
+
+	/**
+	 * Devuelve un juego con el id dado, el juego es buscado en los arrays en
+	 * memoria
+	 * 
+	 * @param id
+	 *            ID del juego a buscar
+	 * @return Un objeto Juego con los datos necesarios, null si no existe
+	 */
+	public static Juego searchJuego(String id) {
+		Juego juego = null;
+
+		for (int i = 0; i < _juegos.size(); i++) {
+			if (id.equals(_juegos.get(i).get_id())) {
+				juego = _juegos.get(i);
+			}
+		}
+
+		return juego;
 	}
 }
