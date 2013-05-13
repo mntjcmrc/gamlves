@@ -1,5 +1,7 @@
 package org.gamlves.start;
 
+import javax.swing.JFrame;
+
 import org.gamlves.gui.MainFrame;
 
 public class MainRun implements Runnable {
@@ -7,5 +9,6 @@ public class MainRun implements Runnable {
 
 	public void run(){
 		mainFrame.setVisible(true);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

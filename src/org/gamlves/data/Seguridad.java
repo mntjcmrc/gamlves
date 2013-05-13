@@ -21,7 +21,7 @@ public class Seguridad {
 	 */
 	private static final String charset = "UTF-8";
 	private static MessageDigest md;
-
+	
 	/**
 	 * Por defecto usará MD5 como algoritmo y UTF-8 como charset
 	 */
@@ -42,7 +42,7 @@ public class Seguridad {
 	 * @param pass Supuesta contraseña del usuario
 	 * @return Si es correcto el login
 	 */
-	public static boolean checkLogin(String user, String pass) {
+	public static boolean checkLogin(String user, String pass) {		
 		boolean check = false;
 		String passHash;
 		
@@ -52,7 +52,7 @@ public class Seguridad {
 		if(usuario == null){
 			
 		} else {
-			if (usuario.get_pass() == passHash){
+			if (usuario.get_pass().equals(passHash)){
 				check = true;
 			}
 		}
@@ -68,6 +68,12 @@ public class Seguridad {
 	 * @return Hash en forma de string
 	 */
 	protected static String createHash(String s) {
+		
+		try {
+			md = MessageDigest.getInstance(algorithm);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 
 		byte[] bytes;
 		byte[] digest;

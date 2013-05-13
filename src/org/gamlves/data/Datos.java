@@ -1,8 +1,8 @@
 package org.gamlves.data;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 
-import org.gamlves.db.DriverGamlves;
 
 /**
  * 
@@ -19,26 +19,34 @@ public class Datos extends DriverGamlves {
 	/**
 	 * Array con todos los usuarios cargados en memoria
 	 */
-	private static ArrayList<Usuario> _usuarios;
+	private static ArrayList<Usuario> _usuarios = new ArrayList<Usuario>();
 	/**
 	 * Array con todos los juegos cargados en memoria
 	 */
-	private static ArrayList<Juego> _juegos;
+	private static ArrayList<Juego> _juegos = new ArrayList<Juego>();
 	/**
 	 * Array con todos las relaciones entre usuarios y juegos cargadas en
 	 * memoria
 	 */
-	private static ArrayList<UsuarioJuego> _usuariosjuegos;
+	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
+	
+	private DriverGamlves driver = new DriverGamlves();
 
-	/**
-	 * Crea una instancia del objeto desde el que se controlarán todos los
-	 * datos, creando los ArrayList en los que se almacenarán los datos
-	 */
-	public Datos() {
+	// /**
+	// * Crea una instancia del objeto desde el que se controlarán todos los
+	// * datos, creando los ArrayList en los que se almacenarán los datos
+	// */
+	// public Datos() {
+	//
+	// _usuarios = new ArrayList<Usuario>();
+	// _juegos = new ArrayList<Juego>();
+	// _usuariosjuegos = new ArrayList<UsuarioJuego>();
+	// }
 
-		_usuarios = new ArrayList<Usuario>();
-		_juegos = new ArrayList<Juego>();
-		_usuariosjuegos = new ArrayList<UsuarioJuego>();
+	public static void loadData() {
+		_usuarios = get_usuarios();
+//		_juegos = get_juegos();
+//		_usuariosjuegos = get_usuariosjuegos();
 	}
 
 	/**
