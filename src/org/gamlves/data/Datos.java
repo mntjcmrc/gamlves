@@ -1,7 +1,10 @@
 package org.gamlves.data;
 
 import java.io.ObjectInputStream.GetField;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 
 /**
@@ -44,9 +47,14 @@ public class Datos{
 	// }
 
 	public static void loadData() {
-		_usuarios = driver.get_usuarios();
-//		_juegos = get_juegos();
-//		_usuariosjuegos = get_usuariosjuegos();
+		try {
+			_usuarios = DriverGamlves.get_usuarios();
+//			_juegos = get_juegos();
+//			_usuariosjuegos = get_usuariosjuegos();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -55,11 +63,12 @@ public class Datos{
 	 * @param user
 	 *            Nombre de usuario a comprobar
 	 * @return Si ya existe o no
+	 * @throws SQLException 
 	 */
-	public boolean checkUser(String user) {
+	public boolean checkUser(String user) throws SQLException {
 		boolean exist;
 
-		if (driver.get_usuario(user) == null) {
+		if (DriverGamlves.get_usuario(user) == null) {
 			exist = false;
 		} else {
 			exist = true;
@@ -79,18 +88,21 @@ public class Datos{
 	 * @param pass
 	 *            Contraseña en texto plano, se convertirá en hash en este
 	 *            método
+	 * @throws SQLException 
 	 */
-	public void createUser(String nombre, String user, String pass) {
-		if (checkUser(user)) {
-			System.out.println("El usuario " + user + " ya existe");
-		} else {
-			Usuario usuario;
-			String passHash;
-			passHash = Seguridad.createHash(pass);
+	public void createUser(String nombre, String user, String pass) throws SQLException {
+		
+			if (checkUser(user)) {
+				System.out.println("El usuario " + user + " ya existe");
+			} else {
+				Usuario usuario;
+				String passHash;
+				passHash = Seguridad.createHash(pass);
 
-			usuario = new Usuario(nombre, user, passHash);
+				usuario = new Usuario(nombre, user, passHash);
 
-		}
+			}
+		
 	}
 
 	/**

@@ -29,58 +29,52 @@ public class DriverGamlves {
 	 * Nos da los datos de todos los usuarios
 	 * 
 	 * @return Un array con todos los usuarios
+	 * @throws SQLException 
 	 */
-	protected static ArrayList<Usuario> get_usuarios() {
+	protected static ArrayList<Usuario> get_usuarios() throws SQLException {
 		ArrayList<Usuario> usuarios = null;
 		ResultSet rs;
-
-		try {
-			rs = database.makeQuery("SELECT * FROM Usuarios;");
-			usuarios = new ArrayList<Usuario>();
-			while (rs.next()) {
-				Usuario usuario;
-				usuario = crear_usuario(rs);
-				usuarios.add(usuario);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			database.disconnect();
+		rs = database.makeQuery("SELECT * FROM Usuarios;");
+		usuarios = new ArrayList<Usuario>();
+		while (rs.next()) {
+			Usuario usuario;
+			usuario = crear_usuario(rs);
+			usuarios.add(usuario);
 		}
-
 		return usuarios;
 	}
 
-//	/**
-//	 * Método estándar para crear un array con todos los objetos de una tabla
-//	 * 
-//	 * @param tabla
-//	 *            De que tabla se van a sacar los datos de los objetos
-//	 * @param type
-//	 *            Tipo de los objetos, sólo puede ser 'usuario', 'juego' y
-//	 *            'usuariojuego'
-//	 * @return Un array con todos los objetos de la tabla proporcionada
-//	 */
-//	protected static ArrayList<Object> get_objetos(String tabla, String type) {
-//		ArrayList<Object> objetos = null;
-//		ResultSet rs;
-//
-//		try {
-//			rs = database.makeQuery("SELECT * FROM " + tabla);
-//			objetos = new ArrayList<Object>();
-//			while (rs.next()) {
-//				Object objeto;
-//				objeto = crear_objeto(type, rs);
-//				objetos.add(objeto);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			database.disconnect();
-//		}
-//
-//		return objetos;
-//	}
+	// /**
+	// * Método estándar para crear un array con todos los objetos de una tabla
+	// *
+	// * @param tabla
+	// * De que tabla se van a sacar los datos de los objetos
+	// * @param type
+	// * Tipo de los objetos, sólo puede ser 'usuario', 'juego' y
+	// * 'usuariojuego'
+	// * @return Un array con todos los objetos de la tabla proporcionada
+	// */
+	// protected static ArrayList<Object> get_objetos(String tabla, String type)
+	// {
+	// ArrayList<Object> objetos = null;
+	// ResultSet rs;
+	//
+	// try {
+	// rs = database.makeQuery("SELECT * FROM " + tabla);
+	// objetos = new ArrayList<Object>();
+	// while (rs.next()) {
+	// Object objeto;
+	// objeto = crear_objeto(type, rs);
+	// objetos.add(objeto);
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// database.disconnect();
+	// }
+	//
+	// return objetos;
+	// }
 
 	/**
 	 * Nos da los datos de un usuario
@@ -88,63 +82,59 @@ public class DriverGamlves {
 	 * @param user
 	 *            Username del usuario
 	 * @return Datos del usuario
+	 * @throws SQLException
 	 */
-	protected Usuario get_usuario(String user) {
+	protected static Usuario get_usuario(String user) throws SQLException {
 		Usuario usuario = null;
 		ResultSet rs;
-
-		try {
-			rs = database.makeQuery("SELECT * FROM Usuarios WHERE User='"
-					+ user + "';");
-			rs.last();
-			if (rs.getRow() == 0) {
-				// No existe el usuario user
-			} else {
-				crear_usuario(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			database.disconnect();
+		rs = database.makeQuery("SELECT * FROM Usuarios WHERE User='" + user
+				+ "';");
+		rs.last();
+		if (rs.getRow() == 0) {
+			// No existe el usuario user
+		} else {
+			crear_usuario(rs);
 		}
 
 		return usuario;
 	}
 
-//	/**
-//	 * Método estándar para conseguir los datos de un tipo de Objeto. Leyenda de
-//	 * los objetos: Tabla(clave). Ejemplos: Usuarios(User), Juegos(ID),
-//	 * UsuariosJuegos(ID).
-//	 * 
-//	 * @param tabla
-//	 *            De que tabla de la base de datos vamos a sacar el objeto
-//	 * @param clave
-//	 *            El nombre de la clave para buscar el objeto en la tabla
-//	 * @param checkClave
-//	 *            La clave a comprobar
-//	 * @return Objeto buscado con sus datos
-//	 */
-//	protected Object get_objeto(String tabla, String clave, String checkClave) {
-//		Object objeto = null;
-//		ResultSet rs;
-//
-//		try {
-//			rs = database.makeQuery("SELECT * FROM " + tabla + " WHERE "
-//					+ clave + "='" + checkClave + "';");
-//			rs.last();
-//			if (rs.getRow() == 0) {
-//				// No existe el objeto
-//			} else {
-//				// crear_objeto();
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			database.disconnect();
-//		}
-//
-//		return objeto;
-	//	}
+	// /**
+	// * Método estándar para conseguir los datos de un tipo de Objeto. Leyenda
+	// de
+	// * los objetos: Tabla(clave). Ejemplos: Usuarios(User), Juegos(ID),
+	// * UsuariosJuegos(ID).
+	// *
+	// * @param tabla
+	// * De que tabla de la base de datos vamos a sacar el objeto
+	// * @param clave
+	// * El nombre de la clave para buscar el objeto en la tabla
+	// * @param checkClave
+	// * La clave a comprobar
+	// * @return Objeto buscado con sus datos
+	// */
+	// protected Object get_objeto(String tabla, String clave, String
+	// checkClave) {
+	// Object objeto = null;
+	// ResultSet rs;
+	//
+	// try {
+	// rs = database.makeQuery("SELECT * FROM " + tabla + " WHERE "
+	// + clave + "='" + checkClave + "';");
+	// rs.last();
+	// if (rs.getRow() == 0) {
+	// // No existe el objeto
+	// } else {
+	// // crear_objeto();
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// database.disconnect();
+	// }
+	//
+	// return objeto;
+	// }
 
 	/**
 	 * Crea un objeto usuario con el ResultSet dado
@@ -156,7 +146,7 @@ public class DriverGamlves {
 	 */
 	private static Usuario crear_usuario(ResultSet rs) throws SQLException {
 		Usuario usuario = null;
-		
+
 		int id = rs.getInt("ID");
 		String nombre = rs.getString("Nombre");
 		String user = rs.getString("User");
@@ -202,8 +192,9 @@ public class DriverGamlves {
 	 * @param usuario
 	 *            Datos del usuario a añadir
 	 * @return Si se ha añadido correctamente o no
+	 * @throws SQLException 
 	 */
-	protected boolean addUser(Usuario usuario) {
+	protected boolean addUser(Usuario usuario) throws SQLException {
 		boolean add = false;
 		String nombre, user, pass;
 		String update;

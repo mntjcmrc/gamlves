@@ -7,6 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 /**
  * Representa a la base de datos. Mantiene la conexión con esta cerrada salvo
  * cuando se envía los datos o metadatos de una query, en estos casos el driver
@@ -58,13 +60,11 @@ public class DB {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + database, _user, _pass);
 		} catch (SQLException e) {
+			System.out.println("Error al intentar testear la conexión con la base de datos");
+			JOptionPane.showMessageDialog(null, "Error al intentar testear la conexión con la base de datos");
 			e.printStackTrace();
 		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disconnect();
 		}
 	}
 
@@ -94,13 +94,11 @@ public class DB {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + _database, _user, _pass);
 		} catch (SQLException e) {
+			System.out.println("Error al intentar testear la conexión con la base de datos");
+			JOptionPane.showMessageDialog(null, "Error al intentar testear la conexión con la base de datos");
 			e.printStackTrace();
 		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disconnect();
 		}
 	}
 
@@ -123,6 +121,8 @@ public class DB {
 		try {
 			con.close();
 		} catch (SQLException e) {
+			System.out
+					.println("Error al intentar cerrar la conexión a la base de datos");
 			e.printStackTrace();
 		}
 	}
@@ -160,21 +160,18 @@ public class DB {
 	 * @param update
 	 *            Sentencia de update a ejecutar
 	 * @return Si se ha hecho el update o no
+	 * @throws SQLException
 	 */
-	protected boolean makeUpdate(String update) {
+	protected boolean makeUpdate(String update) throws SQLException {
 		boolean didUpdate = false;
 		Statement stmt = null;
 		int n = 0;
 
 		connect();
 
-		try {
-			stmt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-					ResultSet.CONCUR_UPDATABLE);
-			n = stmt.executeUpdate(update);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		stmt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+				ResultSet.CONCUR_UPDATABLE);
+		n = stmt.executeUpdate(update);
 
 		if (n == 0) {
 			didUpdate = false;
