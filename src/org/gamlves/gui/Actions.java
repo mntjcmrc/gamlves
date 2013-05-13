@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.gamlves.data.Datos;
+import org.gamlves.data.DriverGamlves;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
 import org.gamlves.data.Usuario;
@@ -28,7 +29,7 @@ public class Actions {
 	 * contraseña incorrectos. Si están procederá a loguearse, cerrar el frame
 	 * de login y lanzar el frame principal.
 	 */
-	public static ActionListener loginAceptar = new ActionListener() {
+	protected static ActionListener loginAceptar = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -40,12 +41,16 @@ public class Actions {
 					String user = LoginRun.loginFrame.txtUser.getText();
 					LoginRun.loginFrame.setVisible(false);
 
+					Usuario usuario = Datos.searchUser(user);
+					Login._user = user;
+					Login._nombre = usuario.get_nombre();
+					
 					if (user.equals("admin")) {
 						MainRun.mainFrame = new MainFrame(true);
 					} else {
 						MainRun.mainFrame = new MainFrame(false);
 					}
-					Login._user = user;
+					
 					EventQueue.invokeLater(new MainRun());
 
 				} else {
@@ -167,7 +172,7 @@ public class Actions {
 
 			case 2:
 				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"Fallo al crear el objeto usuario");
+						"El usuario " + user + " ya existe");
 				break;
 
 			case 3:

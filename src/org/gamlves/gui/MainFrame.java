@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
 
+import org.gamlves.data.Login;
+
 // Tendrá dos modos:
 // admin, en el que se pueden añadir juegos y
 // user, en el que cada usuario añade juegos a su biblioteca
@@ -55,7 +57,7 @@ public class MainFrame extends JFrame {
 		this.admin = admin;
 		
 		// Titulo
-		setTitle("Gamlves");
+		setTitle(Login._nombre + " - Gamlves");
 
 		// Tamaño
 		int widthWindow = 550;

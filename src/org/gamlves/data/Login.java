@@ -12,4 +12,5 @@ public class Login {
 	 * Usuario actualmente logueado
 	 */
 	public static String _user;
+	public static String _nombre;
 }
