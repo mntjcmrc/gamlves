@@ -43,6 +43,25 @@ public class DriverGamlves {
 		}
 		return usuarios;
 	}
+	
+	/**
+	 * Nos da los datos de todos los juegos
+	 * 
+	 * @return Un array con todos los juegos
+	 * @throws SQLException
+	 */
+	protected static ArrayList<Juego> get_juegos() throws SQLException {
+		ArrayList<Juego> juegos = null;
+		ResultSet rs;
+		rs = database.makeQuery("SELECT * FROM Usuarios;");
+		juegos = new ArrayList<Juego>();
+		while (rs.next()) {
+			Juego juego;
+			juego = crear_juego(rs);
+			juegos.add(juego);
+		}
+		return juegos;
+	}
 
 	// /**
 	// * Método estándar para crear un array con todos los objetos de una tabla
@@ -93,10 +112,25 @@ public class DriverGamlves {
 		if (rs.getRow() == 0) {
 			// No existe el usuario user
 		} else {
-			crear_usuario(rs);
+			usuario = crear_usuario(rs);
 		}
 
 		return usuario;
+	}
+	
+	protected static Juego get_juego(String id) throws SQLException {
+		Juego juego = null;
+		ResultSet rs;
+		rs = database.makeQuery("SELECT * FROM Juegos WHERE ID='" + id
+				+ "';");
+		rs.last();
+		if (rs.getRow() == 0) {
+			// No existe el usuario user
+		} else {
+			juego = crear_juego(rs);
+		}
+
+		return juego;
 	}
 
 	// /**
@@ -156,6 +190,18 @@ public class DriverGamlves {
 		usuario.set_id(id);
 
 		return usuario;
+	}
+	
+	private static Juego crear_juego(ResultSet rs) throws SQLException {
+		Juego juego = null;
+		
+		int id = rs.getInt("ID");
+		String nombre = rs.getString("Nombre");
+		
+		juego = new Juego(nombre);
+		juego.set_id(id);
+		
+		return juego;
 	}
 
 	// /**
