@@ -1,6 +1,5 @@
 package org.gamlves.data;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -59,6 +58,9 @@ public class Datos {
 	// _usuariosjuegos = new ArrayList<UsuarioJuego>();
 	// }
 
+	/**
+	 * Pide todos los datos a la base de datos y los carga en memoria
+	 */
 	public static void loadData() {
 		try {
 			_usuarios = DriverGamlves.get_usuarios();
@@ -113,7 +115,6 @@ public class Datos {
 		return exist;
 	}
 
-	// Pendiente
 	/**
 	 * Crea un usuario con los datos dados y lo devuelve
 	 * 
@@ -130,13 +131,14 @@ public class Datos {
 			throws SQLException {
 		Usuario usuario = null;
 
-		if (checkUser(user)) {
-//			JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario " + user + " ya existe");
-			System.out.println("El usuario " + user + " ya existe");
-		} else {
+		if (!(checkUser(user))) {
 			String passHash;
 			passHash = Seguridad.createHash(pass);
 			usuario = new Usuario(nombre, user, passHash);
+		} else {
+			// JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario " +
+			// user + " ya existe");
+			// System.out.println("El usuario " + user + " ya existe");
 		}
 
 		return usuario;
@@ -197,8 +199,10 @@ public class Datos {
 	 *            proceso de creación
 	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
 	 *         existencia del usuario en el sistema, 2 si falla al crear el
-	 *         objeto de tipo Usuario, 3 si falla al añadir el usuario a la base
-	 *         de datos, 4 si falla al pedir los datos recién introducidos
+	 *         objeto de tipo Usuario (el usuario ya existe), 3 si falla al
+	 *         añadir el usuario a la base de datos (saldrá una ventana con el
+	 *         error SQL concreto), 4 si falla al pedir los datos recién
+	 *         introducidos
 	 */
 	public static int userTransaction(String nombre, String user, String pass) {
 		int transaction = 0;
@@ -222,10 +226,12 @@ public class Datos {
 			} catch (SQLException e) {
 				// Error al añadir el usuario a la base de datos
 				transaction = 3;
-//				System.out.println("SQL Error: " + e.getErrorCode());
-				JOptionPane.showMessageDialog(null, "SQL Error: " + e.getErrorCode() + "\nAvise al administrador");
+				// System.out.println("SQL Error: " + e.getErrorCode());
+				JOptionPane.showMessageDialog(null,
+						"SQL Error: " + e.getErrorCode()
+								+ "\nAvise al administrador");
 				return transaction;
-				
+
 			} finally {
 				DriverGamlves.disconnect();
 			}

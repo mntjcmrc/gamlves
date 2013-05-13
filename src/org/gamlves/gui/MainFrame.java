@@ -35,18 +35,26 @@ public class MainFrame extends JFrame {
 	 */
 	private JTabbedPane tabPanel;
 	/**
-	 * Panel para añadir registros a la base de datos
-	 * Modo admin: añade juegos a la tabla Juegos
-	 * Modo user: añade juegos a la tabla UsuariosJuegos
+	 * Panel para añadir registros a la base de datos Modo admin: añade juegos a
+	 * la tabla Juegos Modo user: añade juegos a la tabla UsuariosJuegos
 	 */
 	protected AddPanel addPanel;
 	/**
 	 * Panel para ver los datos
 	 */
 	protected ViewPanel viewPanel;
-	
+
+	/**
+	 * Anchura de la ventana
+	 */
+	private final int WIDTH = 550;
+	/**
+	 * Altura de la ventana
+	 */
+	private final int HEIGHT = 500;
+
 	public JLabel lblStatus;
-	
+
 	private boolean admin;
 
 	/**
@@ -55,14 +63,12 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame(boolean admin) {
 		this.admin = admin;
-		
+
 		// Titulo
 		setTitle(Login._nombre + " - Gamlves");
 
 		// Tamaño
-		int widthWindow = 550;
-		int heightWindow = 500;
-		Actions.centerFrame(this, widthWindow, heightWindow);
+		Actions.centerFrame(this, WIDTH, HEIGHT);
 
 		// Menús
 		JMenuBar mb = new JMenuBar();
@@ -71,11 +77,11 @@ public class MainFrame extends JFrame {
 		JMenuItem salir = new JMenuItem("Salir");
 		salir.addActionListener(Actions.cerrar);
 		archivo.add(salir);
-		
+
 		mb.add(archivo);
 
 		this.setJMenuBar(mb);
-		
+
 		// Barra de estado
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -83,16 +89,16 @@ public class MainFrame extends JFrame {
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 		lblStatus = new JLabel("");
 		statusPanel.add(lblStatus);
-		
+
 		this.add(statusPanel, BorderLayout.PAGE_END);
 
 		// Panel con los tabs
 		tabPanel = new JTabbedPane();
 		this.add(tabPanel, BorderLayout.CENTER);
-		if(this.admin){
+		if (this.admin) {
 			addPanel = new AddPanel(true);
 		} else {
-			addPanel = new AddPanel(false);	
+			addPanel = new AddPanel(false);
 		}
 		tabPanel.addTab("Añadir", addPanel);
 		viewPanel = new ViewPanel();

@@ -22,6 +22,10 @@ import org.gamlves.data.Datos;
  * @author mntjcmrc
  * 
  */
+/**
+ * @author mutilx9
+ * 
+ */
 public class AddPanel extends JPanel {
 
 	/**
@@ -29,18 +33,54 @@ public class AddPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6649879111663947403L;
 
+	/**
+	 * Panel exterior con el formulario para introducir los datos de un usuario
+	 */
 	private JPanel panelAddUsuario;
+	/**
+	 * Panel con el formulario para introducir los datos de un juego
+	 */
 	private JPanel panelAddJuego;
+	/**
+	 * Panel que usando el CardLayout tendrá los dos paneles con los formularios
+	 */
 	private JPanel panelCards;
+	/**
+	 * Panel interior con el formulario para introducir los datos de un usuario
+	 */
 	protected JPanel formAddUsuario;
-	
+
+	/**
+	 * Campo de texto para introducir el nombre del usuario
+	 */
 	protected JTextField txtNombreUsuario;
+	/**
+	 * Campo de texto para introducir el username único del usuario
+	 */
 	protected JTextField txtUser;
+	/**
+	 * Campo de texto para introducir la contraseña del usuario
+	 */
 	protected JTextField txtPass;
 
+	/**
+	 * Constante para que nombre mantener en los triggers de los paneles
+	 */
 	private final String ADDUSUARIO = "Usuario";
+	/**
+	 * Constante para que nombre mantener en los triggers de los paneles
+	 */
 	private final String ADDJUEGO = "Juego";
 
+	/**
+	 * Crea el panel para añadir registros. Modo admin: se pueden añadir
+	 * usuarios o juegos. Modo user: se pueden añadir juegos a la biblioteca del
+	 * usuario logueado.
+	 * 
+	 * @param admin
+	 *            Con esto sabremos fácilmente si el usuario logueado es el
+	 *            administrador o no
+	 */
 	protected AddPanel(boolean admin) {
 		this.setLayout(new BorderLayout());
 
@@ -86,16 +126,16 @@ public class AddPanel extends JPanel {
 		formAddUsuario.add(txtUser);
 		formAddUsuario.add(lblPass);
 		formAddUsuario.add(txtPass);
-		
+
 		JPanel btnAddUsuario = new JPanel(new FlowLayout());
 		JButton btnAceptarAddUsuario = new JButton("Aceptar");
 		btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
 		JButton btnLimpiarAddUsuario = new JButton("Limpiar");
 		btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
-		
+
 		btnAddUsuario.add(btnAceptarAddUsuario);
 		btnAddUsuario.add(btnLimpiarAddUsuario);
-		
+
 		panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
 		panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
 

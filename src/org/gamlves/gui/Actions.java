@@ -42,13 +42,13 @@ public class Actions {
 					Usuario usuario = Datos.searchUser(user);
 					Login._user = user;
 					Login._nombre = usuario.get_nombre();
-					
+
 					if (user.equals("admin")) {
 						MainRun.mainFrame = new MainFrame(true);
 					} else {
 						MainRun.mainFrame = new MainFrame(false);
 					}
-					
+
 					EventQueue.invokeLater(new MainRun());
 
 				} else {
@@ -82,7 +82,7 @@ public class Actions {
 	};
 
 	/**
-	 * Acción que lanzará el botón de opciones del panel de añadir del admin.
+	 * Acción que lanzará el trigger de opciones del panel de añadir del admin.
 	 * Versión de Usuario.
 	 */
 	protected static ActionListener showAddUsuario = new ActionListener() {
@@ -96,7 +96,7 @@ public class Actions {
 	};
 
 	/**
-	 * Acción que lanzará el botón de opciones del panel de añadir del admin.
+	 * Acción que lanzará el trigger de opciones del panel de añadir del admin.
 	 * Versión de Juego.
 	 */
 	protected static ActionListener showAddJuego = new ActionListener() {
@@ -145,6 +145,11 @@ public class Actions {
 		}
 	}
 
+	/**
+	 * Recoge los datos introducidos por el admin e inicia una transacción para
+	 * crear un usuario en la base de datos y guardarlo en memoria. Saldrán
+	 * mensajes por cada error posible
+	 */
 	protected static ActionListener addUserAceptar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -169,8 +174,8 @@ public class Actions {
 				break;
 
 			case 2:
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"El usuario " + user + " ya existe");
+				JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario "
+						+ user + " ya existe");
 				break;
 
 			case 3:

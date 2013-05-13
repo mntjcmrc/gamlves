@@ -24,8 +24,11 @@ public class DriverGamlves {
 	public DriverGamlves() {
 
 	}
-	
-	protected static void disconnect(){
+
+	/**
+	 * Usada para cortar la conexión con la base de datos desde fuera del driver
+	 */
+	protected static void disconnect() {
 		database.disconnect();
 	}
 
@@ -33,7 +36,7 @@ public class DriverGamlves {
 	 * Nos da los datos de todos los usuarios
 	 * 
 	 * @return Un array con todos los usuarios
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	protected static ArrayList<Usuario> get_usuarios() throws SQLException {
 		ArrayList<Usuario> usuarios = null;
@@ -47,7 +50,7 @@ public class DriverGamlves {
 		}
 		return usuarios;
 	}
-	
+
 	/**
 	 * Nos da los datos de todos los juegos
 	 * 
@@ -121,19 +124,19 @@ public class DriverGamlves {
 
 		return usuario;
 	}
-	
+
 	/**
 	 * Nos da los datos de un juego en base al id dado
 	 * 
-	 * @param id ID del juego
+	 * @param id
+	 *            ID del juego
 	 * @return Datos del juego
 	 * @throws SQLException
 	 */
 	protected static Juego get_juego(String id) throws SQLException {
 		Juego juego = null;
 		ResultSet rs;
-		rs = database.makeQuery("SELECT * FROM Juegos WHERE ID='" + id
-				+ "';");
+		rs = database.makeQuery("SELECT * FROM Juegos WHERE ID='" + id + "';");
 		rs.last();
 		if (rs.getRow() == 0) {
 			// No existe el usuario user
@@ -202,7 +205,7 @@ public class DriverGamlves {
 
 		return usuario;
 	}
-	
+
 	/**
 	 * Crea un objeto juego con el ResultSet dado
 	 * 
@@ -213,13 +216,13 @@ public class DriverGamlves {
 	 */
 	private static Juego crear_juego(ResultSet rs) throws SQLException {
 		Juego juego = null;
-		
+
 		int id = rs.getInt("ID");
 		String nombre = rs.getString("Nombre");
-		
+
 		juego = new Juego(nombre);
 		juego.set_id(id);
-		
+
 		return juego;
 	}
 
@@ -257,7 +260,7 @@ public class DriverGamlves {
 	 * @param usuario
 	 *            Datos del usuario a añadir
 	 * @return Si se ha añadido correctamente o no
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	protected static boolean addUser(Usuario usuario) throws SQLException {
 		boolean add = false;
@@ -268,8 +271,8 @@ public class DriverGamlves {
 		user = usuario.get_user();
 		pass = usuario.get_pass();
 
-		update = "INSERT INTO Usuarios (Nombre, User, Pass) VALUES('"
-				+ nombre + "', '" + user + "', '" + pass + "');";
+		update = "INSERT INTO Usuarios (Nombre, User, Pass) VALUES('" + nombre
+				+ "', '" + user + "', '" + pass + "');";
 		add = database.makeUpdate(update);
 
 		return add;
