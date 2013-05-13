@@ -2,8 +2,6 @@ package org.gamlves.start;
 
 import java.awt.EventQueue;
 
-import org.gamlves.gui.LoginFrame;
-
 /**
  * Desde aquí se inicia el programa
  * 
