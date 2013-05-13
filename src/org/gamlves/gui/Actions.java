@@ -17,6 +17,14 @@ import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
 
 public class Actions {
+	/**
+	 * Acción a ejecutar cuando el botón aceptar del frame de login es pulsado.
+	 * Comprueba si el usuario ha escrito algo en los TextField, si no lo ha
+	 * hecho saldrá un mensaje avisándolo. En caso de hacerlo, se comprobará si
+	 * se tienen esos datos en memoria. Si no están, avisará de usuario y/o
+	 * contraseña incorrectos. Si están procederá a loguearse, cerrar el frame
+	 * de login y lanzar el frame principal.
+	 */
 	public static ActionListener loginAceptar = new ActionListener() {
 
 		@Override
@@ -53,6 +61,11 @@ public class Actions {
 		}
 
 	};
+
+	/**
+	 * Acción a ejecutar cuando el botón cancelar del frame de login es pulsado.
+	 * Cierra el programa.
+	 */
 	protected static ActionListener loginCancelar = new ActionListener() {
 
 		@Override
@@ -62,8 +75,19 @@ public class Actions {
 		}
 
 	};
-	
-	protected static void centerFrame(JFrame frame, int widthWindow, int heightWindow){
+
+	/**
+	 * Centra en la pantalla el JFrame dado
+	 * 
+	 * @param frame
+	 *            JFrame a centrar
+	 * @param widthWindow
+	 *            Anchura del frame
+	 * @param heightWindow
+	 *            Altura del frame
+	 */
+	protected static void centerFrame(JFrame frame, int widthWindow,
+			int heightWindow) {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		int X = (screen.width / 2) - (widthWindow / 2);
 		int Y = (screen.height / 2) - (heightWindow / 2);
