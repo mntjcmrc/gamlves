@@ -15,6 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.gamlves.data.Datos;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
+import org.gamlves.data.Usuario;
 import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
 
@@ -149,14 +150,49 @@ public class Actions {
 			String user = MainRun.mainFrame.addPanel.txtUser.getText();
 			String pass = MainRun.mainFrame.addPanel.txtPass.getText();
 
-			// Llamar al método para crear un usuario en la base de datos y
-			// posteriormente añadirlo a memoria
-			try {
-				Datos.createUser(nombre, user, pass);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			int transaction = Datos.userTransaction(nombre, user, pass);
+
+			switch (transaction) {
+			case 0:
+				// System.out.println("La transacción se ha realizado correctamente");
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"La transacción se ha realizado correctamente");
+				break;
+
+			case 1:
+				JOptionPane
+						.showMessageDialog(MainRun.mainFrame,
+								"Fallo al comprobar la existencia del usuario en la base de datos");
+				break;
+
+			case 2:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al crear el objeto usuario");
+				break;
+
+			case 3:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al añadir el usuario a la base de datos");
+				break;
+
+			case 4:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al volver a pedir los datos a la base de datos");
+				break;
 			}
+
+		}
+	};
+
+	/**
+	 * Limpia los campos de texto del formulario para añadir usuarios
+	 */
+	protected static ActionListener addUserLimpiar = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.txtNombreUsuario.setText("");
+			MainRun.mainFrame.addPanel.txtUser.setText("");
+			MainRun.mainFrame.addPanel.txtPass.setText("");
 		}
 	};
 }
