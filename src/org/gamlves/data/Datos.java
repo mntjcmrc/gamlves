@@ -33,7 +33,7 @@ public class Datos{
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
 	
-	private static DriverGamlves driver = new DriverGamlves();
+//	private static DriverGamlves driver = new DriverGamlves();
 
 	// /**
 	// * Crea una instancia del objeto desde el que se controlarán todos los
@@ -77,6 +77,7 @@ public class Datos{
 		return exist;
 	}
 
+	// Pendiente
 	/**
 	 * Crea un usuario con los datos dados y lo añade a la base de datos, el id
 	 * se generará automáticamente en la base de datos

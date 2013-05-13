@@ -1,24 +1,19 @@
 package org.gamlves.gui;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import org.gamlves.data.Login;
-import org.gamlves.data.Seguridad;
-
 public class LoginFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9198884323424763366L;
 	protected JTextField txtUser, txtPass;
 	private JLabel lblUser, lblPass;
 	private JButton btnAceptar, btnCancelar;

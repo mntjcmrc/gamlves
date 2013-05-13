@@ -2,8 +2,6 @@ package org.gamlves.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
-import java.awt.MenuBar;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
@@ -14,8 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
 
 // Tendrá dos modos:
