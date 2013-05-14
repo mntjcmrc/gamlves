@@ -10,10 +10,10 @@ public class MainRun implements Runnable {
 	public void run() {
 		show();
 	}
-	
+
 	private void show() {
 		mainFrame.setVisible(true);
-		// mainFrame.requestFocus();
+		mainFrame.requestFocus();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
