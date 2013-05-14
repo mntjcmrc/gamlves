@@ -77,6 +77,10 @@ public class AddPanel extends JPanel {
 	 */
 	private JTextField txtBuscarUsuarioJuego;
 	/**
+	 * ComboBox que mostrará la búsqueda de juegos
+	 */
+	private JComboBox<String> comboBuscarUsuarioJuego;
+	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
 	private final String ADDUSUARIO = "Usuario";
@@ -285,6 +289,15 @@ public class AddPanel extends JPanel {
 			// 20,
 			// SpringLayout.EAST, panelAddUsuarioJuego);
 
+			JComboBox<String> comboBuscarUsuarioJuego = new JComboBox<String>();
+			panelAddUsuarioJuego.add(comboBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.WEST,
+					comboBuscarUsuarioJuego, 80, SpringLayout.WEST,
+					panelAddUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.NORTH,
+					comboBuscarUsuarioJuego, 40, SpringLayout.NORTH,
+					panelAddUsuarioJuego);
+
 			this.add(panelAddUsuarioJuego, BorderLayout.CENTER);
 
 			// Foco
@@ -390,5 +403,9 @@ public class AddPanel extends JPanel {
 	 */
 	protected void set_txtBuscarUsuarioJuego(String busqueda) {
 		this.txtBuscarUsuarioJuego.setText(busqueda);
+	}
+
+	protected JComboBox get_combobuscarUsuarioJuego() {
+		return this.comboBuscarUsuarioJuego;
 	}
 }

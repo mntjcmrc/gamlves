@@ -284,7 +284,7 @@ public class Datos {
 	 * @return Un arraylist con todos los juegos que contengan "nombre" en su
 	 *         nombre
 	 */
-	public static ArrayList<Juego> searchJuego(String nombre) {
+	private static ArrayList<Juego> searchJ(String nombre) {
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
 
 		for (int i = 0; i < _juegos.size(); i++) {
@@ -294,6 +294,17 @@ public class Datos {
 		}
 
 		return juegos;
+	}
+	
+	public static String[] searchJuego(String nombre) {
+		ArrayList<Juego> juegos = searchJ(nombre);
+		String[] _juegos = new String[juegos.size()];
+		
+		for(int i = 0; i < juegos.size(); i++){
+			_juegos[i] = juegos.get(i).toString();
+		}
+		
+		return _juegos;
 	}
 
 	/**

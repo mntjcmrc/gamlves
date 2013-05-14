@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -288,9 +289,14 @@ public class Actions {
 	protected static ActionListener buscarUsuarioJuego = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String busqueda = MainRun.mainFrame.addPanel.get_txtBuscarUsuarioJuego();
-			ArrayList<Juego> juegos = Datos.searchJuego(busqueda);
+			String busqueda = MainRun.mainFrame.addPanel
+					.get_txtBuscarUsuarioJuego();
+			String[] juegos = Datos.searchJuego(busqueda);
+			JComboBox combobox = MainRun.mainFrame.addPanel
+					.get_combobuscarUsuarioJuego();
+			for (int i = 0; i < juegos.length; i++) {
+				combobox.addItem(juegos[i]);
+			}
 		}
-
 	};
 }
