@@ -5,13 +5,16 @@ import java.awt.CardLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
 import org.gamlves.data.Datos;
@@ -76,10 +79,10 @@ public class AddPanel extends JPanel {
 	 * añada a su biblioteca
 	 */
 	private JTextField txtBuscarUsuarioJuego;
-	/**
-	 * ComboBox que mostrará la búsqueda de juegos
-	 */
-	private JComboBox<String> comboBuscarUsuarioJuego;
+
+	protected JList<String> listBuscarUsuarioJuego;
+	protected DefaultListModel<String> modelBuscarUsuarioJuego;
+
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
@@ -266,6 +269,7 @@ public class AddPanel extends JPanel {
 			JButton btnBuscar = new JButton("Buscar");
 
 			txtBuscarUsuarioJuego.addActionListener(Actions.buscarUsuarioJuego);
+			btnBuscar.addActionListener(Actions.buscarUsuarioJuego);
 
 			panelAddUsuarioJuego.add(lblBuscar);
 			springUsuarioJuego.putConstraint(SpringLayout.WEST, lblBuscar, 80,
@@ -289,13 +293,17 @@ public class AddPanel extends JPanel {
 			// 20,
 			// SpringLayout.EAST, panelAddUsuarioJuego);
 
-			JComboBox<String> comboBuscarUsuarioJuego = new JComboBox<String>();
-			panelAddUsuarioJuego.add(comboBuscarUsuarioJuego);
+			modelBuscarUsuarioJuego = new DefaultListModel<String>();
+			listBuscarUsuarioJuego = new JList<String>(modelBuscarUsuarioJuego);
+			listBuscarUsuarioJuego
+					.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+			panelAddUsuarioJuego.add(listBuscarUsuarioJuego);
 			springUsuarioJuego.putConstraint(SpringLayout.WEST,
-					comboBuscarUsuarioJuego, 80, SpringLayout.WEST,
+					listBuscarUsuarioJuego, 80, SpringLayout.WEST,
 					panelAddUsuarioJuego);
 			springUsuarioJuego.putConstraint(SpringLayout.NORTH,
-					comboBuscarUsuarioJuego, 40, SpringLayout.NORTH,
+					listBuscarUsuarioJuego, 40, SpringLayout.NORTH,
 					panelAddUsuarioJuego);
 
 			this.add(panelAddUsuarioJuego, BorderLayout.CENTER);
@@ -403,9 +411,5 @@ public class AddPanel extends JPanel {
 	 */
 	protected void set_txtBuscarUsuarioJuego(String busqueda) {
 		this.txtBuscarUsuarioJuego.setText(busqueda);
-	}
-
-	protected JComboBox get_combobuscarUsuarioJuego() {
-		return this.comboBuscarUsuarioJuego;
 	}
 }

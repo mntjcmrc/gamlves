@@ -5,16 +5,14 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Vector;
 
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.gamlves.data.Datos;
-import org.gamlves.data.Juego;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
 import org.gamlves.data.Usuario;
@@ -286,17 +284,28 @@ public class Actions {
 		}
 	};
 
+	/**
+	 * Maneja la lista de juegos en la búsqueda del modo user
+	 */
 	protected static ActionListener buscarUsuarioJuego = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			int sizeList = MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego
+					.getSize();
+			// Borrar a la inversa porque la JList funciona como un Vector
+			for (int i = sizeList - 1; i > -1; i--) {
+				MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego.remove(i);
+			}
+
 			String busqueda = MainRun.mainFrame.addPanel
 					.get_txtBuscarUsuarioJuego();
-			String[] juegos = Datos.searchJuego(busqueda);
-			JComboBox combobox = MainRun.mainFrame.addPanel
-					.get_combobuscarUsuarioJuego();
-			for (int i = 0; i < juegos.length; i++) {
-				combobox.addItem(juegos[i]);
+			Vector<String> juegos = Datos.searchJuego(busqueda);
+			int sizeJuegos = juegos.size();
+			for (int i = 0; i < sizeJuegos; i++) {
+				MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego
+						.addElement(juegos.get(i));
 			}
+
 		}
 	};
 }

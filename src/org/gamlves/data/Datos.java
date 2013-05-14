@@ -2,6 +2,7 @@ package org.gamlves.data;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -276,35 +277,22 @@ public class Datos {
 	}
 
 	/**
-	 * Busca juegos en base al nombre
+	 * Busca juegos que contengan en su nombre la cadena dada
 	 * 
 	 * @param nombre
-	 *            Cadena de texto que tendrá que contener el nombre de los
-	 *            juegos a buscar
-	 * @return Un arraylist con todos los juegos que contengan "nombre" en su
-	 *         nombre
+	 *            Cadena a buscar en los nombres de los juegos
+	 * @return Todos los juegos que pasan el filtro
 	 */
-	private static ArrayList<Juego> searchJ(String nombre) {
-		ArrayList<Juego> juegos = new ArrayList<Juego>();
-
-		for (int i = 0; i < _juegos.size(); i++) {
+	public static Vector<String> searchJuego(String nombre) {
+		Vector<String> juegos = new Vector<String>();
+		int size = _juegos.size();
+		for (int i = 0; i < size; i++) {
 			if (_juegos.get(i).get_nombre().contains(nombre)) {
-				juegos.add(_juegos.get(i));
+				juegos.add(_juegos.get(i).toString());
 			}
 		}
 
 		return juegos;
-	}
-	
-	public static String[] searchJuego(String nombre) {
-		ArrayList<Juego> juegos = searchJ(nombre);
-		String[] _juegos = new String[juegos.size()];
-		
-		for(int i = 0; i < juegos.size(); i++){
-			_juegos[i] = juegos.get(i).toString();
-		}
-		
-		return _juegos;
 	}
 
 	/**
