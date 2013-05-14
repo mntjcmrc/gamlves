@@ -17,10 +17,6 @@ import org.gamlves.start.MainRun;
  * @author mntjcmrc
  * 
  */
-/**
- * @author mutilx9
- * 
- */
 public class Datos {
 
 	/**
@@ -118,8 +114,8 @@ public class Datos {
 	/**
 	 * Comprueba que el nombre del juego dado no existe en la base de datos
 	 * 
-	 * @param id
-	 *            ID del juego a comprobar
+	 * @param nombre
+	 *            Nombre del juego a comprobar
 	 * @return Si existe o no
 	 * @throws SQLException
 	 */
@@ -194,6 +190,8 @@ public class Datos {
 	 * 
 	 * @param nombre
 	 *            El nombre del juego
+	 * @param genero
+	 *            El género del juego
 	 * @return Los datos del juego
 	 * @throws SQLException
 	 */
@@ -213,6 +211,16 @@ public class Datos {
 
 	}
 
+	/**
+	 * Crea una relación entre un usuario y un juego y lo devuelve
+	 * 
+	 * @param idJuego
+	 *            ID del juego a relacionar
+	 * @param user
+	 *            Username del usuario a relacionar
+	 * @return los datos de la relación
+	 * @throws SQLException
+	 */
 	public static UsuarioJuego createUsuarioJuego(int idJuego, String user)
 			throws SQLException {
 		UsuarioJuego usuariojuego = null;
@@ -374,6 +382,8 @@ public class Datos {
 	 * 
 	 * @param nombre
 	 *            Nombre del juego
+	 * @param genero
+	 *            Género del juego
 	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
 	 *         existencia del juego en el sistema, 2 si falla al crear el objeto
 	 *         de tipo Juego (el juego ya existe), 3 si falla al añadir el juego
@@ -441,8 +451,11 @@ public class Datos {
 	 * juego, añadirlo en la base de datos, pedir los datos para asignar el id
 	 * en el objeto en memoria y añadirlo al array en memoria
 	 * 
-	 * @param nombre
-	 *            Nombre del juego
+	 * @param idJuego
+	 *            ID del juego de la relación a añadir
+	 * 
+	 * @param user
+	 *            Username del usuario de la relación a añadir
 	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
 	 *         existencia del juego en el sistema, 2 si falla al crear el objeto
 	 *         de tipo Juego (el juego ya existe), 3 si falla al añadir el juego
@@ -485,8 +498,7 @@ public class Datos {
 				} finally {
 					DriverGamlves.disconnect();
 				}
-				
-				
+
 				// No es necesario aplicar id en este caso
 				// try {
 				// usuariojuegoDatabase = DriverGamlves
@@ -502,7 +514,7 @@ public class Datos {
 				// }
 
 				_juegos.add(juego);
-				
+
 			} else {
 				// Error al crear el objeto
 				transaction = 2;

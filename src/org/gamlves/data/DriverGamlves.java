@@ -69,14 +69,15 @@ public class DriverGamlves {
 		}
 		return juegos;
 	}
-	
+
 	/**
 	 * Nos da los datos de todos las relaciones entre usuarios y juegos
 	 * 
-	 * @return un array con todas las relaciones
+	 * @return Un array con todas las relaciones
 	 * @throws SQLException
 	 */
-	protected static ArrayList<UsuarioJuego> get_usuariosjuegos() throws SQLException {
+	protected static ArrayList<UsuarioJuego> get_usuariosjuegos()
+			throws SQLException {
 		ArrayList<UsuarioJuego> usuariosjuegos = null;
 		ResultSet rs;
 		rs = database.makeQuery("SELECT * FROM UsuariosJuegos;");
@@ -111,7 +112,14 @@ public class DriverGamlves {
 
 		return usuario;
 	}
-	
+
+	/**
+	 * Nos da los datos de un juego en base al id dado
+	 * 
+	 * @param id
+	 * @return Datos del juego
+	 * @throws SQLException
+	 */
 	protected static Juego get_juego(int id) throws SQLException {
 		Juego juego = null;
 		ResultSet rs;
@@ -122,15 +130,15 @@ public class DriverGamlves {
 		} else {
 			juego = crear_juego(rs);
 		}
-		
+
 		return juego;
 	}
 
 	/**
-	 * Nos da los datos de un juego en base al id dado
+	 * Nos da los datos de un juego en base al nombre dado
 	 * 
-	 * @param id
-	 *            ID del juego
+	 * @param nombre
+	 *            Nombre del juego
 	 * @return Datos del juego
 	 * @throws SQLException
 	 */
@@ -285,20 +293,22 @@ public class DriverGamlves {
 
 		return add;
 	}
-	
+
 	/**
-	 * Añade un registro de una relación entre usuario y juego a la base de datos
+	 * Añade un registro de una relación entre usuario y juego a la base de
+	 * datos
 	 * 
-	 * @param juego
+	 * @param usuariojuego
 	 *            Datos de la relación a añadir
 	 * @return Si se ha añadido correctamente o no
 	 * @throws SQLException
 	 */
-	protected static boolean addUsuarioJuego(UsuarioJuego usuariojuego) throws SQLException {
+	protected static boolean addUsuarioJuego(UsuarioJuego usuariojuego)
+			throws SQLException {
 		boolean add = false;
 		int idJuego;
 		String user;
-		
+
 		String update;
 
 		idJuego = usuariojuego.get_idJuego();
