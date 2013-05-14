@@ -76,6 +76,11 @@ public class AddPanel extends JPanel {
 	 */
 	private JComboBox<String> comboGeneroJuego;
 	/**
+	 * Campo de texto usado para buscar juegos para que el usuario logueado los
+	 * añada a su biblioteca
+	 */
+	private JTextField txtBuscarUsuarioJuego;
+	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
 	private final String ADDUSUARIO = "Usuario";
@@ -100,8 +105,8 @@ public class AddPanel extends JPanel {
 			// Modo admin
 
 			// Opciones para que añadir
-			JPanel opciones = new JPanel();
-			opciones.setLayout(new FlowLayout());
+			JPanel opcionesAdmin = new JPanel();
+			opcionesAdmin.setLayout(new FlowLayout());
 
 			JRadioButton rAddUsuario = new JRadioButton(ADDUSUARIO);
 			rAddUsuario.addActionListener(Actions.showAddUsuario);
@@ -115,10 +120,10 @@ public class AddPanel extends JPanel {
 			add.add(rAddUsuario);
 			add.add(rAddJuego);
 
-			opciones.add(rAddUsuario);
-			opciones.add(rAddJuego);
+			opcionesAdmin.add(rAddUsuario);
+			opcionesAdmin.add(rAddJuego);
 
-			this.add(opciones, BorderLayout.PAGE_START);
+			this.add(opcionesAdmin, BorderLayout.PAGE_START);
 
 			// Organización de las cartas
 			panelCards = new JPanel(new CardLayout());
@@ -242,6 +247,38 @@ public class AddPanel extends JPanel {
 		} else {
 			// Modo user
 
+			// Panel para añadir relaciones
+			JPanel panelAddUsuarioJuego = new JPanel();
+			SpringLayout springUsuarioJuego = new SpringLayout();
+			panelAddUsuarioJuego.setLayout(springUsuarioJuego);
+
+			JLabel lblBuscar = new JLabel("Buscar: ");
+			txtBuscarUsuarioJuego = new JTextField(Datos.JUEGONOMBRE);
+			JButton btnBuscar = new JButton("Buscar");
+
+			panelAddUsuarioJuego.add(lblBuscar);
+			springUsuarioJuego.putConstraint(SpringLayout.WEST, lblBuscar, 80,
+					SpringLayout.WEST, panelAddUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.NORTH, lblBuscar, 20,
+					SpringLayout.NORTH, panelAddUsuarioJuego);
+
+			panelAddUsuarioJuego.add(txtBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.WEST,
+					txtBuscarUsuarioJuego, 10, SpringLayout.EAST, lblBuscar);
+			springUsuarioJuego.putConstraint(SpringLayout.NORTH,
+					txtBuscarUsuarioJuego, 20, SpringLayout.NORTH,
+					panelAddUsuarioJuego);
+
+			panelAddUsuarioJuego.add(btnBuscar);
+			springUsuarioJuego.putConstraint(SpringLayout.WEST, btnBuscar, 10,
+					SpringLayout.EAST, txtBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.NORTH, btnBuscar, 18,
+					SpringLayout.NORTH, panelAddUsuarioJuego);
+			// springUsuarioJuego.putConstraint(SpringLayout.EAST, btnBuscar,
+			// 20,
+			// SpringLayout.EAST, panelAddUsuarioJuego);
+
+			this.add(panelAddUsuarioJuego, BorderLayout.CENTER);
 		}
 
 		// this.add(new JLabel("addTest"));
@@ -328,5 +365,20 @@ public class AddPanel extends JPanel {
 	 */
 	protected String get_comboGeneroJuego() {
 		return (String) this.comboGeneroJuego.getSelectedItem();
+	}
+
+	/**
+	 * @return Cadena de texto a buscar
+	 */
+	protected String get_txtBuscarUsuarioJuego() {
+		return this.txtBuscarUsuarioJuego.getText();
+	}
+
+	/**
+	 * @param busqueda
+	 *            Texto a asignar en el campo de texto de búsqueda
+	 */
+	protected void set_txtBuscarUsuarioJuego(String busqueda) {
+		this.txtBuscarUsuarioJuego.setText(busqueda);
 	}
 }
