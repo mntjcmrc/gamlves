@@ -307,15 +307,25 @@ public class AddPanel extends JPanel {
 	protected void set_txtPass(String pass) {
 		this.txtPass.setText(pass);
 	}
-	
-	protected String get_txtNombreJuego(){
+
+	/**
+	 * @return Nombre del juego del campo de texto
+	 */
+	protected String get_txtNombreJuego() {
 		return this.txtNombreJuego.getText();
 	}
-	
+
+	/**
+	 * @param nombreJuego
+	 *            Texto a asignar en el campo del nombre del juego
+	 */
 	protected void set_txtNombreJuego(String nombreJuego) {
 		this.txtNombreJuego.setText(nombreJuego);
 	}
-	
+
+	/**
+	 * @return Qué genero está seleccionado en el combobox
+	 */
 	protected String get_comboGeneroJuego() {
 		return (String) this.comboGeneroJuego.getSelectedItem();
 	}
