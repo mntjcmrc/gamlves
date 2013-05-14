@@ -9,13 +9,13 @@ package org.gamlves.data;
 public class UsuarioJuego implements Comparable<UsuarioJuego> {
 
 	/**
+	 * ID del juego relacionado con el usuario
+	 */
+	private int _idJuego;
+	/**
 	 * Username del usuario relacionado con el juego
 	 */
 	private String _user;
-	/**
-	 * ID del juego relacionado con el usuario
-	 */
-	private String _idJuego;
 
 	/**
 	 * Creará la relación entre un usuario y un juego
@@ -23,9 +23,17 @@ public class UsuarioJuego implements Comparable<UsuarioJuego> {
 	 * @param user Username del usuario relacionado con el juego
 	 * @param idJuego ID del juego relacionado con el usuario
 	 */
-	protected UsuarioJuego(String user, String idJuego) {
-		this._user = user;
+	protected UsuarioJuego(int idJuego, String user) {
 		this._idJuego = idJuego;
+		this._user = user;
+	}
+	
+	
+	/**
+	 * @return ID del juego relacionado con el usuario
+	 */
+	public int get_idJuego(){
+		return this._idJuego;
 	}
 	
 	/**
@@ -35,12 +43,6 @@ public class UsuarioJuego implements Comparable<UsuarioJuego> {
 		return this._user;
 	}
 	
-	/**
-	 * @return ID del juego relacionado con el usuario
-	 */
-	public String get_idJuego(){
-		return this._idJuego;
-	}
 	@Override
 	public int compareTo(UsuarioJuego usuariojuego) {
 		return this._user.compareTo(usuariojuego.get_user());
