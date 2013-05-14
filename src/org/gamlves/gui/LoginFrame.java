@@ -50,12 +50,19 @@ public class LoginFrame extends JFrame {
 		// Username
 		lblUser = new JLabel("Usuario: ");
 		txtUser = new JTextField(10);
+		
+		txtUser.requestFocus();
+		txtUser.addActionListener(Actions.loginAceptar);
+		
 		this.add(lblUser);
 		this.add(txtUser);
 
 		// Contraseña
 		lblPass = new JLabel("Contraseña: ");
 		txtPass = new JPasswordField(15);
+		
+		txtPass.addActionListener(Actions.loginAceptar);
+		
 		this.add(lblPass);
 		this.add(txtPass);
 

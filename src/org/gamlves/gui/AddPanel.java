@@ -136,6 +136,11 @@ public class AddPanel extends JPanel {
 			txtUser = new JTextField(Datos.USUARIOUSER);
 			JLabel lblPass = new JLabel("Contraseña: ");
 			txtPass = new JPasswordField(15);
+			
+			txtNombreUsuario.requestFocus();
+			txtNombreUsuario.addActionListener(Actions.addUserAceptar);
+			txtUser.addActionListener(Actions.addUserAceptar);
+			txtPass.addActionListener(Actions.addUserAceptar);
 
 			formAddUsuario.add(lblNombreUsuario);
 			springUser.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100,
@@ -198,6 +203,9 @@ public class AddPanel extends JPanel {
 			JLabel lblGeneroJuego = new JLabel("Género: ");
 			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
+			
+			txtNombreJuego.addActionListener(Actions.addUserAceptar);
+			comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
 			formAddJuego.add(lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
@@ -251,6 +259,9 @@ public class AddPanel extends JPanel {
 			JLabel lblBuscar = new JLabel("Buscar: ");
 			txtBuscarUsuarioJuego = new JTextField(Datos.JUEGONOMBRE);
 			JButton btnBuscar = new JButton("Buscar");
+			
+			txtBuscarUsuarioJuego.requestFocus();
+			txtBuscarUsuarioJuego.addActionListener(Actions.buscarUsuarioJuego);
 
 			panelAddUsuarioJuego.add(lblBuscar);
 			springUsuarioJuego.putConstraint(SpringLayout.WEST, lblBuscar, 80,
