@@ -48,7 +48,7 @@ public class AddPanel extends JPanel {
 	 * Panel interior con el formulario para introducir los datos de un usuario
 	 */
 	private JPanel formAddUsuario;
-	
+
 	/**
 	 * Panel interior con el formulario para introducir los datos de un juego
 	 */
@@ -92,133 +92,138 @@ public class AddPanel extends JPanel {
 	protected AddPanel(boolean admin) {
 		this.setLayout(new BorderLayout());
 
-		// Opciones para que añadir
-		JPanel opciones = new JPanel();
-		opciones.setLayout(new FlowLayout());
+		if (admin) {
+			// Modo admin
 
-		JRadioButton rAddUsuario = new JRadioButton(ADDUSUARIO);
-		rAddUsuario.addActionListener(Actions.showAddUsuario);
-		rAddUsuario.setEnabled(true);
+			// Opciones para que añadir
+			JPanel opciones = new JPanel();
+			opciones.setLayout(new FlowLayout());
 
-		JRadioButton rAddJuego = new JRadioButton(ADDJUEGO);
-		rAddJuego.addActionListener(Actions.showAddJuego);
+			JRadioButton rAddUsuario = new JRadioButton(ADDUSUARIO);
+			rAddUsuario.addActionListener(Actions.showAddUsuario);
+			rAddUsuario.setEnabled(true);
 
-		ButtonGroup add = new ButtonGroup();
+			JRadioButton rAddJuego = new JRadioButton(ADDJUEGO);
+			rAddJuego.addActionListener(Actions.showAddJuego);
 
-		add.add(rAddUsuario);
-		add.add(rAddJuego);
+			ButtonGroup add = new ButtonGroup();
 
-		opciones.add(rAddUsuario);
-		opciones.add(rAddJuego);
+			add.add(rAddUsuario);
+			add.add(rAddJuego);
 
-		this.add(opciones, BorderLayout.PAGE_START);
+			opciones.add(rAddUsuario);
+			opciones.add(rAddJuego);
 
-		// Organización de las cartas
-		panelCards = new JPanel(new CardLayout());
-		this.add(panelCards, BorderLayout.CENTER);
+			this.add(opciones, BorderLayout.PAGE_START);
 
-		// Panel para añadir usuarios
-		panelAddUsuario = new JPanel(new BorderLayout());
-		formAddUsuario = new JPanel();
-		SpringLayout springUser = new SpringLayout();
-		formAddUsuario.setLayout(springUser);
-		JLabel lblNombreUsuario = new JLabel("Nombre: ");
-		txtNombreUsuario = new JTextField(Datos.USUARIONOMBRE);
-		JLabel lblUser = new JLabel("User: ");
-		txtUser = new JTextField(Datos.USUARIOUSER);
-		JLabel lblPass = new JLabel("Contraseña: ");
-		txtPass = new JPasswordField(15);
+			// Organización de las cartas
+			panelCards = new JPanel(new CardLayout());
+			this.add(panelCards, BorderLayout.CENTER);
 
-		formAddUsuario.add(lblNombreUsuario);
-		springUser.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100,
-				SpringLayout.WEST, formAddUsuario);
-		springUser.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40,
-				SpringLayout.NORTH, formAddUsuario);
+			// Panel para añadir usuarios
+			panelAddUsuario = new JPanel(new BorderLayout());
+			formAddUsuario = new JPanel();
+			SpringLayout springUser = new SpringLayout();
+			formAddUsuario.setLayout(springUser);
+			JLabel lblNombreUsuario = new JLabel("Nombre: ");
+			txtNombreUsuario = new JTextField(Datos.USUARIONOMBRE);
+			JLabel lblUser = new JLabel("User: ");
+			txtUser = new JTextField(Datos.USUARIOUSER);
+			JLabel lblPass = new JLabel("Contraseña: ");
+			txtPass = new JPasswordField(15);
 
-		formAddUsuario.add(txtNombreUsuario);
-		springUser.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30,
-				SpringLayout.EAST, lblNombreUsuario);
-		springUser.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40,
-				SpringLayout.NORTH, formAddUsuario);
+			formAddUsuario.add(lblNombreUsuario);
+			springUser.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100,
+					SpringLayout.WEST, formAddUsuario);
+			springUser.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40,
+					SpringLayout.NORTH, formAddUsuario);
 
-		formAddUsuario.add(lblUser);
-		springUser.putConstraint(SpringLayout.EAST, lblUser, 100,
-				SpringLayout.WEST, formAddUsuario);
-		springUser.putConstraint(SpringLayout.NORTH, lblUser, 40,
-				SpringLayout.NORTH, lblNombreUsuario);
+			formAddUsuario.add(txtNombreUsuario);
+			springUser.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30,
+					SpringLayout.EAST, lblNombreUsuario);
+			springUser.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40,
+					SpringLayout.NORTH, formAddUsuario);
 
-		formAddUsuario.add(txtUser);
-		springUser.putConstraint(SpringLayout.WEST, txtUser, 30, SpringLayout.EAST,
-				lblUser);
-		springUser.putConstraint(SpringLayout.NORTH, txtUser, 40,
-				SpringLayout.NORTH, txtNombreUsuario);
+			formAddUsuario.add(lblUser);
+			springUser.putConstraint(SpringLayout.EAST, lblUser, 100,
+					SpringLayout.WEST, formAddUsuario);
+			springUser.putConstraint(SpringLayout.NORTH, lblUser, 40,
+					SpringLayout.NORTH, lblNombreUsuario);
 
-		formAddUsuario.add(lblPass);
-		springUser.putConstraint(SpringLayout.EAST, lblPass, 100,
-				SpringLayout.WEST, formAddUsuario);
-		springUser.putConstraint(SpringLayout.NORTH, lblPass, 40,
-				SpringLayout.NORTH, lblUser);
+			formAddUsuario.add(txtUser);
+			springUser.putConstraint(SpringLayout.WEST, txtUser, 30,
+					SpringLayout.EAST, lblUser);
+			springUser.putConstraint(SpringLayout.NORTH, txtUser, 40,
+					SpringLayout.NORTH, txtNombreUsuario);
 
-		formAddUsuario.add(txtPass);
-		springUser.putConstraint(SpringLayout.WEST, txtPass, 30, SpringLayout.EAST,
-				lblPass);
-		springUser.putConstraint(SpringLayout.NORTH, txtPass, 40,
-				SpringLayout.NORTH, txtUser);
+			formAddUsuario.add(lblPass);
+			springUser.putConstraint(SpringLayout.EAST, lblPass, 100,
+					SpringLayout.WEST, formAddUsuario);
+			springUser.putConstraint(SpringLayout.NORTH, lblPass, 40,
+					SpringLayout.NORTH, lblUser);
 
-		JPanel btnAddUsuario = new JPanel(new FlowLayout());
-		JButton btnAceptarAddUsuario = new JButton("Aceptar");
-		btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
-		JButton btnLimpiarAddUsuario = new JButton("Limpiar");
-		btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
+			formAddUsuario.add(txtPass);
+			springUser.putConstraint(SpringLayout.WEST, txtPass, 30,
+					SpringLayout.EAST, lblPass);
+			springUser.putConstraint(SpringLayout.NORTH, txtPass, 40,
+					SpringLayout.NORTH, txtUser);
 
-		btnAddUsuario.add(btnAceptarAddUsuario);
-		btnAddUsuario.add(btnLimpiarAddUsuario);
+			JPanel btnAddUsuario = new JPanel(new FlowLayout());
+			JButton btnAceptarAddUsuario = new JButton("Aceptar");
+			btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
+			JButton btnLimpiarAddUsuario = new JButton("Limpiar");
+			btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
 
-		panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
-		panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
+			btnAddUsuario.add(btnAceptarAddUsuario);
+			btnAddUsuario.add(btnLimpiarAddUsuario);
 
-		// panelAddUsuario.add(new JLabel("testUsuario"));
+			panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
+			panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
 
-		// Panel para añadir juegos
-		panelAddJuego = new JPanel(new BorderLayout());
-		
-		formAddJuego = new JPanel();
-		SpringLayout springJuego = new SpringLayout();
-		formAddJuego.setLayout(springJuego);
-		JLabel lblNombreJuego = new JLabel("Nombre: ");
-		txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
+			// panelAddUsuario.add(new JLabel("testUsuario"));
 
-		formAddJuego.add(lblNombreJuego);
-		springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
-				SpringLayout.WEST, formAddJuego);
-		springJuego.putConstraint(SpringLayout.NORTH, lblNombreJuego, 40,
-				SpringLayout.NORTH, formAddJuego);
+			// Panel para añadir juegos
+			panelAddJuego = new JPanel(new BorderLayout());
 
-		formAddJuego.add(txtNombreJuego);
-		springJuego.putConstraint(SpringLayout.WEST, txtNombreJuego, 30,
-				SpringLayout.EAST, lblNombreJuego);
-		springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
-				SpringLayout.NORTH, formAddJuego);
+			formAddJuego = new JPanel();
+			SpringLayout springJuego = new SpringLayout();
+			formAddJuego.setLayout(springJuego);
+			JLabel lblNombreJuego = new JLabel("Nombre: ");
+			txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
 
-		JPanel btnAddJuego = new JPanel(new FlowLayout());
-		JButton btnAceptarAddJuego = new JButton("Aceptar");
-		btnAceptarAddJuego.addActionListener(Actions.addJuegoAceptar);
-		JButton btnLimpiarAddJuego = new JButton("Limpiar");
-		btnLimpiarAddJuego.addActionListener(Actions.addJuegoLimpiar);
+			formAddJuego.add(lblNombreJuego);
+			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
+					SpringLayout.WEST, formAddJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, lblNombreJuego, 40,
+					SpringLayout.NORTH, formAddJuego);
 
-		btnAddJuego.add(btnAceptarAddJuego);
-		btnAddJuego.add(btnLimpiarAddJuego);
+			formAddJuego.add(txtNombreJuego);
+			springJuego.putConstraint(SpringLayout.WEST, txtNombreJuego, 30,
+					SpringLayout.EAST, lblNombreJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
+					SpringLayout.NORTH, formAddJuego);
 
-		panelAddJuego.add(formAddJuego, BorderLayout.CENTER);
-		panelAddJuego.add(btnAddJuego, BorderLayout.PAGE_END);
+			JPanel btnAddJuego = new JPanel(new FlowLayout());
+			JButton btnAceptarAddJuego = new JButton("Aceptar");
+			btnAceptarAddJuego.addActionListener(Actions.addJuegoAceptar);
+			JButton btnLimpiarAddJuego = new JButton("Limpiar");
+			btnLimpiarAddJuego.addActionListener(Actions.addJuegoLimpiar);
 
+			btnAddJuego.add(btnAceptarAddJuego);
+			btnAddJuego.add(btnLimpiarAddJuego);
 
-		
-		// panelAddJuego.add(new JLabel("testJuego"));
+			panelAddJuego.add(formAddJuego, BorderLayout.CENTER);
+			panelAddJuego.add(btnAddJuego, BorderLayout.PAGE_END);
 
-		// Se añaden las cartas
-		panelCards.add(panelAddUsuario, ADDUSUARIO);
-		panelCards.add(panelAddJuego, ADDJUEGO);
+			// panelAddJuego.add(new JLabel("testJuego"));
+
+			// Se añaden las cartas
+			panelCards.add(panelAddUsuario, ADDUSUARIO);
+			panelCards.add(panelAddJuego, ADDJUEGO);
+		} else {
+			// Modo user
+			
+		}
 
 		// this.add(new JLabel("addTest"));
 	}
