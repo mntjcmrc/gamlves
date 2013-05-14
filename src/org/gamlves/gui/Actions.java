@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,12 +13,19 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.gamlves.data.Datos;
+import org.gamlves.data.Juego;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
 import org.gamlves.data.Usuario;
 import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
 
+/**
+ * Aquí estarán todos los ActionListener necesarios
+ * 
+ * @author mntjcmrc
+ * 
+ */
 public class Actions {
 	/**
 	 * Acción a ejecutar cuando el botón aceptar del frame de login es pulsado.
@@ -221,7 +229,8 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String nombre = MainRun.mainFrame.addPanel.get_txtNombreJuego();
-			String genero = (String) MainRun.mainFrame.addPanel.get_comboGeneroJuego();
+			String genero = (String) MainRun.mainFrame.addPanel
+					.get_comboGeneroJuego();
 
 			if (nombre.length() > 0 && !(genero.equals(Datos.GENEROS[0]))) {
 				int transaction = Datos.juegoTransaction(nombre, genero);
@@ -274,5 +283,14 @@ public class Actions {
 		public void actionPerformed(ActionEvent arg0) {
 			MainRun.mainFrame.addPanel.set_txtNombreJuego("");
 		}
+	};
+
+	protected static ActionListener buscarUsuarioJuego = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String busqueda = MainRun.mainFrame.addPanel.get_txtBuscarUsuarioJuego();
+			ArrayList<Juego> juegos = Datos.searchJuego(busqueda);
+		}
+
 	};
 }
