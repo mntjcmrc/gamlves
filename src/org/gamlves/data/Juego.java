@@ -7,7 +7,7 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class Juego implements Comparable<Juego> {
+public class Juego{
 
 	/**
 	 * ID del juego
@@ -60,16 +60,5 @@ public class Juego implements Comparable<Juego> {
 	 */
 	protected void set_id(int id) {
 		this._id = id;
-	}
-
-	@Override
-	public int compareTo(Juego juego) {
-		if (this.get_id() == juego.get_id()) {
-			return 0;
-		} else if (this.get_id() < juego.get_id()) {
-			return -1;
-		} else {
-			return 1;
-		}
 	}
 }

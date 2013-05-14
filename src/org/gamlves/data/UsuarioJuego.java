@@ -6,7 +6,7 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class UsuarioJuego implements Comparable<UsuarioJuego> {
+public class UsuarioJuego {
 
 	/**
 	 * ID del juego relacionado con el usuario
@@ -41,10 +41,5 @@ public class UsuarioJuego implements Comparable<UsuarioJuego> {
 	 */
 	public String get_user(){
 		return this._user;
-	}
-	
-	@Override
-	public int compareTo(UsuarioJuego usuariojuego) {
-		return this._user.compareTo(usuariojuego.get_user());
 	}
 }

@@ -7,7 +7,7 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class Usuario implements Comparable<Usuario> {
+public class Usuario {
 	private int _id;
 	private String _nombre;
 	private String _user;
@@ -65,24 +65,4 @@ public class Usuario implements Comparable<Usuario> {
 	public void set_id(int id) {
 		this._id = id;
 	}
-
-	@Override
-	public int compareTo(Usuario usuario) {
-		if (this.get_id() == usuario.get_id()) {
-			return 0;
-		} else if (this.get_id() < usuario.get_id()) {
-			return -1;
-		} else {
-			return 1;
-		}
-	}
-
-//	/**
-//	 * Añadirá los datos de este usuario a la base de datos
-//	 * @throws SQLException 
-//	 */
-//	protected void addDatabase() throws SQLException {
-//		DriverGamlves.addUser(this);
-//	}
-
 }
