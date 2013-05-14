@@ -1,7 +1,5 @@
 package org.gamlves.data;
 
-import java.sql.SQLException;
-
 /**
  * Representa a un usuario del programa, el id y user son únicos en la báse de
  * datos. El id se generará en la base de datos automáticamente.
