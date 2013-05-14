@@ -69,6 +69,25 @@ public class DriverGamlves {
 		}
 		return juegos;
 	}
+	
+	/**
+	 * Nos da los datos de todos las relaciones entre usuarios y juegos
+	 * 
+	 * @return un array con todas las relaciones
+	 * @throws SQLException
+	 */
+	protected static ArrayList<UsuarioJuego> get_usuariosjuegos() throws SQLException {
+		ArrayList<UsuarioJuego> usuariosjuegos = null;
+		ResultSet rs;
+		rs = database.makeQuery("SELECT * FROM UsuariosJuegos;");
+		usuariosjuegos = new ArrayList<UsuarioJuego>();
+		while (rs.next()) {
+			UsuarioJuego usuariojuego;
+			usuariojuego = crear_usuariojuego(rs);
+			usuariosjuegos.add(usuariojuego);
+		}
+		return usuariosjuegos;
+	}
 
 	/**
 	 * Nos da los datos de un usuario
@@ -92,6 +111,20 @@ public class DriverGamlves {
 
 		return usuario;
 	}
+	
+	protected static Juego get_juego(int id) throws SQLException {
+		Juego juego = null;
+		ResultSet rs;
+		rs = database.makeQuery("SELECT * FROM Juegos WHERE ID=" + id + ";");
+		rs.last();
+		if (rs.getRow() == 0) {
+			// No existe el juego con ese ID
+		} else {
+			juego = crear_juego(rs);
+		}
+		
+		return juego;
+	}
 
 	/**
 	 * Nos da los datos de un juego en base al id dado
@@ -108,12 +141,38 @@ public class DriverGamlves {
 				+ "';");
 		rs.last();
 		if (rs.getRow() == 0) {
-			// No existe el usuario user
+			// No existe el juego nombre
 		} else {
 			juego = crear_juego(rs);
 		}
 
 		return juego;
+	}
+
+	/**
+	 * Nos da los datos de un juego en base a los datos dados
+	 * 
+	 * @param idJuego
+	 *            ID del juego
+	 * @param user
+	 *            Username del usuario que posee ese juego
+	 * @return Datos de la relación
+	 * @throws SQLException
+	 */
+	protected static UsuarioJuego get_usuariojuego(int idJuego, String user)
+			throws SQLException {
+		UsuarioJuego usuariojuego = null;
+		ResultSet rs;
+		rs = database.makeQuery("SELECT * FROM UsuariosJuegos WHERE IDJuego="
+				+ idJuego + " AND User='" + user + "';");
+		rs.last();
+		if (rs.getRow() == 0) {
+			// No existe esa relación
+		} else {
+			usuariojuego = crear_usuariojuego(rs);
+		}
+
+		return usuariojuego;
 	}
 
 	/**
@@ -160,6 +219,26 @@ public class DriverGamlves {
 	}
 
 	/**
+	 * Crea un objeto usuariojuego con el ResultSet dado
+	 * 
+	 * @param rs
+	 *            ResultSet en la posición del juego que se quiere crear
+	 * @return Juego con los datos de la posición del ResultSet
+	 * @throws SQLException
+	 */
+	private static UsuarioJuego crear_usuariojuego(ResultSet rs)
+			throws SQLException {
+		UsuarioJuego usuariojuego = null;
+
+		int idJuego = rs.getInt("IDJuego");
+		String user = rs.getString("User");
+
+		usuariojuego = new UsuarioJuego(idJuego, user);
+
+		return usuariojuego;
+	}
+
+	/**
 	 * Añade un registro de usuario a la base de datos
 	 * 
 	 * @param usuario
@@ -200,7 +279,8 @@ public class DriverGamlves {
 		nombre = juego.get_nombre();
 		genero = juego.get_genero();
 
-		update = "INSERT INTO Juegos (Nombre, Genero) VALUES('" + nombre + "', '" + genero + "');";
+		update = "INSERT INTO Juegos (Nombre, Genero) VALUES('" + nombre
+				+ "', '" + genero + "');";
 		add = database.makeUpdate(update);
 
 		return add;
