@@ -70,38 +70,6 @@ public class DriverGamlves {
 		return juegos;
 	}
 
-	// /**
-	// * Método estándar para crear un array con todos los objetos de una tabla
-	// *
-	// * @param tabla
-	// * De que tabla se van a sacar los datos de los objetos
-	// * @param type
-	// * Tipo de los objetos, sólo puede ser 'usuario', 'juego' y
-	// * 'usuariojuego'
-	// * @return Un array con todos los objetos de la tabla proporcionada
-	// */
-	// protected static ArrayList<Object> get_objetos(String tabla, String type)
-	// {
-	// ArrayList<Object> objetos = null;
-	// ResultSet rs;
-	//
-	// try {
-	// rs = database.makeQuery("SELECT * FROM " + tabla);
-	// objetos = new ArrayList<Object>();
-	// while (rs.next()) {
-	// Object objeto;
-	// objeto = crear_objeto(type, rs);
-	// objetos.add(objeto);
-	// }
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// } finally {
-	// database.disconnect();
-	// }
-	//
-	// return objetos;
-	// }
-
 	/**
 	 * Nos da los datos de un usuario
 	 * 
@@ -136,7 +104,8 @@ public class DriverGamlves {
 	protected static Juego get_juego(String nombre) throws SQLException {
 		Juego juego = null;
 		ResultSet rs;
-		rs = database.makeQuery("SELECT * FROM Juegos WHERE Nombre='" + nombre + "';");
+		rs = database.makeQuery("SELECT * FROM Juegos WHERE Nombre='" + nombre
+				+ "';");
 		rs.last();
 		if (rs.getRow() == 0) {
 			// No existe el usuario user
@@ -146,43 +115,6 @@ public class DriverGamlves {
 
 		return juego;
 	}
-
-	// /**
-	// * Método estándar para conseguir los datos de un tipo de Objeto. Leyenda
-	// de
-	// * los objetos: Tabla(clave). Ejemplos: Usuarios(User), Juegos(ID),
-	// * UsuariosJuegos(ID).
-	// *
-	// * @param tabla
-	// * De que tabla de la base de datos vamos a sacar el objeto
-	// * @param clave
-	// * El nombre de la clave para buscar el objeto en la tabla
-	// * @param checkClave
-	// * La clave a comprobar
-	// * @return Objeto buscado con sus datos
-	// */
-	// protected Object get_objeto(String tabla, String clave, String
-	// checkClave) {
-	// Object objeto = null;
-	// ResultSet rs;
-	//
-	// try {
-	// rs = database.makeQuery("SELECT * FROM " + tabla + " WHERE "
-	// + clave + "='" + checkClave + "';");
-	// rs.last();
-	// if (rs.getRow() == 0) {
-	// // No existe el objeto
-	// } else {
-	// // crear_objeto();
-	// }
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// } finally {
-	// database.disconnect();
-	// }
-	//
-	// return objeto;
-	// }
 
 	/**
 	 * Crea un objeto usuario con el ResultSet dado
@@ -226,34 +158,6 @@ public class DriverGamlves {
 		return juego;
 	}
 
-	// /**
-	// * Método estándar para crear un objeto de un tipo particular
-	// *
-	// * @param type
-	// * @param rs
-	// * @return
-	// * @throws SQLException
-	// */
-	// private static Object crear_objeto(String type, ResultSet rs) throws
-	// SQLException {
-	// Object objeto = null;
-	//
-	// if (type.equals("usuario")) {
-	//
-	// rs.getInt("ID");
-	// rs.getString("Nombre");
-	// rs.getString("User");
-	// rs.getString("Pass");
-	//
-	// } else if (type.equals("juego")) {
-	// // Introducir los get de las rows de juego
-	// } else if (type.equals("usuariojuego")) {
-	// // Introducir los get de las rows de usuariojuego
-	// }
-	//
-	// return objeto;
-	// }
-
 	/**
 	 * Añade un registro de usuario a la base de datos
 	 * 
@@ -277,7 +181,15 @@ public class DriverGamlves {
 
 		return add;
 	}
-	
+
+	/**
+	 * Añade un registro de juego a la base de datos
+	 * 
+	 * @param juego
+	 *            Datos del juego a añadir
+	 * @return Si se ha añadido correctamente o no
+	 * @throws SQLException
+	 */
 	protected static boolean addJuego(Juego juego) throws SQLException {
 		boolean add = false;
 		String nombre;
@@ -285,8 +197,7 @@ public class DriverGamlves {
 
 		nombre = juego.get_nombre();
 
-		update = "INSERT INTO Juegos (Nombre) VALUES('" + nombre
-				+ "');";
+		update = "INSERT INTO Juegos (Nombre) VALUES('" + nombre + "');";
 		add = database.makeUpdate(update);
 
 		return add;

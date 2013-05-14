@@ -44,20 +44,11 @@ public class Datos {
 	 * usuario
 	 */
 	public static final int USUARIONOMBRE = 30;
+	/**
+	 * Representa el cúmero de caracteres máximo que podra tener los nombres de
+	 * los juegos
+	 */
 	public static final int JUEGONOMBRE = 20;
-
-	// private static DriverGamlves driver = new DriverGamlves();
-
-	// /**
-	// * Crea una instancia del objeto desde el que se controlarán todos los
-	// * datos, creando los ArrayList en los que se almacenarán los datos
-	// */
-	// public Datos() {
-	//
-	// _usuarios = new ArrayList<Usuario>();
-	// _juegos = new ArrayList<Juego>();
-	// _usuariosjuegos = new ArrayList<UsuarioJuego>();
-	// }
 
 	/**
 	 * Pide todos los datos a la base de datos y los carga en memoria
@@ -126,6 +117,7 @@ public class Datos {
 	 * @param pass
 	 *            Contraseña en texto plano, se convertirá en hash en este
 	 *            método
+	 * @return Los datos del usuario
 	 * @throws SQLException
 	 */
 	public static Usuario createUser(String nombre, String user, String pass)
@@ -145,9 +137,16 @@ public class Datos {
 		return usuario;
 
 	}
-	
-	public static Juego createJuego(String nombre)
-			throws SQLException {
+
+	/**
+	 * Crea un juego con los datos dados y lo devuelve
+	 * 
+	 * @param nombre
+	 *            El nombre del juego
+	 * @return Los datos del juego
+	 * @throws SQLException
+	 */
+	public static Juego createJuego(String nombre) throws SQLException {
 		Juego juego = null;
 
 		if (!(checkJuego(nombre))) {
@@ -205,7 +204,8 @@ public class Datos {
 	/**
 	 * Aglutina todos los pasos al crear un usuario en el sistema, estos son:
 	 * comprobar si ya existe un usuario con ese username, crear un objeto del
-	 * usuario, añadirlo en la base de datos
+	 * usuario, añadirlo en la base de datos, pedir los datos para asignar el id
+	 * en el objeto en memoria y añadirlo al array en memoria
 	 * 
 	 * @param nombre
 	 *            Nombre que tendrá el usuario
@@ -275,7 +275,21 @@ public class Datos {
 		return transaction;
 
 	}
-	
+
+	/**
+	 * Aglutina todos los pasos al crear un juego en el sistema, estos son:
+	 * comprobar si ya existe un juego con ese nombre, crear un objeto del
+	 * juego, añadirlo en la base de datos, pedir los datos para asignar el id
+	 * en el objeto en memoria y añadirlo al array en memoria
+	 * 
+	 * @param nombre Nombre del juego
+	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
+	 *         existencia del juego en el sistema, 2 si falla al crear el
+	 *         objeto de tipo Juego (el juego ya existe), 3 si falla al
+	 *         añadir el juego a la base de datos (saldrá una ventana con el
+	 *         error SQL concreto), 4 si falla al pedir los datos recién
+	 *         introducidos
+	 */
 	public static int juegoTransaction(String nombre) {
 		int transaction = 0;
 
