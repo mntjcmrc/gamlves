@@ -74,7 +74,7 @@ public class AddPanel extends JPanel {
 	/**
 	 * ComboBox con los géneros que se pueden elegir
 	 */
-	protected JComboBox comboGeneroJuego;
+	protected JComboBox<String> comboGeneroJuego;
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
@@ -195,7 +195,7 @@ public class AddPanel extends JPanel {
 			JLabel lblNombreJuego = new JLabel("Nombre: ");
 			txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
 			JLabel lblGeneroJuego = new JLabel("Género: ");
-			comboGeneroJuego = new JComboBox(Datos.GENEROS);
+			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
 			
 

@@ -455,7 +455,6 @@ public class Datos {
 		Usuario usuario;
 		Juego juego;
 		UsuarioJuego usuariojuego;
-		UsuarioJuego usuariojuegoDatabase;
 		try {
 			usuariojuego = Datos.createUsuarioJuego(idJuego, user);
 		} catch (SQLException e) {
