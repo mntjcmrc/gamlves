@@ -43,7 +43,8 @@ public class Datos {
 	 * Representa el número de caracteres máximo que podrá tener los nombres de
 	 * usuario
 	 */
-	public static final int USUARIONOMBRE = 20;
+	public static final int USUARIONOMBRE = 30;
+	public static final int JUEGONOMBRE = 20;
 
 	// private static DriverGamlves driver = new DriverGamlves();
 
@@ -103,10 +104,10 @@ public class Datos {
 	 * @return Si existe o no
 	 * @throws SQLException
 	 */
-	protected boolean checkJuego(String id) throws SQLException {
+	protected static boolean checkJuego(String nombre) throws SQLException {
 		boolean exist = false;
 
-		if (DriverGamlves.get_juego(id) == null) {
+		if (DriverGamlves.get_juego(nombre) == null) {
 			exist = false;
 		} else {
 			exist = true;
@@ -142,6 +143,22 @@ public class Datos {
 		}
 
 		return usuario;
+
+	}
+	
+	public static Juego createJuego(String nombre)
+			throws SQLException {
+		Juego juego = null;
+
+		if (!(checkJuego(nombre))) {
+			juego = new Juego(nombre);
+		} else {
+			// JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario " +
+			// user + " ya existe");
+			// System.out.println("El usuario " + user + " ya existe");
+		}
+
+		return juego;
 
 	}
 
@@ -249,6 +266,61 @@ public class Datos {
 
 			usuario.set_id(usuarioDatabase.get_id());
 			_usuarios.add(usuario);
+		} else {
+			// Error al crear el objeto
+			transaction = 2;
+			return transaction;
+		}
+
+		return transaction;
+
+	}
+	
+	public static int juegoTransaction(String nombre) {
+		int transaction = 0;
+
+		Juego juego;
+		Juego juegoDatabase;
+		try {
+			juego = Datos.createJuego(nombre);
+		} catch (SQLException e) {
+			// Error al comprobar al juego en la base de datos
+			transaction = 1;
+			return transaction;
+			// e.printStackTrace();
+		} finally {
+			DriverGamlves.disconnect();
+		}
+
+		if (!(juego == null)) {
+			try {
+				DriverGamlves.addJuego(juego);
+			} catch (SQLException e) {
+				// Error al añadir el juego a la base de datos
+				transaction = 3;
+				// System.out.println("SQL Error: " + e.getErrorCode());
+				JOptionPane.showMessageDialog(null,
+						"SQL Error: " + e.getErrorCode()
+								+ "\nAvise al administrador");
+				return transaction;
+
+			} finally {
+				DriverGamlves.disconnect();
+			}
+
+			try {
+				juegoDatabase = DriverGamlves.get_juego(juego.get_nombre());
+			} catch (SQLException e) {
+				// Error al pedir los datos del juego
+				transaction = 4;
+				return transaction;
+				// e.printStackTrace();
+			} finally {
+				DriverGamlves.disconnect();
+			}
+
+			juego.set_id(juegoDatabase.get_id());
+			_juegos.add(juego);
 		} else {
 			// Error al crear el objeto
 			transaction = 2;

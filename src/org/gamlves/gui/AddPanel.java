@@ -3,9 +3,7 @@ package org.gamlves.gui;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
-import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +12,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import javax.swing.SwingUtilities;
 
 import org.gamlves.data.Datos;
 
@@ -51,6 +48,11 @@ public class AddPanel extends JPanel {
 	 * Panel interior con el formulario para introducir los datos de un usuario
 	 */
 	private JPanel formAddUsuario;
+	
+	/**
+	 * Panel interior con el formulario para introducir los datos de un juego
+	 */
+	private JPanel formAddJuego;
 
 	/**
 	 * Campo de texto para introducir el nombre del usuario
@@ -64,6 +66,10 @@ public class AddPanel extends JPanel {
 	 * Campo de texto para introducir la contraseña del usuario
 	 */
 	protected JTextField txtPass;
+	/**
+	 * Campo de texto para introducir el nombre del juego
+	 */
+	protected JTextField txtNombreJuego;
 
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
@@ -114,8 +120,8 @@ public class AddPanel extends JPanel {
 		// Panel para añadir usuarios
 		panelAddUsuario = new JPanel(new BorderLayout());
 		formAddUsuario = new JPanel();
-		SpringLayout spring = new SpringLayout();
-		formAddUsuario.setLayout(spring);
+		SpringLayout springUser = new SpringLayout();
+		formAddUsuario.setLayout(springUser);
 		JLabel lblNombreUsuario = new JLabel("Nombre: ");
 		txtNombreUsuario = new JTextField(Datos.USUARIONOMBRE);
 		JLabel lblUser = new JLabel("User: ");
@@ -124,32 +130,40 @@ public class AddPanel extends JPanel {
 		txtPass = new JPasswordField(15);
 
 		formAddUsuario.add(lblNombreUsuario);
-		spring.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100, SpringLayout.WEST, formAddUsuario);
-		spring.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40, SpringLayout.NORTH, formAddUsuario);
-		
-		
+		springUser.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100,
+				SpringLayout.WEST, formAddUsuario);
+		springUser.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40,
+				SpringLayout.NORTH, formAddUsuario);
+
 		formAddUsuario.add(txtNombreUsuario);
-		spring.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30, SpringLayout.EAST, lblNombreUsuario);
-		spring.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40, SpringLayout.NORTH, formAddUsuario);
-		
+		springUser.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30,
+				SpringLayout.EAST, lblNombreUsuario);
+		springUser.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40,
+				SpringLayout.NORTH, formAddUsuario);
+
 		formAddUsuario.add(lblUser);
-		spring.putConstraint(SpringLayout.EAST, lblUser, 100, SpringLayout.WEST, formAddUsuario);
-		spring.putConstraint(SpringLayout.NORTH, lblUser, 40, SpringLayout.NORTH, lblNombreUsuario);
-		
+		springUser.putConstraint(SpringLayout.EAST, lblUser, 100,
+				SpringLayout.WEST, formAddUsuario);
+		springUser.putConstraint(SpringLayout.NORTH, lblUser, 40,
+				SpringLayout.NORTH, lblNombreUsuario);
+
 		formAddUsuario.add(txtUser);
-		spring.putConstraint(SpringLayout.WEST, txtUser, 30, SpringLayout.EAST, lblUser);
-		spring.putConstraint(SpringLayout.NORTH, txtUser, 40, SpringLayout.NORTH, txtNombreUsuario);
-		
+		springUser.putConstraint(SpringLayout.WEST, txtUser, 30, SpringLayout.EAST,
+				lblUser);
+		springUser.putConstraint(SpringLayout.NORTH, txtUser, 40,
+				SpringLayout.NORTH, txtNombreUsuario);
+
 		formAddUsuario.add(lblPass);
-		spring.putConstraint(SpringLayout.EAST, lblPass, 100, SpringLayout.WEST, formAddUsuario);
-		spring.putConstraint(SpringLayout.NORTH, lblPass, 40, SpringLayout.NORTH, lblUser);
-		
+		springUser.putConstraint(SpringLayout.EAST, lblPass, 100,
+				SpringLayout.WEST, formAddUsuario);
+		springUser.putConstraint(SpringLayout.NORTH, lblPass, 40,
+				SpringLayout.NORTH, lblUser);
+
 		formAddUsuario.add(txtPass);
-		spring.putConstraint(SpringLayout.WEST, txtPass, 30, SpringLayout.EAST, lblPass);
-		spring.putConstraint(SpringLayout.NORTH, txtPass, 40, SpringLayout.NORTH, txtUser);
-		
-		
-//		SpringUtilities.makeCompactGrid(formAddUsuario, 3, 2, 6, 6, 30, 30);
+		springUser.putConstraint(SpringLayout.WEST, txtPass, 30, SpringLayout.EAST,
+				lblPass);
+		springUser.putConstraint(SpringLayout.NORTH, txtPass, 40,
+				SpringLayout.NORTH, txtUser);
 
 		JPanel btnAddUsuario = new JPanel(new FlowLayout());
 		JButton btnAceptarAddUsuario = new JButton("Aceptar");
@@ -166,8 +180,41 @@ public class AddPanel extends JPanel {
 		// panelAddUsuario.add(new JLabel("testUsuario"));
 
 		// Panel para añadir juegos
-		panelAddJuego = new JPanel();
-		panelAddJuego.add(new JLabel("testJuego"));
+		panelAddJuego = new JPanel(new BorderLayout());
+		
+		formAddJuego = new JPanel();
+		SpringLayout springJuego = new SpringLayout();
+		formAddJuego.setLayout(springJuego);
+		JLabel lblNombreJuego = new JLabel("Nombre: ");
+		txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
+
+		formAddJuego.add(lblNombreJuego);
+		springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
+				SpringLayout.WEST, formAddJuego);
+		springJuego.putConstraint(SpringLayout.NORTH, lblNombreJuego, 40,
+				SpringLayout.NORTH, formAddJuego);
+
+		formAddJuego.add(txtNombreJuego);
+		springJuego.putConstraint(SpringLayout.WEST, txtNombreJuego, 30,
+				SpringLayout.EAST, lblNombreJuego);
+		springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
+				SpringLayout.NORTH, formAddJuego);
+
+		JPanel btnAddJuego = new JPanel(new FlowLayout());
+		JButton btnAceptarAddJuego = new JButton("Aceptar");
+		btnAceptarAddJuego.addActionListener(Actions.addJuegoAceptar);
+		JButton btnLimpiarAddJuego = new JButton("Limpiar");
+		btnLimpiarAddJuego.addActionListener(Actions.addJuegoLimpiar);
+
+		btnAddJuego.add(btnAceptarAddJuego);
+		btnAddJuego.add(btnLimpiarAddJuego);
+
+		panelAddJuego.add(formAddJuego, BorderLayout.CENTER);
+		panelAddJuego.add(btnAddJuego, BorderLayout.PAGE_END);
+
+
+		
+		// panelAddJuego.add(new JLabel("testJuego"));
 
 		// Se añaden las cartas
 		panelCards.add(panelAddUsuario, ADDUSUARIO);

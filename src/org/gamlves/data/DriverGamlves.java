@@ -277,4 +277,18 @@ public class DriverGamlves {
 
 		return add;
 	}
+	
+	protected static boolean addJuego(Juego juego) throws SQLException {
+		boolean add = false;
+		String nombre;
+		String update;
+
+		nombre = juego.get_nombre();
+
+		update = "INSERT INTO Juegos (Nombre) VALUES('" + nombre
+				+ "');";
+		add = database.makeUpdate(update);
+
+		return add;
+	}
 }

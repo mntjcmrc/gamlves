@@ -164,7 +164,7 @@ public class Actions {
 			case 0:
 				// System.out.println("La transacción se ha realizado correctamente");
 				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"La transacción se ha realizado correctamente");
+						"El usuario " + user + " se ha añadido correctamente");
 				break;
 
 			case 1:
@@ -201,6 +201,61 @@ public class Actions {
 			MainRun.mainFrame.addPanel.txtNombreUsuario.setText("");
 			MainRun.mainFrame.addPanel.txtUser.setText("");
 			MainRun.mainFrame.addPanel.txtPass.setText("");
+		}
+	};
+	
+	/**
+	 * Recoge los datos introducidos por el admin e inicia una transacción para
+	 * crear un usuario en la base de datos y guardarlo en memoria. Saldrán
+	 * mensajes por cada error posible
+	 */
+	protected static ActionListener addJuegoAceptar = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String nombre = MainRun.mainFrame.addPanel.txtNombreJuego
+					.getText();
+
+			int transaction = Datos.juegoTransaction(nombre);
+
+			switch (transaction) {
+			case 0:
+				// System.out.println("La transacción se ha realizado correctamente");
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"El juego " + nombre + " se ha añadido correctamente");
+				break;
+
+			case 1:
+				JOptionPane
+						.showMessageDialog(MainRun.mainFrame,
+								"Fallo al comprobar la existencia del juego en la base de datos");
+				break;
+
+			case 2:
+				JOptionPane.showMessageDialog(MainRun.mainFrame, "El juego "
+						+ nombre + " ya existe");
+				break;
+
+			case 3:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al añadir el juego a la base de datos");
+				break;
+
+			case 4:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al volver a pedir los datos a la base de datos");
+				break;
+			}
+
+		}
+	};
+
+	/**
+	 * Limpia los campos de texto del formulario para añadir juegos
+	 */
+	protected static ActionListener addJuegoLimpiar = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.txtNombreJuego.setText("");
 		}
 	};
 }
