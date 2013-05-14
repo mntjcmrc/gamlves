@@ -43,7 +43,7 @@ public class Datos {
 	 * Representa el número de caracteres máximo que podrá tener los nombres de
 	 * usuario
 	 */
-	public static final int USUARIONOMBRE = 30;
+	public static final int USUARIONOMBRE = 20;
 
 	// private static DriverGamlves driver = new DriverGamlves();
 
