@@ -8,6 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * Frame con el login en el sistema
+ * 
+ * @author mntjcmrc
+ * 
+ */
 public class LoginFrame extends JFrame {
 
 	/**
@@ -15,7 +21,7 @@ public class LoginFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = -9198884323424763366L;
 	/**
-	 * Campos de texto con el usuario de login
+	 * Campo de texto con el usuario de login
 	 */
 	private JTextField txtUser;
 	/**
@@ -23,13 +29,21 @@ public class LoginFrame extends JFrame {
 	 */
 	private JTextField txtPass;
 	/**
-	 * Etiquetas del usuario y contraseña
+	 * Etiquetas del usuario
 	 */
-	private JLabel lblUser, lblPass;
+	private JLabel lblUser;
 	/**
-	 * Botones de aceptar y cancelar
+	 * Etiqueta de la contraseña
 	 */
-	private JButton btnAceptar, btnCancelar;
+	private JLabel lblPass;
+	/**
+	 * Botón de aceptar
+	 */
+	private JButton btnAceptar;
+	/**
+	 * Botón de cancelar
+	 */
+	private JButton btnCancelar;
 
 	// private String usuario, pass;
 
@@ -50,19 +64,19 @@ public class LoginFrame extends JFrame {
 		// Username
 		lblUser = new JLabel("Usuario: ");
 		txtUser = new JTextField(10);
-		
+
 		txtUser.requestFocus();
 		txtUser.addActionListener(Actions.loginAceptar);
-		
+
 		this.add(lblUser);
 		this.add(txtUser);
 
 		// Contraseña
 		lblPass = new JLabel("Contraseña: ");
 		txtPass = new JPasswordField(15);
-		
+
 		txtPass.addActionListener(Actions.loginAceptar);
-		
+
 		this.add(lblPass);
 		this.add(txtPass);
 
@@ -77,20 +91,34 @@ public class LoginFrame extends JFrame {
 		this.add(btnCancelar);
 
 	}
-	
+
+	/**
+	 * @return Texto del campo de texto del usuario
+	 */
 	protected String get_txtUser() {
 		return this.txtUser.getText();
 	}
-	
+
+	/**
+	 * @param user
+	 *            Texto a asignar en el campo de texto del usuario
+	 */
 	protected void set_txtUser(String user) {
 		this.txtUser.setText(user);
 	}
-	
+
+	/**
+	 * @return Texto del campo te texto de la contraseña
+	 */
 	protected String get_txtPass() {
 		return this.txtPass.getText();
 	}
-	
-	protected void set_txtPass(String pass){
+
+	/**
+	 * @param pass
+	 *            Texto a asignar en el campo de texto de la contraseña
+	 */
+	protected void set_txtPass(String pass) {
 		this.txtPass.setText(pass);
 	}
 }
