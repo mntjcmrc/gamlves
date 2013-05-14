@@ -285,4 +285,29 @@ public class DriverGamlves {
 
 		return add;
 	}
+	
+	/**
+	 * Añade un registro de una relación entre usuario y juego a la base de datos
+	 * 
+	 * @param juego
+	 *            Datos de la relación a añadir
+	 * @return Si se ha añadido correctamente o no
+	 * @throws SQLException
+	 */
+	protected static boolean addUsuarioJuego(UsuarioJuego usuariojuego) throws SQLException {
+		boolean add = false;
+		int idJuego;
+		String user;
+		
+		String update;
+
+		idJuego = usuariojuego.get_idJuego();
+		user = usuariojuego.get_user();
+
+		update = "INSERT INTO UsuariosJuegos (IDJuego, User) VALUES(" + idJuego
+				+ ", '" + user + "');";
+		add = database.makeUpdate(update);
+
+		return add;
+	}
 }
