@@ -47,6 +47,9 @@ public class Juego{
 		return this._nombre;
 	}
 	
+	/**
+	 * @return Género del juego
+	 */
 	public String get_genero() {
 		return this._genero;
 	}
@@ -60,5 +63,9 @@ public class Juego{
 	 */
 	protected void set_id(int id) {
 		this._id = id;
+	}
+	
+	public String toString(){
+		return this._nombre + " - " + this._genero;
 	}
 }
