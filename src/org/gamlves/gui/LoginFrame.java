@@ -17,11 +17,11 @@ public class LoginFrame extends JFrame {
 	/**
 	 * Campos de texto con el usuario de login
 	 */
-	protected static JTextField txtUser;
+	private JTextField txtUser;
 	/**
 	 * Campo de texto con la contraseña de login
 	 */
-	protected static JTextField txtPass;
+	private JTextField txtPass;
 	/**
 	 * Etiquetas del usuario y contraseña
 	 */
@@ -69,5 +69,21 @@ public class LoginFrame extends JFrame {
 		this.add(btnAceptar);
 		this.add(btnCancelar);
 
+	}
+	
+	protected String get_txtUser() {
+		return this.txtUser.getText();
+	}
+	
+	protected void set_txtUser(String user) {
+		this.txtUser.setText(user);
+	}
+	
+	protected String get_txtPass() {
+		return this.txtPass.getText();
+	}
+	
+	protected void set_txtPass(String pass){
+		this.txtPass.setText(pass);
 	}
 }

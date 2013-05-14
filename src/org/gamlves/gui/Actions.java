@@ -32,11 +32,11 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
-			if (LoginRun.loginFrame.txtUser.getText().length() > 0
-					&& LoginRun.loginFrame.txtPass.getText().length() > 0) {
-				if (Seguridad.checkLogin(LoginRun.loginFrame.txtUser.getText(),
-						LoginRun.loginFrame.txtPass.getText())) {
-					String user = LoginRun.loginFrame.txtUser.getText();
+			if (LoginRun.loginFrame.get_txtUser().length() > 0
+					&& LoginRun.loginFrame.get_txtPass().length() > 0) {
+				if (Seguridad.checkLogin(LoginRun.loginFrame.get_txtUser(),
+						LoginRun.loginFrame.get_txtPass())) {
+					String user = LoginRun.loginFrame.get_txtUser();
 					LoginRun.loginFrame.setVisible(false);
 
 					Usuario usuario = Datos.searchUser(user);
@@ -55,8 +55,8 @@ public class Actions {
 					JOptionPane
 							.showMessageDialog(null,
 									"El nombre de usuario y/o la contraseña no son correctos");
-					LoginRun.loginFrame.txtUser.setText("");
-					LoginRun.loginFrame.txtPass.setText("");
+					LoginRun.loginFrame.set_txtUser("");
+					LoginRun.loginFrame.set_txtPass("");
 				}
 			} else {
 				JOptionPane.showMessageDialog(null,
