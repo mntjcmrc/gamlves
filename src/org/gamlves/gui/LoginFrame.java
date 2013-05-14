@@ -89,7 +89,7 @@ public class LoginFrame extends JFrame {
 
 		this.add(btnAceptar);
 		this.add(btnCancelar);
-
+		Actions.systemLookAndFeel();
 	}
 
 	/**
