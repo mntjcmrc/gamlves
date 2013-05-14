@@ -153,10 +153,9 @@ public class Actions {
 	protected static ActionListener addUserAceptar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String nombre = MainRun.mainFrame.addPanel.txtNombreUsuario
-					.getText();
-			String user = MainRun.mainFrame.addPanel.txtUser.getText();
-			String pass = MainRun.mainFrame.addPanel.txtPass.getText();
+			String nombre = MainRun.mainFrame.addPanel.get_txtNombreUsuario();
+			String user = MainRun.mainFrame.addPanel.get_txtUser();
+			String pass = MainRun.mainFrame.addPanel.get_txtPass();
 
 			if (nombre.length() > 0 && user.length() > 0 && pass.length() > 0) {
 				int transaction = Datos.userTransaction(nombre, user, pass);
@@ -207,9 +206,9 @@ public class Actions {
 	protected static ActionListener addUserLimpiar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			MainRun.mainFrame.addPanel.txtNombreUsuario.setText("");
-			MainRun.mainFrame.addPanel.txtUser.setText("");
-			MainRun.mainFrame.addPanel.txtPass.setText("");
+			MainRun.mainFrame.addPanel.set_txtNombreUsuario("");
+			MainRun.mainFrame.addPanel.set_txtUser("");
+			MainRun.mainFrame.addPanel.set_txtPass("");
 		}
 	};
 
@@ -221,9 +220,8 @@ public class Actions {
 	protected static ActionListener addJuegoAceptar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String nombre = MainRun.mainFrame.addPanel.txtNombreJuego.getText();
-			String genero = (String) MainRun.mainFrame.addPanel.comboGeneroJuego
-					.getSelectedItem();
+			String nombre = MainRun.mainFrame.addPanel.get_txtNombreJuego();
+			String genero = (String) MainRun.mainFrame.addPanel.get_comboGeneroJuego();
 
 			if (nombre.length() > 0 && !(genero.equals(Datos.GENEROS[0]))) {
 				int transaction = Datos.juegoTransaction(nombre, genero);
@@ -274,7 +272,7 @@ public class Actions {
 	protected static ActionListener addJuegoLimpiar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			MainRun.mainFrame.addPanel.txtNombreJuego.setText("");
+			MainRun.mainFrame.addPanel.set_txtNombreJuego("");
 		}
 	};
 }

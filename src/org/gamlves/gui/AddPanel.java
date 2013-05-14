@@ -58,23 +58,23 @@ public class AddPanel extends JPanel {
 	/**
 	 * Campo de texto para introducir el nombre del usuario
 	 */
-	protected JTextField txtNombreUsuario;
+	private JTextField txtNombreUsuario;
 	/**
 	 * Campo de texto para introducir el username único del usuario
 	 */
-	protected JTextField txtUser;
+	private JTextField txtUser;
 	/**
 	 * Campo de texto para introducir la contraseña del usuario
 	 */
-	protected JTextField txtPass;
+	private JTextField txtPass;
 	/**
 	 * Campo de texto para introducir el nombre del juego
 	 */
-	protected JTextField txtNombreJuego;
+	private JTextField txtNombreJuego;
 	/**
 	 * ComboBox con los géneros que se pueden elegir
 	 */
-	protected JComboBox<String> comboGeneroJuego;
+	private JComboBox<String> comboGeneroJuego;
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
@@ -197,7 +197,6 @@ public class AddPanel extends JPanel {
 			JLabel lblGeneroJuego = new JLabel("Género: ");
 			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
-			
 
 			formAddJuego.add(lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
@@ -210,19 +209,18 @@ public class AddPanel extends JPanel {
 					SpringLayout.EAST, lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
 					SpringLayout.NORTH, formAddJuego);
-			
+
 			formAddJuego.add(lblGeneroJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblGeneroJuego, 100,
 					SpringLayout.WEST, formAddJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, lblGeneroJuego, 40,
 					SpringLayout.NORTH, lblNombreJuego);
-			
+
 			formAddJuego.add(comboGeneroJuego);
 			springJuego.putConstraint(SpringLayout.WEST, comboGeneroJuego, 30,
 					SpringLayout.EAST, lblGeneroJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, comboGeneroJuego, 40,
 					SpringLayout.NORTH, txtNombreJuego);
-			
 
 			JPanel btnAddJuego = new JPanel(new FlowLayout());
 			JButton btnAceptarAddJuego = new JButton("Aceptar");
@@ -243,7 +241,7 @@ public class AddPanel extends JPanel {
 			panelCards.add(panelAddJuego, ADDJUEGO);
 		} else {
 			// Modo user
-			
+
 		}
 
 		// this.add(new JLabel("addTest"));
@@ -263,5 +261,62 @@ public class AddPanel extends JPanel {
 	protected void panelAddJuego() {
 		CardLayout layout = (CardLayout) panelCards.getLayout();
 		layout.show(panelCards, ADDJUEGO);
+	}
+
+	/**
+	 * @return Nombre del usuario escrito en su campo de texto
+	 */
+	protected String get_txtNombreUsuario() {
+		return this.txtNombreUsuario.getText();
+	}
+
+	/**
+	 * @param nombreUsuario
+	 *            Texto a asignar en el campo de texto del nombre de usuario
+	 */
+	protected void set_txtNombreUsuario(String nombreUsuario) {
+		this.txtNombreUsuario.setText(nombreUsuario);
+	}
+
+	/**
+	 * @return Usuario del campo de texto
+	 */
+	protected String get_txtUser() {
+		return this.txtUser.getText();
+	}
+
+	/**
+	 * @param user
+	 *            Texto a asignar en el campo de texto del username
+	 */
+	protected void set_txtUser(String user) {
+		this.txtUser.setText(user);
+	}
+
+	/**
+	 * @return Contraseña del campo de texto
+	 */
+	protected String get_txtPass() {
+		return this.txtPass.getText();
+	}
+
+	/**
+	 * @param pass
+	 *            Texto a asignar en el campo de la contraseña
+	 */
+	protected void set_txtPass(String pass) {
+		this.txtPass.setText(pass);
+	}
+	
+	protected String get_txtNombreJuego(){
+		return this.txtNombreJuego.getText();
+	}
+	
+	protected void set_txtNombreJuego(String nombreJuego) {
+		this.txtNombreJuego.setText(nombreJuego);
+	}
+	
+	protected String get_comboGeneroJuego() {
+		return (String) this.comboGeneroJuego.getSelectedItem();
 	}
 }
