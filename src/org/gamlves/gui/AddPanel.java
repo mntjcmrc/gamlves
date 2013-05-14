@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+import javax.swing.SwingUtilities;
 
 import org.gamlves.data.Datos;
 
@@ -48,7 +50,7 @@ public class AddPanel extends JPanel {
 	/**
 	 * Panel interior con el formulario para introducir los datos de un usuario
 	 */
-	protected JPanel formAddUsuario;
+	private JPanel formAddUsuario;
 
 	/**
 	 * Campo de texto para introducir el nombre del usuario
@@ -112,20 +114,42 @@ public class AddPanel extends JPanel {
 		// Panel para añadir usuarios
 		panelAddUsuario = new JPanel(new BorderLayout());
 		formAddUsuario = new JPanel();
-		formAddUsuario.setLayout(new GridLayout(3, 2));
+		SpringLayout spring = new SpringLayout();
+		formAddUsuario.setLayout(spring);
 		JLabel lblNombreUsuario = new JLabel("Nombre: ");
 		txtNombreUsuario = new JTextField(Datos.USUARIONOMBRE);
 		JLabel lblUser = new JLabel("User: ");
 		txtUser = new JTextField(Datos.USUARIOUSER);
 		JLabel lblPass = new JLabel("Contraseña: ");
-		txtPass = new JPasswordField();
+		txtPass = new JPasswordField(15);
 
 		formAddUsuario.add(lblNombreUsuario);
+		spring.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100, SpringLayout.WEST, formAddUsuario);
+		spring.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40, SpringLayout.NORTH, formAddUsuario);
+		
+		
 		formAddUsuario.add(txtNombreUsuario);
+		spring.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30, SpringLayout.EAST, lblNombreUsuario);
+		spring.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40, SpringLayout.NORTH, formAddUsuario);
+		
 		formAddUsuario.add(lblUser);
+		spring.putConstraint(SpringLayout.EAST, lblUser, 100, SpringLayout.WEST, formAddUsuario);
+		spring.putConstraint(SpringLayout.NORTH, lblUser, 40, SpringLayout.NORTH, lblNombreUsuario);
+		
 		formAddUsuario.add(txtUser);
+		spring.putConstraint(SpringLayout.WEST, txtUser, 30, SpringLayout.EAST, lblUser);
+		spring.putConstraint(SpringLayout.NORTH, txtUser, 40, SpringLayout.NORTH, txtNombreUsuario);
+		
 		formAddUsuario.add(lblPass);
+		spring.putConstraint(SpringLayout.EAST, lblPass, 100, SpringLayout.WEST, formAddUsuario);
+		spring.putConstraint(SpringLayout.NORTH, lblPass, 40, SpringLayout.NORTH, lblUser);
+		
 		formAddUsuario.add(txtPass);
+		spring.putConstraint(SpringLayout.WEST, txtPass, 30, SpringLayout.EAST, lblPass);
+		spring.putConstraint(SpringLayout.NORTH, txtPass, 40, SpringLayout.NORTH, txtUser);
+		
+		
+//		SpringUtilities.makeCompactGrid(formAddUsuario, 3, 2, 6, 6, 30, 30);
 
 		JPanel btnAddUsuario = new JPanel(new FlowLayout());
 		JButton btnAceptarAddUsuario = new JButton("Aceptar");
