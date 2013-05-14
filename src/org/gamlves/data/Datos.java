@@ -276,6 +276,27 @@ public class Datos {
 	}
 
 	/**
+	 * Busca juegos en base al nombre
+	 * 
+	 * @param nombre
+	 *            Cadena de texto que tendrá que contener el nombre de los
+	 *            juegos a buscar
+	 * @return Un arraylist con todos los juegos que contengan "nombre" en su
+	 *         nombre
+	 */
+	public static ArrayList<Juego> searchJuego(String nombre) {
+		ArrayList<Juego> juegos = new ArrayList<Juego>();
+
+		for (int i = 0; i < _juegos.size(); i++) {
+			if (_juegos.get(i).get_nombre().contains(nombre)) {
+				juegos.add(_juegos.get(i));
+			}
+		}
+
+		return juegos;
+	}
+
+	/**
 	 * Devuelve una relación entre juego y usuario con los datos dados
 	 * buscandolos en memoria
 	 * 
