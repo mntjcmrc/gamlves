@@ -22,10 +22,6 @@ import org.gamlves.data.Datos;
  * @author mntjcmrc
  * 
  */
-/**
- * @author mutilx9
- * 
- */
 public class AddPanel extends JPanel {
 
 	/**
