@@ -133,10 +133,10 @@ public class DriverGamlves {
 	 * @return Datos del juego
 	 * @throws SQLException
 	 */
-	protected static Juego get_juego(String id) throws SQLException {
+	protected static Juego get_juego(String nombre) throws SQLException {
 		Juego juego = null;
 		ResultSet rs;
-		rs = database.makeQuery("SELECT * FROM Juegos WHERE ID='" + id + "';");
+		rs = database.makeQuery("SELECT * FROM Juegos WHERE Nombre='" + nombre + "';");
 		rs.last();
 		if (rs.getRow() == 0) {
 			// No existe el usuario user
