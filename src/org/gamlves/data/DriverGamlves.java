@@ -60,7 +60,7 @@ public class DriverGamlves {
 	protected static ArrayList<Juego> get_juegos() throws SQLException {
 		ArrayList<Juego> juegos = null;
 		ResultSet rs;
-		rs = database.makeQuery("SELECT * FROM Usuarios;");
+		rs = database.makeQuery("SELECT * FROM Juegos;");
 		juegos = new ArrayList<Juego>();
 		while (rs.next()) {
 			Juego juego;
@@ -151,8 +151,9 @@ public class DriverGamlves {
 
 		int id = rs.getInt("ID");
 		String nombre = rs.getString("Nombre");
+		String genero = rs.getString("Genero");
 
-		juego = new Juego(nombre);
+		juego = new Juego(nombre, genero);
 		juego.set_id(id);
 
 		return juego;
@@ -193,11 +194,13 @@ public class DriverGamlves {
 	protected static boolean addJuego(Juego juego) throws SQLException {
 		boolean add = false;
 		String nombre;
+		String genero;
 		String update;
 
 		nombre = juego.get_nombre();
+		genero = juego.get_genero();
 
-		update = "INSERT INTO Juegos (Nombre) VALUES('" + nombre + "');";
+		update = "INSERT INTO Juegos (Nombre, Genero) VALUES('" + nombre + "', '" + genero + "');";
 		add = database.makeUpdate(update);
 
 		return add;

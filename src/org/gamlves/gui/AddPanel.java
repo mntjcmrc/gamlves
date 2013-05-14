@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -70,7 +71,10 @@ public class AddPanel extends JPanel {
 	 * Campo de texto para introducir el nombre del juego
 	 */
 	protected JTextField txtNombreJuego;
-
+	/**
+	 * ComboBox con los géneros que se pueden elegir
+	 */
+	protected JComboBox comboGeneroJuego;
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
@@ -190,6 +194,10 @@ public class AddPanel extends JPanel {
 			formAddJuego.setLayout(springJuego);
 			JLabel lblNombreJuego = new JLabel("Nombre: ");
 			txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
+			JLabel lblGeneroJuego = new JLabel("Género: ");
+			comboGeneroJuego = new JComboBox(Datos.GENEROS);
+			comboGeneroJuego.setEditable(false);
+			
 
 			formAddJuego.add(lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
@@ -202,6 +210,19 @@ public class AddPanel extends JPanel {
 					SpringLayout.EAST, lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
 					SpringLayout.NORTH, formAddJuego);
+			
+			formAddJuego.add(lblGeneroJuego);
+			springJuego.putConstraint(SpringLayout.EAST, lblGeneroJuego, 100,
+					SpringLayout.WEST, formAddJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, lblGeneroJuego, 40,
+					SpringLayout.NORTH, lblNombreJuego);
+			
+			formAddJuego.add(comboGeneroJuego);
+			springJuego.putConstraint(SpringLayout.WEST, comboGeneroJuego, 30,
+					SpringLayout.EAST, lblGeneroJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, comboGeneroJuego, 40,
+					SpringLayout.NORTH, txtNombreJuego);
+			
 
 			JPanel btnAddJuego = new JPanel(new FlowLayout());
 			JButton btnAceptarAddJuego = new JButton("Aceptar");

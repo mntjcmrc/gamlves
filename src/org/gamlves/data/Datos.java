@@ -35,6 +35,8 @@ public class Datos {
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
 
+	public static final String[] GENEROS = { "Acción", "Aventura", "Casual",
+			"Estrategia", "MMO", "RPG", "Simulación", "Plataformas", "Otro" };
 	/**
 	 * Representa el número de caractéres máximo que podrá tener los usernames
 	 */
@@ -146,11 +148,11 @@ public class Datos {
 	 * @return Los datos del juego
 	 * @throws SQLException
 	 */
-	public static Juego createJuego(String nombre) throws SQLException {
+	public static Juego createJuego(String nombre, String genero) throws SQLException {
 		Juego juego = null;
 
 		if (!(checkJuego(nombre))) {
-			juego = new Juego(nombre);
+			juego = new Juego(nombre, genero);
 		} else {
 			// JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario " +
 			// user + " ya existe");
@@ -282,21 +284,21 @@ public class Datos {
 	 * juego, añadirlo en la base de datos, pedir los datos para asignar el id
 	 * en el objeto en memoria y añadirlo al array en memoria
 	 * 
-	 * @param nombre Nombre del juego
+	 * @param nombre
+	 *            Nombre del juego
 	 * @return 0 si no ha habido ningún problema, 1 si falla al comprobar la
-	 *         existencia del juego en el sistema, 2 si falla al crear el
-	 *         objeto de tipo Juego (el juego ya existe), 3 si falla al
-	 *         añadir el juego a la base de datos (saldrá una ventana con el
-	 *         error SQL concreto), 4 si falla al pedir los datos recién
-	 *         introducidos
+	 *         existencia del juego en el sistema, 2 si falla al crear el objeto
+	 *         de tipo Juego (el juego ya existe), 3 si falla al añadir el juego
+	 *         a la base de datos (saldrá una ventana con el error SQL
+	 *         concreto), 4 si falla al pedir los datos recién introducidos
 	 */
-	public static int juegoTransaction(String nombre) {
+	public static int juegoTransaction(String nombre, String genero) {
 		int transaction = 0;
 
 		Juego juego;
 		Juego juegoDatabase;
 		try {
-			juego = Datos.createJuego(nombre);
+			juego = Datos.createJuego(nombre, genero);
 		} catch (SQLException e) {
 			// Error al comprobar al juego en la base de datos
 			transaction = 1;

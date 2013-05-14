@@ -214,8 +214,9 @@ public class Actions {
 		public void actionPerformed(ActionEvent arg0) {
 			String nombre = MainRun.mainFrame.addPanel.txtNombreJuego
 					.getText();
+			String genero = (String) MainRun.mainFrame.addPanel.comboGeneroJuego.getSelectedItem();
 
-			int transaction = Datos.juegoTransaction(nombre);
+			int transaction = Datos.juegoTransaction(nombre, genero);
 
 			switch (transaction) {
 			case 0:

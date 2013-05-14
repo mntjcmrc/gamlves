@@ -17,6 +17,10 @@ public class Juego implements Comparable<Juego> {
 	 * Nombre del juego
 	 */
 	private String _nombre;
+	/**
+	 * Género del juego, tendrá que ser uni de Datos.GENEROS
+	 */
+	private String _genero;
 
 	/**
 	 * Crea un juego, el id se generará en la base de datos
@@ -24,8 +28,9 @@ public class Juego implements Comparable<Juego> {
 	 * @param nombre
 	 *            El nombre del juego
 	 */
-	protected Juego(String nombre) {
+	protected Juego(String nombre, String genero) {
 		this._nombre = nombre;
+		this._genero = genero;
 	}
 
 	/**
@@ -40,6 +45,10 @@ public class Juego implements Comparable<Juego> {
 	 */
 	public String get_nombre() {
 		return this._nombre;
+	}
+	
+	public String get_genero() {
+		return this._genero;
 	}
 
 	/**
