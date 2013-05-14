@@ -9,6 +9,7 @@ public class MainRun implements Runnable {
 
 	public void run(){
 		mainFrame.setVisible(true);
+		mainFrame.requestFocus();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

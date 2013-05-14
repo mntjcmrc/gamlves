@@ -29,6 +29,7 @@ public class LoginRun implements Runnable {
 	private void show() {
 		loginFrame = new LoginFrame();
 		loginFrame.setVisible(true);
+		loginFrame.requestFocus();
 		loginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
