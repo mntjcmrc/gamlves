@@ -20,7 +20,17 @@ import javax.swing.JOptionPane;
  */
 public class DB {
 
+	/**
+	 * Conexión con la base de datos
+	 */
 	private Connection con;
+	/**
+	 * Driver para conectar con la base de datos, por defecto será el de mysql
+	 */
+	private String _driver = "com.mysql.jdbc.Driver";
+	/**
+	 * ResultSet
+	 */
 	private ResultSet rs;
 	private ResultSetMetaData rsmd;
 	private String _protocol = "mysql";
@@ -51,21 +61,30 @@ public class DB {
 	 */
 	protected DB(String protocol, String server, String database, String user,
 			String pass) {
-		_protocol = protocol;
-		_server = server;
-		_database = database;
-		_user = user;
-		_pass = pass;
+		this._protocol = protocol;
+		this._server = server;
+		this._database = database;
+		this._user = user;
+		this._pass = pass;
+
+		try {
+			Class.forName(this._driver);
+		} catch (ClassNotFoundException e) {
+			JOptionPane
+					.showMessageDialog(null,
+							"Driver para la conexión con la base de datos no encontrado");
+		}
+
 		try {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + database, _user, _pass);
 		} catch (SQLException e) {
-			System.out
-					.println("Error al intentar testear la conexión con la base de datos");
+			// System.out
+			// .println("Error al intentar testear la conexión con la base de datos");
 			JOptionPane
 					.showMessageDialog(null,
 							"Error al intentar testear la conexión con la base de datos");
-			e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 			disconnect();
 		}
@@ -90,19 +109,29 @@ public class DB {
 	 *            Contraseña del usuario
 	 */
 	protected DB(String database, String user, String pass) {
-		_database = database;
-		_user = user;
-		_pass = pass;
+
+		this._database = database;
+		this._user = user;
+		this._pass = pass;
+
+		try {
+			Class.forName(this._driver);
+		} catch (ClassNotFoundException e) {
+			JOptionPane
+					.showMessageDialog(null,
+							"Driver para la conexión con la base de datos no encontrado");
+		}
+
 		try {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + _database, _user, _pass);
 		} catch (SQLException e) {
-			System.out
-					.println("Error al intentar testear la conexión con la base de datos");
+			// System.out
+			// .println("Error al intentar testear la conexión con la base de datos");
 			JOptionPane
 					.showMessageDialog(null,
 							"Error al intentar testear la conexión con la base de datos");
-			e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 			disconnect();
 		}
