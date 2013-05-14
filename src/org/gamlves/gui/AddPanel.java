@@ -115,6 +115,7 @@ public class AddPanel extends JPanel {
 
 			add.add(rAddUsuario);
 			add.add(rAddJuego);
+			add.setSelected(rAddUsuario.getModel(), true);
 
 			opcionesAdmin.add(rAddUsuario);
 			opcionesAdmin.add(rAddJuego);
@@ -136,8 +137,7 @@ public class AddPanel extends JPanel {
 			txtUser = new JTextField(Datos.USUARIOUSER);
 			JLabel lblPass = new JLabel("Contraseña: ");
 			txtPass = new JPasswordField(15);
-			
-			txtNombreUsuario.requestFocus();
+
 			txtNombreUsuario.addActionListener(Actions.addUserAceptar);
 			txtUser.addActionListener(Actions.addUserAceptar);
 			txtPass.addActionListener(Actions.addUserAceptar);
@@ -203,7 +203,7 @@ public class AddPanel extends JPanel {
 			JLabel lblGeneroJuego = new JLabel("Género: ");
 			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
-			
+
 			txtNombreJuego.addActionListener(Actions.addUserAceptar);
 			comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
@@ -248,6 +248,7 @@ public class AddPanel extends JPanel {
 			// Se añaden las cartas
 			panelCards.add(panelAddUsuario, ADDUSUARIO);
 			panelCards.add(panelAddJuego, ADDJUEGO);
+
 		} else {
 			// Modo user
 
@@ -259,8 +260,7 @@ public class AddPanel extends JPanel {
 			JLabel lblBuscar = new JLabel("Buscar: ");
 			txtBuscarUsuarioJuego = new JTextField(Datos.JUEGONOMBRE);
 			JButton btnBuscar = new JButton("Buscar");
-			
-			txtBuscarUsuarioJuego.requestFocus();
+
 			txtBuscarUsuarioJuego.addActionListener(Actions.buscarUsuarioJuego);
 
 			panelAddUsuarioJuego.add(lblBuscar);
@@ -286,6 +286,9 @@ public class AddPanel extends JPanel {
 			// SpringLayout.EAST, panelAddUsuarioJuego);
 
 			this.add(panelAddUsuarioJuego, BorderLayout.CENTER);
+
+			// Foco
+			txtBuscarUsuarioJuego.requestFocus();
 		}
 
 		// this.add(new JLabel("addTest"));
