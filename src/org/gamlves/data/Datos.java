@@ -35,7 +35,7 @@ public class Datos {
 	 */
 	private static ArrayList<UsuarioJuego> _usuariosjuegos = new ArrayList<UsuarioJuego>();
 
-	public static final String[] GENEROS = { "Acción", "Aventura", "Casual",
+	public static final String[] GENEROS = { "Seleccione género", "Acción", "Aventura", "Casual",
 			"Estrategia", "MMO", "RPG", "Simulación", "Plataformas", "Otro" };
 	/**
 	 * Representa el número de caractéres máximo que podrá tener los usernames

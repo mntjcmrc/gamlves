@@ -158,35 +158,44 @@ public class Actions {
 			String user = MainRun.mainFrame.addPanel.txtUser.getText();
 			String pass = MainRun.mainFrame.addPanel.txtPass.getText();
 
-			int transaction = Datos.userTransaction(nombre, user, pass);
+			if (nombre.length() > 0 && user.length() > 0 && pass.length() > 0) {
+				int transaction = Datos.userTransaction(nombre, user, pass);
 
-			switch (transaction) {
-			case 0:
-				// System.out.println("La transacción se ha realizado correctamente");
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"El usuario " + user + " se ha añadido correctamente");
-				break;
+				switch (transaction) {
+				case 0:
+					// System.out.println("La transacción se ha realizado correctamente");
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"El usuario " + user
+									+ " se ha añadido correctamente");
+					break;
 
-			case 1:
+				case 1:
+					JOptionPane
+							.showMessageDialog(MainRun.mainFrame,
+									"Fallo al comprobar la existencia del usuario en la base de datos");
+					break;
+
+				case 2:
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"El usuario " + user + " ya existe");
+					break;
+
+				case 3:
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"Fallo al añadir el usuario a la base de datos");
+					break;
+
+				case 4:
+					JOptionPane
+							.showMessageDialog(MainRun.mainFrame,
+									"Fallo al volver a pedir los datos a la base de datos");
+					break;
+				}
+
+			} else {
 				JOptionPane
 						.showMessageDialog(MainRun.mainFrame,
-								"Fallo al comprobar la existencia del usuario en la base de datos");
-				break;
-
-			case 2:
-				JOptionPane.showMessageDialog(MainRun.mainFrame, "El usuario "
-						+ user + " ya existe");
-				break;
-
-			case 3:
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"Fallo al añadir el usuario a la base de datos");
-				break;
-
-			case 4:
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"Fallo al volver a pedir los datos a la base de datos");
-				break;
+								"Tienes que introducir todos los datos para poder crear el usuario");
 			}
 
 		}
@@ -203,7 +212,7 @@ public class Actions {
 			MainRun.mainFrame.addPanel.txtPass.setText("");
 		}
 	};
-	
+
 	/**
 	 * Recoge los datos introducidos por el admin e inicia una transacción para
 	 * crear un usuario en la base de datos y guardarlo en memoria. Saldrán
@@ -212,39 +221,48 @@ public class Actions {
 	protected static ActionListener addJuegoAceptar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String nombre = MainRun.mainFrame.addPanel.txtNombreJuego
-					.getText();
-			String genero = (String) MainRun.mainFrame.addPanel.comboGeneroJuego.getSelectedItem();
+			String nombre = MainRun.mainFrame.addPanel.txtNombreJuego.getText();
+			String genero = (String) MainRun.mainFrame.addPanel.comboGeneroJuego
+					.getSelectedItem();
 
-			int transaction = Datos.juegoTransaction(nombre, genero);
+			if (nombre.length() > 0 && !(genero.equals(Datos.GENEROS[0]))) {
+				int transaction = Datos.juegoTransaction(nombre, genero);
 
-			switch (transaction) {
-			case 0:
-				// System.out.println("La transacción se ha realizado correctamente");
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"El juego " + nombre + " se ha añadido correctamente");
-				break;
+				switch (transaction) {
+				case 0:
+					// System.out.println("La transacción se ha realizado correctamente");
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"El juego " + nombre
+									+ " se ha añadido correctamente");
+					break;
 
-			case 1:
+				case 1:
+					JOptionPane
+							.showMessageDialog(MainRun.mainFrame,
+									"Fallo al comprobar la existencia del juego en la base de datos");
+					break;
+
+				case 2:
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"El juego " + nombre + " ya existe");
+					break;
+
+				case 3:
+					JOptionPane.showMessageDialog(MainRun.mainFrame,
+							"Fallo al añadir el juego a la base de datos");
+					break;
+
+				case 4:
+					JOptionPane
+							.showMessageDialog(MainRun.mainFrame,
+									"Fallo al volver a pedir los datos a la base de datos");
+					break;
+				}
+
+			} else {
 				JOptionPane
 						.showMessageDialog(MainRun.mainFrame,
-								"Fallo al comprobar la existencia del juego en la base de datos");
-				break;
-
-			case 2:
-				JOptionPane.showMessageDialog(MainRun.mainFrame, "El juego "
-						+ nombre + " ya existe");
-				break;
-
-			case 3:
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"Fallo al añadir el juego a la base de datos");
-				break;
-
-			case 4:
-				JOptionPane.showMessageDialog(MainRun.mainFrame,
-						"Fallo al volver a pedir los datos a la base de datos");
-				break;
+								"Tienes que introducir todos los datos para poder crear el juego");
 			}
 
 		}
