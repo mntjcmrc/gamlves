@@ -102,6 +102,20 @@ public class Actions {
 		}
 
 	};
+	
+	/**
+	 * Acción que lanzará el trigger de opciones del panel de ver del admin.
+	 * Versión de Usuario.
+	 */
+	protected static ActionListener showViewUsuario = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MainRun.mainFrame.viewPanel.panelViewUsuario();
+
+		}
+
+	};
 
 	/**
 	 * Acción que lanzará el trigger de opciones del panel de añadir del admin.
@@ -112,6 +126,19 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			MainRun.mainFrame.addPanel.panelAddJuego();
+
+		}
+	};
+	
+	/**
+	 * Acción que lanzará el trigger de opciones del panel de ver del admin.
+	 * Versión de Juego.
+	 */
+	protected static ActionListener showViewJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MainRun.mainFrame.viewPanel.panelViewJuego();
 
 		}
 	};
