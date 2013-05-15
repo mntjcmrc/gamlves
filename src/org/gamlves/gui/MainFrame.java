@@ -55,14 +55,11 @@ public class MainFrame extends JFrame {
 
 	public JLabel lblStatus;
 
-	private boolean admin;
-
 	/**
 	 * Constructor del frame que asignará todas sus opciones, añadirá el tab
 	 * panel y cada JPanel
 	 */
 	public MainFrame(boolean admin) {
-		this.admin = admin;
 
 		// Titulo
 		setTitle(Login._nombre + " - Gamlves");
@@ -95,7 +92,7 @@ public class MainFrame extends JFrame {
 		// Panel con los tabs
 		tabPanel = new JTabbedPane();
 		this.add(tabPanel, BorderLayout.CENTER);
-		if (this.admin) {
+		if (admin) {
 			addPanel = new AddPanel(true);
 		} else {
 			addPanel = new AddPanel(false);
