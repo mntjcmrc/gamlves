@@ -12,6 +12,9 @@ import org.gamlves.gui.Splash;
  */
 public class StartPoint {
 
+	/**
+	 * Frame con el splash del programa, sólo es una barra de progreso
+	 */
 	public static Splash splash;
 
 	/**
@@ -30,12 +33,18 @@ public class StartPoint {
 		hideSplash();
 	}
 
+	/**
+	 * Crea el splash y lo muestra
+	 */
 	private static void showSplash() {
 		splash = new Splash();
 		splash.setVisible(true);
 
 	}
 
+	/**
+	 * Quita la visibilidad del splash
+	 */
 	private static void hideSplash() {
 		splash.setVisible(false);
 	}

@@ -15,19 +15,16 @@ public class LoadThread extends Thread {
 		StartPoint.splash.progress.setIndeterminate(false);
 		StartPoint.splash.progress.setStringPainted(true);
 		StartPoint.splash.progress.setBorderPainted(true);
-		new Thread(new Runnable(){
+		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				Datos.loadData();
-				for(int i = 0; i <= 100; i++){
+				for (int i = 0; i <= 100; i++) {
 					StartPoint.splash.progress.setValue(i);
 				}
 			}
-				
-		}).start();
-		
-		
-	}
 
+		}).start();
+	}
 }

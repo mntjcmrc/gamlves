@@ -6,6 +6,12 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
+/**
+ * Representa el frame con el splash del programa
+ * 
+ * @author mntjcmrc
+ * 
+ */
 public class Splash extends JFrame {
 
 	/**
@@ -20,8 +26,14 @@ public class Splash extends JFrame {
 	 * Altura del frame
 	 */
 	private final int HEIGHT = 60;
+	/**
+	 * Barra de progreso
+	 */
 	public JProgressBar progress;
 
+	/**
+	 * Crea el splash con el tamaño definido y lo centra en la pantalla
+	 */
 	public Splash() {
 
 		// Título
