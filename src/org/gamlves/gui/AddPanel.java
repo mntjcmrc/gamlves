@@ -213,7 +213,7 @@ public class AddPanel extends JPanel {
 			comboGeneroJuego.setEditable(false);
 
 			txtNombreJuego.addActionListener(Actions.addUserAceptar);
-			comboGeneroJuego.addActionListener(Actions.addUserAceptar);
+			// comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
 			formAddJuego.add(lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
