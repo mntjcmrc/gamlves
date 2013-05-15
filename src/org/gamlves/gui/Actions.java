@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.gamlves.data.Datos;
+import org.gamlves.data.Juego;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
 import org.gamlves.data.Usuario;
@@ -315,11 +316,15 @@ public class Actions {
 			MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego.remove(i);
 		}
 	}
-	
+
+	/**
+	 * Usado para restablecer la lista de juegos buscados
+	 */
 	protected static ActionListener delBuscarUsuarioJuego = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			deleteBuscarUsuarioJuego();
+			MainRun.mainFrame.addPanel.set_txtBuscarUsuarioJuego("");
 		}
 	};
 
@@ -331,8 +336,42 @@ public class Actions {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			String nombreJuego = MainRun.mainFrame.addPanel.listBuscarUsuarioJuego
+					.getSelectedValue();
+			Juego juego = Datos.searchJuegoJ(nombreJuego);
+			int transaction = Datos.usuariojuegoTransaction(juego.get_id(),
+					Login._user);
 
+			switch (transaction) {
+			case 0:
+				// System.out.println("La transacción se ha realizado correctamente");
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"La relación entre el juego " + nombreJuego
+								+ " y el usuario " + Login._nombre
+								+ " se ha realizado correctamente");
+				break;
+
+			case 1:
+				JOptionPane
+						.showMessageDialog(MainRun.mainFrame,
+								"Fallo al comprobar la existencia de la relación en la base de datos");
+				break;
+
+			case 2:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"La relación ya existe");
+				break;
+
+			case 3:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al añadir la relación a la base de datos");
+				break;
+
+			case 4:
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"Fallo al volver a pedir los datos a la base de datos");
+				break;
+			}
 		}
 
 	};

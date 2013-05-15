@@ -68,6 +68,6 @@ public class Juego {
 	}
 
 	public String toString() {
-		return this._nombre + " - " + this._genero;
+		return this._nombre;
 	}
 }

@@ -287,6 +287,18 @@ public class Datos {
 
 		return juegos;
 	}
+	
+	public static Juego searchJuegoJ(String nombre) {
+		Juego juego = null;
+		int size = _juegos.size();
+		for (int i = 0; i < size; i++) {
+			if (_juegos.get(i).get_nombre().equals(nombre)) {
+				juego = _juegos.get(i);
+			}
+		}
+
+		return juego;
+	}
 
 	/**
 	 * Devuelve una relación entre juego y usuario con los datos dados

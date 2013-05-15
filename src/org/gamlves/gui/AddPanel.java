@@ -320,8 +320,8 @@ public class AddPanel extends JPanel {
 			JPanel btns = new JPanel(new FlowLayout());
 			JButton btnAddUsuarioJuego = new JButton("Añadir");
 			JButton btnCleanUsuarioJuego = new JButton("Restablecer");
-			// SEGUIR AQUÍ
-//			btnAddUsuarioJuego.addActionListener(Actions.AddUsuarioJuego);
+
+			btnAddUsuarioJuego.addActionListener(Actions.AddUsuarioJuego);
 			btnCleanUsuarioJuego
 					.addActionListener(Actions.delBuscarUsuarioJuego);
 
