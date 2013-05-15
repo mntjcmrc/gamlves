@@ -58,6 +58,10 @@ public class MainFrame extends JFrame {
 	/**
 	 * Constructor del frame que asignará todas sus opciones, añadirá el tab
 	 * panel y cada JPanel
+	 * 
+	 * @param admin
+	 *            Si el frame se debe de iniciar para el administrador o un
+	 *            usuario normal
 	 */
 	public MainFrame(boolean admin) {
 

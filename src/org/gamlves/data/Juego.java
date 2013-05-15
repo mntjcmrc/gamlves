@@ -7,7 +7,7 @@ package org.gamlves.data;
  * @author mntjcmrc
  * 
  */
-public class Juego{
+public class Juego {
 
 	/**
 	 * ID del juego
@@ -27,6 +27,8 @@ public class Juego{
 	 * 
 	 * @param nombre
 	 *            El nombre del juego
+	 * @param genero
+	 *            Género del juego
 	 */
 	protected Juego(String nombre, String genero) {
 		this._nombre = nombre;
@@ -46,7 +48,7 @@ public class Juego{
 	public String get_nombre() {
 		return this._nombre;
 	}
-	
+
 	/**
 	 * @return Género del juego
 	 */
@@ -64,8 +66,8 @@ public class Juego{
 	protected void set_id(int id) {
 		this._id = id;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return this._nombre + " - " + this._genero;
 	}
 }
