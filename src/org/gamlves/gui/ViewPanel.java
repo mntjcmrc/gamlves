@@ -28,6 +28,7 @@ public class ViewPanel extends JPanel {
 	private JPanel panelCards;
 	private JPanel panelViewUsuario;
 	private JPanel panelViewJuego;
+	private JPanel panelViewLibrary;
 	private final String USUARIO = "Usuario";
 	private final String JUEGO = "Juego";
 
@@ -73,10 +74,16 @@ public class ViewPanel extends JPanel {
 			panelViewJuego = new JPanel(new BorderLayout());
 			JScrollPane scrollTableJuego = new JScrollPane();
 			JTable tableViewJuego = new JTable(Datos.getJuegosMetadata());
-			
+
 			scrollTableJuego.getViewport().add(tableViewJuego);
-			
+
 			panelViewJuego.add(scrollTableJuego, BorderLayout.CENTER);
+
+			// Panel para ver las bibliotecas de juegos de los usuarios
+			panelViewLibrary = new JPanel(new BorderLayout());
+			JScrollPane scrollViewLibrary = new JScrollPane();
+			// SEGUIR AQUÍ
+//			JTable tableViewLibrary = new JTable(Datos.getLibraryMetadata());
 
 			// Se añaden los paneles como cartas
 			panelCards.add(panelViewUsuario, USUARIO);

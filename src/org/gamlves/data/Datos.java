@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import org.gamlves.start.MainRun;
 
@@ -57,7 +58,8 @@ public class Datos {
 
 	/**
 	 * Pide todos los datos a la base de datos y los carga en memoria
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	public static void loadData() throws SQLException {
 		_usuarios = DriverGamlves.get_usuarios();
@@ -260,13 +262,37 @@ public class Datos {
 	public static Juego searchJuego(int id) {
 		Juego juego = null;
 
-		for (int i = 0; i < _juegos.size(); i++) {
+		int size = _juegos.size();
+
+		for (int i = 0; i < size; i++) {
 			if (id == _juegos.get(i).get_id()) {
 				juego = _juegos.get(i);
 			}
 		}
 
 		return juego;
+	}
+
+	/**
+	 * Busca todos los juegos de un usuario
+	 * 
+	 * @param user
+	 *            Username del usuario
+	 * @return Todos los juegos de un usuario
+	 */
+	public static ArrayList<Juego> searchJuegosUsuario(String user) {
+		ArrayList<Juego> biblioteca = new ArrayList<Juego>();
+		int size = _usuariosjuegos.size();
+		Juego juego;
+
+		for (int i = 0; i < size; i++) {
+			if (user.equals(_usuariosjuegos.get(i).get_user())) {
+				juego = searchJuego(_usuariosjuegos.get(i).get_idJuego());
+				biblioteca.add(juego);
+			}
+		}
+
+		return biblioteca;
 	}
 
 	/**
@@ -287,7 +313,14 @@ public class Datos {
 
 		return juegos;
 	}
-	
+
+	/**
+	 * Busca un juego en base a su nombre
+	 * 
+	 * @param nombre
+	 *            Nombre del juego a buscar
+	 * @return Objeto de tipo Juego con los datos pedidos
+	 */
 	public static Juego searchJuegoJ(String nombre) {
 		Juego juego = null;
 		int size = _juegos.size();
@@ -552,5 +585,62 @@ public class Datos {
 
 		return transaction;
 
+	}
+
+	/**
+	 * @return Metadatos para crear una tabla con todos los usuarios en memoria
+	 */
+	public static DefaultTableModel getUsuariosMetadata() {
+		DefaultTableModel usuariosMD = new DefaultTableModel();
+		int size = _usuarios.size();
+
+		usuariosMD.addColumn("ID");
+		usuariosMD.addColumn("Nombre");
+		usuariosMD.addColumn("Usuario");
+
+		for (int i = 0; i < size; i++) {
+			Object[] row = new Object[3];
+			row[0] = _usuarios.get(i).get_id();
+			row[1] = _usuarios.get(i).get_nombre();
+			row[2] = _usuarios.get(i).get_user();
+			usuariosMD.addRow(row);
+		}
+
+		return usuariosMD;
+	}
+
+	/**
+	 * @return Metadatos para crear una tabla con todos los juegos en memoria
+	 */
+	public static DefaultTableModel getJuegosMetadata() {
+		DefaultTableModel juegosMD = new DefaultTableModel();
+		int size = _juegos.size();
+
+		juegosMD.addColumn("ID");
+		juegosMD.addColumn("Nombre");
+		juegosMD.addColumn("Género");
+
+		for (int i = 0; i < size; i++) {
+			Object[] row = new Object[3];
+			row[0] = _juegos.get(i).get_id();
+			row[1] = _juegos.get(i).get_nombre();
+			row[2] = _juegos.get(i).get_genero();
+			juegosMD.addRow(row);
+		}
+
+		return juegosMD;
+	}
+
+	/**
+	 * @param user
+	 *            Username del usuario del que queremos los metadatos de su
+	 *            colección de juegos
+	 * @return Metadatos para crear una tabla con los juegos de un usuario
+	 *         concreto
+	 */
+	public static DefaultTableModel getLibraryMetadata(String user) {
+		DefaultTableModel libraryMD = new DefaultTableModel();
+		// PENDIENTE
+		return libraryMD;
 	}
 }
