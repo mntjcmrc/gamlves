@@ -290,12 +290,8 @@ public class Actions {
 	protected static ActionListener buscarUsuarioJuego = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int sizeList = MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego
-					.getSize();
-			// Borrar a la inversa porque la JList funciona como un Vector
-			for (int i = sizeList - 1; i > -1; i--) {
-				MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego.remove(i);
-			}
+
+			deleteBuscarUsuarioJuego();
 
 			String busqueda = MainRun.mainFrame.addPanel
 					.get_txtBuscarUsuarioJuego();
@@ -308,4 +304,15 @@ public class Actions {
 
 		}
 	};
+
+	/**
+	 * Elimina los datos en la JList de la búsqueda de juegos del usuario
+	 */
+	private static void deleteBuscarUsuarioJuego() {
+		int sizeList = MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego
+				.getSize();
+		for (int i = sizeList - 1; i > -1; i--) {
+			MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego.remove(i);
+		}
+	}
 }
