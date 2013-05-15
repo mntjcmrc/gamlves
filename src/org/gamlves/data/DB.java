@@ -29,14 +29,33 @@ public class DB {
 	 */
 	private String _driver = "com.mysql.jdbc.Driver";
 	/**
-	 * ResultSet
+	 * ResultSet usado para almacenar los datos de las consultas
 	 */
 	private ResultSet rs;
+	/**
+	 * ResultSet para almacenar los metadatos de las tablas
+	 */
 	private ResultSetMetaData rsmd;
+	/**
+	 * Protocolo de conexión a usar, por defecto mysql
+	 */
 	private String _protocol = "mysql";
+	/**
+	 * Servidor al que conectarse, por defecto localhost:3306
+	 */
 	private String _server = "localhost:3306";
+	/**
+	 * Nombre de la base de datos a la que conectarse
+	 */
 	private String _database;
+	/**
+	 * Usuario usado para el login en el servidor de la base de datos
+	 */
 	private String _user;
+	/**
+	 * Contraseña del usuario usado para el login en el servidor de la base de
+	 * datos
+	 */
 	private String _pass;
 
 	/**
