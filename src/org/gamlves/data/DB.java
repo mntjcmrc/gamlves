@@ -53,8 +53,7 @@ public class DB {
 	 */
 	private String _user;
 	/**
-	 * Contraseña del usuario usado para el login en el servidor de la base de
-	 * datos
+	 * Contraseña del usuario usado para el login en el servidor de la base de datos 
 	 */
 	private String _pass;
 
