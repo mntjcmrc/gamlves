@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
@@ -298,15 +299,45 @@ public class AddPanel extends JPanel {
 			listBuscarUsuarioJuego
 					.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-			panelAddUsuarioJuego.add(listBuscarUsuarioJuego);
-			springUsuarioJuego.putConstraint(SpringLayout.WEST,
-					listBuscarUsuarioJuego, 80, SpringLayout.WEST,
-					panelAddUsuarioJuego);
+			JScrollPane scrollUsuarioJuego = new JScrollPane(
+					listBuscarUsuarioJuego);
+			// scrollUsuarioJuego.setLayout(new BorderLayout());
+
+			panelAddUsuarioJuego.add(scrollUsuarioJuego);
 			springUsuarioJuego.putConstraint(SpringLayout.NORTH,
-					listBuscarUsuarioJuego, 40, SpringLayout.NORTH,
-					panelAddUsuarioJuego);
+					scrollUsuarioJuego, 40, SpringLayout.NORTH,
+					txtBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.WEST,
+					scrollUsuarioJuego, 0, SpringLayout.WEST,
+					txtBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.EAST,
+					scrollUsuarioJuego, 0, SpringLayout.EAST,
+					txtBuscarUsuarioJuego);
+			springUsuarioJuego.putConstraint(SpringLayout.SOUTH,
+					scrollUsuarioJuego, 250, SpringLayout.NORTH,
+					txtBuscarUsuarioJuego);
+
+			JPanel btns = new JPanel(new FlowLayout());
+			JButton btnAddUsuarioJuego = new JButton("Añadir");
+			JButton btnCleanUsuarioJuego = new JButton("Restablecer");
+			// SEGUIR AQUÍ
+//			btnAddUsuarioJuego.addActionListener(Actions.AddUsuarioJuego);
+			btnCleanUsuarioJuego
+					.addActionListener(Actions.delBuscarUsuarioJuego);
+
+			btns.add(btnAddUsuarioJuego);
+			btns.add(btnCleanUsuarioJuego);
+
+			// panelAddUsuarioJuego.add(listBuscarUsuarioJuego);
+			// springUsuarioJuego.putConstraint(SpringLayout.WEST,
+			// listBuscarUsuarioJuego, 80, SpringLayout.WEST,
+			// panelAddUsuarioJuego);
+			// springUsuarioJuego.putConstraint(SpringLayout.NORTH,
+			// listBuscarUsuarioJuego, 40, SpringLayout.NORTH,
+			// panelAddUsuarioJuego);
 
 			this.add(panelAddUsuarioJuego, BorderLayout.CENTER);
+			this.add(btns, BorderLayout.PAGE_END);
 
 			// Foco
 			txtBuscarUsuarioJuego.requestFocus();

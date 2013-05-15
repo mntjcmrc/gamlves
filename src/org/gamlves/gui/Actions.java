@@ -315,4 +315,25 @@ public class Actions {
 			MainRun.mainFrame.addPanel.modelBuscarUsuarioJuego.remove(i);
 		}
 	}
+	
+	protected static ActionListener delBuscarUsuarioJuego = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			deleteBuscarUsuarioJuego();
+		}
+	};
+
+	/**
+	 * Añade una relación entre el usuario logueado que ha añadido un juego a su
+	 * biblioteca
+	 */
+	protected static ActionListener AddUsuarioJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+	};
 }
