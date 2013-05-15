@@ -1,5 +1,10 @@
 package org.gamlves.start;
 
+import java.awt.EventQueue;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
 import org.gamlves.data.Datos;
 
 /**
@@ -19,12 +24,18 @@ public class LoadThread extends Thread {
 
 			@Override
 			public void run() {
-				Datos.loadData();
+				try {
+					Datos.loadData();
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null,
+							"Ha fallado la carga de datos");
+				}
 				for (int i = 0; i <= 100; i++) {
 					StartPoint.splash.progress.setValue(i);
 				}
 			}
 
 		}).start();
+		EventQueue.invokeLater(new LoginRun());
 	}
 }

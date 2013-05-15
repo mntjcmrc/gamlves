@@ -53,9 +53,12 @@ public class DB {
 	 */
 	private String _user;
 	/**
-	 * Contraseña del usuario usado para el login en el servidor de la base de datos 
+	 * Contraseña del usuario usado para el login en el servidor de la base de
+	 * datos
 	 */
 	private String _pass;
+	
+	public static boolean test;
 
 	/**
 	 * Instancia una base de datos con el protocolo de conexión, servidor,
@@ -102,7 +105,7 @@ public class DB {
 			JOptionPane
 					.showMessageDialog(null,
 							"Error al intentar testear la conexión con la base de datos");
-			// e.printStackTrace();
+			System.exit(1);
 		} finally {
 			disconnect();
 		}
@@ -139,7 +142,7 @@ public class DB {
 					.showMessageDialog(null,
 							"Driver para la conexión con la base de datos no encontrado");
 		}
-
+		test = true;
 		try {
 			con = DriverManager.getConnection("jdbc:" + _protocol + "://"
 					+ _server + "/" + _database, _user, _pass);
@@ -149,9 +152,12 @@ public class DB {
 			JOptionPane
 					.showMessageDialog(null,
 							"Error al intentar testear la conexión con la base de datos");
+			test = false;
 			// e.printStackTrace();
 		} finally {
-			disconnect();
+			if (test) {
+				disconnect();
+			}
 		}
 	}
 

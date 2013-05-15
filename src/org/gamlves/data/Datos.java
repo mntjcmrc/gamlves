@@ -57,19 +57,12 @@ public class Datos {
 
 	/**
 	 * Pide todos los datos a la base de datos y los carga en memoria
+	 * @throws SQLException 
 	 */
-	public static void loadData() {
-		try {
-			_usuarios = DriverGamlves.get_usuarios();
-			_juegos = DriverGamlves.get_juegos();
-			// _usuariosjuegos = DriverGamlves.get_usuariosjuegos();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,
-					"Error al conectar con la base de datos");
-			e.printStackTrace();
-		} finally {
-			DriverGamlves.disconnect();
-		}
+	public static void loadData() throws SQLException {
+		_usuarios = DriverGamlves.get_usuarios();
+		_juegos = DriverGamlves.get_juegos();
+		_usuariosjuegos = DriverGamlves.get_usuariosjuegos();
 	}
 
 	/**
