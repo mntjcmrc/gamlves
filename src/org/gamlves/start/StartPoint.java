@@ -23,8 +23,10 @@ public class StartPoint {
 	 */
 	public static void main(String[] args) {
 		showSplash();
+		
 		try {
 			EventQueue.invokeAndWait(new LoadThread());
+			EventQueue.invokeAndWait(new LoginRun());
 		} catch (InvocationTargetException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

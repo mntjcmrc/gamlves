@@ -1,6 +1,5 @@
 package org.gamlves.start;
 
-import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -36,6 +35,5 @@ public class LoadThread extends Thread {
 			}
 
 		}).start();
-		EventQueue.invokeLater(new LoginRun());
 	}
 }
