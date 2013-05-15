@@ -114,7 +114,7 @@ public class AddPanel extends JPanel {
 
 			JRadioButton rAddUsuario = new JRadioButton(ADDUSUARIO);
 			rAddUsuario.addActionListener(Actions.showAddUsuario);
-			rAddUsuario.setEnabled(true);
+			// rAddUsuario.setEnabled(true);
 
 			JRadioButton rAddJuego = new JRadioButton(ADDJUEGO);
 			rAddJuego.addActionListener(Actions.showAddJuego);

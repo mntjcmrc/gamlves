@@ -102,7 +102,7 @@ public class MainFrame extends JFrame {
 			addPanel = new AddPanel(false);
 		}
 		tabPanel.addTab("Añadir", addPanel);
-		viewPanel = new ViewPanel();
+		viewPanel = new ViewPanel(admin);
 		tabPanel.addTab("Ver datos", viewPanel);
 
 		Actions.systemLookAndFeel();
