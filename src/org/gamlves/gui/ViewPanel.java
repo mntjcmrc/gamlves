@@ -109,6 +109,7 @@ public class ViewPanel extends JPanel {
 			panelViewUsuario = new JPanel(new BorderLayout());
 			JScrollPane scrollTableUsuario = new JScrollPane();
 			tableViewUsuario = new JTable(Datos.getUsuariosMetadata());
+			tableViewUsuario.setEnabled(false);
 
 			scrollTableUsuario.getViewport().add(tableViewUsuario);
 
@@ -118,6 +119,7 @@ public class ViewPanel extends JPanel {
 			panelViewJuego = new JPanel(new BorderLayout());
 			JScrollPane scrollTableJuego = new JScrollPane();
 			tableViewJuego = new JTable(Datos.getJuegosMetadata());
+			tableViewJuego.setEnabled(false);
 
 			scrollTableJuego.getViewport().add(tableViewJuego);
 
@@ -131,6 +133,7 @@ public class ViewPanel extends JPanel {
 			tableViewLibrary = new JTable(
 					Datos.getLibraryMetadata((String) comboUserLibrary
 							.getSelectedItem()));
+			tableViewLibrary.setEnabled(false);
 
 			scrollTableLibrary.getViewport().add(tableViewLibrary);
 			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
@@ -149,10 +152,12 @@ public class ViewPanel extends JPanel {
 			panelViewLibrary = new JPanel(new BorderLayout());
 			JScrollPane scrollTableLibrary = new JScrollPane();
 			tableViewLibrary = new JTable(Datos.getLibraryMetadata(Login._user));
-
+			tableViewLibrary.setEnabled(false);
 			scrollTableLibrary.getViewport().add(tableViewLibrary);
 			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
-			this.add(new JLabel("Biblioteca de " + Login._nombre), BorderLayout.PAGE_START);
+
+			this.add(new JLabel("Biblioteca de " + Login._nombre),
+					BorderLayout.PAGE_START);
 			this.add(panelViewLibrary, BorderLayout.CENTER);
 		}
 	}
