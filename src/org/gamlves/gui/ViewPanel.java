@@ -26,14 +26,46 @@ public class ViewPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 7746786162624050015L;
 
+	/**
+	 * Panel con los diversos paneles para ver datos
+	 */
 	private JPanel panelCards;
+	/**
+	 * Panel con la tabla con todos los usuarios
+	 */
 	private JPanel panelViewUsuario;
+	/**
+	 * Panel con la tabla con todos los juegos
+	 */
 	private JPanel panelViewJuego;
+	/**
+	 * Panel con la tabla con los juegos del usuario elegido en la combobox
+	 */
 	private JPanel panelViewLibrary;
+	/**
+	 * Combobox para elegir de que usuario se quieren ver los juegos
+	 */
 	protected JComboBox<String> comboUserLibrary;
+	/**
+	 * Tabla con los juegos de un usuario concreto
+	 */
 	protected JTable tableViewLibrary;
+	/**
+	 * Panel con los checkbox para filtrar el conjunto de juegos por géneros
+	 */
+	protected JPanel checkGenero;
+	/**
+	 * Constante para nombrar el panel con la tabla de los usuarios
+	 */
 	private final String USUARIO = "Usuario";
+	/**
+	 * Constante para nombrar el panel con la tabla de los juegos
+	 */
 	private final String JUEGO = "Juego";
+	/**
+	 * Constante para nombrar el panel con la tabla con los juegos de un usuario
+	 * concreto
+	 */
 	private final String LIBRARY = "Biblioteca";
 
 	protected ViewPanel(boolean admin) {
@@ -46,7 +78,7 @@ public class ViewPanel extends JPanel {
 			this.setLayout(new BorderLayout());
 			JPanel opcionesAdmin = new JPanel();
 			opcionesAdmin.setLayout(new FlowLayout());
-			
+
 			JRadioButton rViewUsuario = new JRadioButton(USUARIO);
 			rViewUsuario.addActionListener(Actions.showViewUsuario);
 			JRadioButton rViewJuego = new JRadioButton(JUEGO);
@@ -93,8 +125,9 @@ public class ViewPanel extends JPanel {
 			comboUserLibrary.addItemListener(Actions.showUserLibrary);
 			JScrollPane scrollTableLibrary = new JScrollPane();
 			tableViewLibrary = new JTable(
-					Datos.getLibraryMetadata((String) comboUserLibrary.getSelectedItem()));
-			
+					Datos.getLibraryMetadata((String) comboUserLibrary
+							.getSelectedItem()));
+
 			scrollTableLibrary.getViewport().add(tableViewLibrary);
 			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
 			panelViewLibrary.add(comboUserLibrary, BorderLayout.PAGE_END);
@@ -127,9 +160,10 @@ public class ViewPanel extends JPanel {
 		CardLayout layout = (CardLayout) panelCards.getLayout();
 		layout.show(panelCards, JUEGO);
 	}
-	
+
 	/**
-	 * Se visualizará el panel para que el admin vea los datos de los juegos
+	 * Se visualizará el panel para que el admin vea los datos de los juegos de
+	 * un usuario
 	 */
 	protected void panelViewLibrary() {
 		CardLayout layout = (CardLayout) panelCards.getLayout();
