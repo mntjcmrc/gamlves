@@ -640,7 +640,32 @@ public class Datos {
 	 */
 	public static DefaultTableModel getLibraryMetadata(String user) {
 		DefaultTableModel libraryMD = new DefaultTableModel();
-		// PENDIENTE
+		
+		libraryMD.addColumn("ID");
+		libraryMD.addColumn("Nombre");
+		libraryMD.addColumn("Género");
+		
+		ArrayList<Juego> juegosUser = searchJuegosUsuario(user);
+		int size = juegosUser.size();
+		
+		for (int i = 0; i < size; i++) {
+			Object[] row = new Object[3];
+			row[0] = juegosUser.get(i).get_id();
+			row[1] = juegosUser.get(i).get_nombre();
+			row[2] = juegosUser.get(i).get_genero();
+			libraryMD.addRow(row);
+		} 
+		
 		return libraryMD;
+	}
+	
+	public static String[] getUsuarios(){
+		String[] usuarios = new String[_usuarios.size()];
+		
+		for (int i = 0; i < usuarios.length; i++){
+			usuarios[i] = _usuarios.get(i).get_user();
+		}
+		
+		return usuarios;
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -102,7 +104,7 @@ public class Actions {
 		}
 
 	};
-	
+
 	/**
 	 * Acción que lanzará el trigger de opciones del panel de ver del admin.
 	 * Versión de Usuario.
@@ -129,7 +131,7 @@ public class Actions {
 
 		}
 	};
-	
+
 	/**
 	 * Acción que lanzará el trigger de opciones del panel de ver del admin.
 	 * Versión de Juego.
@@ -140,6 +142,35 @@ public class Actions {
 		public void actionPerformed(ActionEvent e) {
 			MainRun.mainFrame.viewPanel.panelViewJuego();
 
+		}
+	};
+
+	/**
+	 * Acción que lanzará el trigger de opciones del panel de ver del admin.
+	 * Versión de biblioteca.
+	 */
+	protected static ActionListener showViewLibrary = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.viewPanel.panelViewLibrary();
+		}
+
+	};
+
+	/**
+	 * Acción usada para modificar la tabla con los juegos de un usuario del
+	 * combobox
+	 */
+	protected static ItemListener showUserLibrary = new ItemListener() {
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				String user = (String) e.getItem();
+				MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+						.getLibraryMetadata(user));
+			}
 		}
 	};
 
