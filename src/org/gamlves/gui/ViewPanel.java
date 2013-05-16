@@ -6,12 +6,14 @@ import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.gamlves.data.Datos;
+import org.gamlves.data.Login;
 
 /**
  * Diseño del panel con la interfaz para ver los datos
@@ -142,6 +144,14 @@ public class ViewPanel extends JPanel {
 		} else {
 			// Modo user
 
+			panelViewLibrary = new JPanel(new BorderLayout());
+			JScrollPane scrollTableLibrary = new JScrollPane();
+			tableViewLibrary = new JTable(Datos.getLibraryMetadata(Login._user));
+
+			scrollTableLibrary.getViewport().add(tableViewLibrary);
+			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
+			this.add(new JLabel("Biblioteca de " + Login._nombre), BorderLayout.PAGE_START);
+			this.add(panelViewLibrary, BorderLayout.CENTER);
 		}
 	}
 
