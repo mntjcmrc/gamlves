@@ -48,6 +48,8 @@ public class ViewPanel extends JPanel {
 	 * Combobox para elegir de que usuario se quieren ver los juegos
 	 */
 	protected JComboBox<String> comboUserLibrary;
+	protected JTable tableViewUsuario;
+	protected JTable tableViewJuego;
 	/**
 	 * Tabla con los juegos de un usuario concreto
 	 */
@@ -106,7 +108,7 @@ public class ViewPanel extends JPanel {
 			// Panel para ver los datos de los usuarios
 			panelViewUsuario = new JPanel(new BorderLayout());
 			JScrollPane scrollTableUsuario = new JScrollPane();
-			JTable tableViewUsuario = new JTable(Datos.getUsuariosMetadata());
+			tableViewUsuario = new JTable(Datos.getUsuariosMetadata());
 
 			scrollTableUsuario.getViewport().add(tableViewUsuario);
 
@@ -115,7 +117,7 @@ public class ViewPanel extends JPanel {
 			// Panel para ver los datos de los juegos
 			panelViewJuego = new JPanel(new BorderLayout());
 			JScrollPane scrollTableJuego = new JScrollPane();
-			JTable tableViewJuego = new JTable(Datos.getJuegosMetadata());
+			tableViewJuego = new JTable(Datos.getJuegosMetadata());
 
 			scrollTableJuego.getViewport().add(tableViewJuego);
 

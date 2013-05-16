@@ -428,6 +428,10 @@ public class AddPanel extends JPanel {
 	protected String get_comboGeneroJuego() {
 		return (String) this.comboGeneroJuego.getSelectedItem();
 	}
+	
+	protected void set_comboGeneroJuego(int i) {
+		this.comboGeneroJuego.setSelectedIndex(i);
+	}
 
 	/**
 	 * @return Cadena de texto a buscar

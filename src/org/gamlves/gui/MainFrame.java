@@ -96,14 +96,17 @@ public class MainFrame extends JFrame {
 		// Panel con los tabs
 		tabPanel = new JTabbedPane();
 		this.add(tabPanel, BorderLayout.CENTER);
-		if (admin) {
-			addPanel = new AddPanel(true);
-		} else {
-			addPanel = new AddPanel(false);
-		}
+		addPanel = new AddPanel(admin);
+
 		tabPanel.addTab("Añadir", addPanel);
 		viewPanel = new ViewPanel(admin);
-		tabPanel.addTab("Ver datos", viewPanel);
+		if (admin) {
+			tabPanel.addTab("Ver datos", viewPanel);
+			tabPanel.addChangeListener(Actions.refreshTablesAdmin);
+		} else {
+			tabPanel.addTab("Biblioteca", viewPanel);
+			tabPanel.addChangeListener(Actions.refreshTableLibrary);
+		}
 
 		Actions.systemLookAndFeel();
 
