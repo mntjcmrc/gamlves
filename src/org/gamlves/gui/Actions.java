@@ -470,4 +470,14 @@ public class Actions {
 		}
 
 	};
+	
+	protected static ChangeListener showFilter = new ChangeListener() {
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			// SEGUIR AQuÍ
+			
+		}
+		
+	};
 }
