@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.gamlves.data.Datos;
 import org.gamlves.data.Juego;
@@ -262,8 +264,11 @@ public class Actions {
 						.showMessageDialog(MainRun.mainFrame,
 								"Tienes que introducir todos los datos para poder crear el usuario");
 			}
-
+			MainRun.mainFrame.addPanel.set_txtNombreUsuario("");
+			MainRun.mainFrame.addPanel.set_txtUser("");
+			MainRun.mainFrame.addPanel.set_txtPass("");
 		}
+
 	};
 
 	/**
@@ -329,6 +334,8 @@ public class Actions {
 						.showMessageDialog(MainRun.mainFrame,
 								"Tienes que introducir todos los datos para poder crear el juego");
 			}
+			MainRun.mainFrame.addPanel.set_txtNombreJuego("");
+			MainRun.mainFrame.addPanel.set_comboGeneroJuego(0);
 
 		}
 	};
@@ -340,6 +347,7 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			MainRun.mainFrame.addPanel.set_txtNombreJuego("");
+			MainRun.mainFrame.addPanel.set_comboGeneroJuego(0);
 		}
 	};
 
@@ -430,6 +438,35 @@ public class Actions {
 						"Fallo al volver a pedir los datos a la base de datos");
 				break;
 			}
+		}
+
+	};
+
+	protected static ChangeListener refreshTablesAdmin = new ChangeListener() {
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			MainRun.mainFrame.viewPanel.tableViewUsuario.setModel(Datos
+					.getUsuariosMetadata());
+			MainRun.mainFrame.viewPanel.tableViewJuego.setModel(Datos
+					.getJuegosMetadata());
+
+			String user = (String) MainRun.mainFrame.viewPanel.comboUserLibrary
+					.getSelectedItem();
+			MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+					.getLibraryMetadata(user));
+
+		}
+
+	};
+
+	protected static ChangeListener refreshTableLibrary = new ChangeListener() {
+
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+					.getLibraryMetadata(Login._user));
+
 		}
 
 	};
