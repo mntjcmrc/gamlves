@@ -571,7 +571,7 @@ public class Datos {
 				// DriverGamlves.disconnect();
 				// }
 
-				_juegos.add(juego);
+				_usuariosjuegos.add(usuariojuego);
 
 			} else {
 				// Error al crear el objeto
