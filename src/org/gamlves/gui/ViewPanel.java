@@ -164,6 +164,7 @@ public class ViewPanel extends JPanel {
 			this.add(new JLabel("Biblioteca de " + Login._nombre),
 					BorderLayout.PAGE_START);
 			this.add(panelViewLibrary, BorderLayout.CENTER);
+			this.add(new JLabel("    "), BorderLayout.PAGE_END);
 		}
 	}
 

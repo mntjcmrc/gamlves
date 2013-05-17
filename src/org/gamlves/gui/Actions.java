@@ -551,20 +551,43 @@ public class Actions {
 			if (MainRun.mainFrame.tabPanel.getSelectedIndex() != 1) {
 
 			} else {
-				if(MainRun.mainFrame.admin){
-				TableModel model = Datos.getJuegosMetadata();
-				ArrayList<Juego> juegos = new ArrayList<Juego>();
-				Juego juego;
-				for (int i = 0; i < model.getRowCount(); i++){
-					juego = Datos.searchJuego((int)model.getValueAt(i, 0));
-					juegos.add(juego);
-				}
-				
-				
-				Vector<String> generos = FilterFrame.getFilterGeneros();
-				ArrayList<Juego> juegosFiltered = Datos.filterGenero(juegos, generos);
-				TableModel filtered = Datos.getJuegosMetadata(juegosFiltered);
-				MainRun.mainFrame.viewPanel.tableViewJuego.setModel(filtered);
+				if (MainRun.mainFrame.admin) {
+					// Modo admin
+
+					TableModel model = Datos.getJuegosMetadata();
+					ArrayList<Juego> juegos = new ArrayList<Juego>();
+					Juego juego;
+					for (int i = 0; i < model.getRowCount(); i++) {
+						juego = Datos.searchJuego((int) model.getValueAt(i, 0));
+						juegos.add(juego);
+					}
+
+					Vector<String> generos = FilterFrame.getFilterGeneros();
+					ArrayList<Juego> juegosFiltered = Datos.filterGenero(
+							juegos, generos);
+					TableModel filtered = Datos
+							.getJuegosMetadata(juegosFiltered);
+					MainRun.mainFrame.viewPanel.tableViewJuego
+							.setModel(filtered);
+				} else {
+					// Modo user
+
+					TableModel model = Datos.getLibraryMetadata(Login._user);
+					ArrayList<Juego> juegos = new ArrayList<Juego>();
+					Juego juego;
+					for (int i = 0; i < model.getRowCount(); i++) {
+						juego = Datos.searchJuego((int) model.getValueAt(i, 0));
+						juegos.add(juego);
+					}
+
+					Vector<String> generos = FilterFrame.getFilterGeneros();
+					ArrayList<Juego> juegosFiltered = Datos.filterGenero(
+							juegos, generos);
+					TableModel filtered = Datos
+							.getJuegosMetadata(juegosFiltered);
+					MainRun.mainFrame.viewPanel.tableViewLibrary
+							.setModel(filtered);
+
 				}
 			}
 		}
