@@ -1,11 +1,5 @@
 package org.gamlves.start;
 
-import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-
-import org.gamlves.data.Datos;
-
 /**
  * Se cargará al empezar mostrando un frame con una progressbar en base a la
  * carga de los datos en memoria
@@ -13,7 +7,7 @@ import org.gamlves.data.Datos;
  * @author mntjcmrc
  * 
  */
-public class LoadThread extends Thread {
+public class LoadRun implements Runnable {
 
 	public void run() {
 		StartPoint.splash.progress.setIndeterminate(false);
@@ -23,12 +17,12 @@ public class LoadThread extends Thread {
 
 			@Override
 			public void run() {
-				try {
-					Datos.loadData();
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null,
-							"Ha fallado la carga de datos");
-				}
+				// try {
+				// Datos.loadData();
+				// } catch (SQLException e) {
+				// JOptionPane.showMessageDialog(null,
+				// "Ha fallado la carga de datos");
+				// }
 				for (int i = 0; i <= 100; i++) {
 					StartPoint.splash.progress.setValue(i);
 				}

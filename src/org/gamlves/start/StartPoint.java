@@ -2,7 +2,12 @@ package org.gamlves.start;
 
 import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import org.gamlves.data.Datos;
 import org.gamlves.gui.Splash;
 
 /**
@@ -25,11 +30,16 @@ public class StartPoint {
 		showSplash();
 		
 		try {
-			EventQueue.invokeAndWait(new LoadThread());
+			SwingUtilities.invokeLater(new LoadRun());
+			Datos.loadData();
 			EventQueue.invokeAndWait(new LoginRun());
 		} catch (InvocationTargetException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Error al cargar datos");
+			hideSplash();
 		}
 		// Comentar esta línea para ver que la JProgressBar si funciona
 		hideSplash();
