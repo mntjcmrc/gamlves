@@ -2,9 +2,11 @@ package org.gamlves.gui;
 
 import java.awt.FlowLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -54,12 +56,16 @@ public class LoginFrame extends JFrame {
 
 		// Título y layout
 		setTitle("Login en Gamlves");
-		setLayout(new FlowLayout());
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
 		// Tamaño
 		int widthFrame = 500;
-		int heightFrame = 120;
+		int heightFrame = 100;
 		Actions.centerFrame(this, widthFrame, heightFrame);
+		
+		// Panel superior
+		JPanel upperPanel = new JPanel(new FlowLayout());
 
 		// Username
 		lblUser = new JLabel("Usuario: ");
@@ -68,8 +74,8 @@ public class LoginFrame extends JFrame {
 		txtUser.requestFocus();
 		txtUser.addActionListener(Actions.loginAceptar);
 
-		this.add(lblUser);
-		this.add(txtUser);
+		upperPanel.add(lblUser);
+		upperPanel.add(txtUser);
 
 		// Contraseña
 		lblPass = new JLabel("Contraseña: ");
@@ -77,8 +83,11 @@ public class LoginFrame extends JFrame {
 
 		txtPass.addActionListener(Actions.loginAceptar);
 
-		this.add(lblPass);
-		this.add(txtPass);
+		upperPanel.add(lblPass);
+		upperPanel.add(txtPass);
+		
+		// Panel inferior
+		JPanel lowPanel = new JPanel(new FlowLayout());
 
 		// Botones
 		btnAceptar = new JButton("Aceptar");
@@ -87,8 +96,14 @@ public class LoginFrame extends JFrame {
 		btnAceptar.addActionListener(Actions.loginAceptar);
 		btnCancelar.addActionListener(Actions.cerrar);
 
-		this.add(btnAceptar);
-		this.add(btnCancelar);
+		lowPanel.add(btnAceptar);
+		lowPanel.add(btnCancelar);
+		
+		mainPanel.add(upperPanel);
+		mainPanel.add(lowPanel);
+		
+		this.add(mainPanel);
+		
 		Actions.systemLookAndFeel();
 	}
 
