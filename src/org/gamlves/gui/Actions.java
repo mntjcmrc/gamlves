@@ -554,21 +554,43 @@ public class Actions {
 				if (MainRun.mainFrame.admin) {
 					// Modo admin
 
-					TableModel model = Datos.getJuegosMetadata();
-					ArrayList<Juego> juegos = new ArrayList<Juego>();
-					Juego juego;
-					for (int i = 0; i < model.getRowCount(); i++) {
-						juego = Datos.searchJuego((int) model.getValueAt(i, 0));
-						juegos.add(juego);
+					// Vista de juegos
+					TableModel modelJ = Datos.getJuegosMetadata();
+					ArrayList<Juego> juegosJ = new ArrayList<Juego>();
+					Juego juegoJ;
+					for (int i = 0; i < modelJ.getRowCount(); i++) {
+						juegoJ = Datos.searchJuego((int) modelJ
+								.getValueAt(i, 0));
+						juegosJ.add(juegoJ);
 					}
 
-					Vector<String> generos = FilterFrame.getFilterGeneros();
-					ArrayList<Juego> juegosFiltered = Datos.filterGenero(
-							juegos, generos);
-					TableModel filtered = Datos
-							.getJuegosMetadata(juegosFiltered);
+					Vector<String> generosJ = FilterFrame.getFilterGeneros();
+					ArrayList<Juego> juegosFilteredJ = Datos.filterGenero(
+							juegosJ, generosJ);
+					TableModel filteredJ = Datos
+							.getJuegosMetadata(juegosFilteredJ);
 					MainRun.mainFrame.viewPanel.tableViewJuego
-							.setModel(filtered);
+							.setModel(filteredJ);
+
+					// Biblioteca
+					TableModel modelL = Datos
+							.getLibraryMetadata((String) MainRun.mainFrame.viewPanel.comboUserLibrary
+									.getSelectedItem());
+					ArrayList<Juego> juegosL = new ArrayList<Juego>();
+					Juego juegoL;
+					for (int i = 0; i < modelL.getRowCount(); i++) {
+						juegoL = Datos.searchJuego((int) modelL
+								.getValueAt(i, 0));
+						juegosL.add(juegoL);
+					}
+
+					Vector<String> generosL = FilterFrame.getFilterGeneros();
+					ArrayList<Juego> juegosFilteredL = Datos.filterGenero(
+							juegosL, generosL);
+					TableModel filteredL = Datos
+							.getJuegosMetadata(juegosFilteredL);
+					MainRun.mainFrame.viewPanel.tableViewLibrary
+							.setModel(filteredL);
 				} else {
 					// Modo user
 
