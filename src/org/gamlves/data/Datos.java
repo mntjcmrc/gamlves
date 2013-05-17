@@ -630,6 +630,25 @@ public class Datos {
 
 		return juegosMD;
 	}
+	
+	public static DefaultTableModel getJuegosMetadata(ArrayList<Juego> juegos){
+		DefaultTableModel juegosMD = new DefaultTableModel();
+		int size = juegos.size();
+
+		juegosMD.addColumn("ID");
+		juegosMD.addColumn("Nombre");
+		juegosMD.addColumn("Género");
+
+		for (int i = 0; i < size; i++) {
+			Object[] row = new Object[3];
+			row[0] = juegos.get(i).get_id();
+			row[1] = juegos.get(i).get_nombre();
+			row[2] = juegos.get(i).get_genero();
+			juegosMD.addRow(row);
+		}
+
+		return juegosMD;		
+	}
 
 	/**
 	 * @param user

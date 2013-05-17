@@ -43,7 +43,10 @@ public class MainFrame extends JFrame {
 	 * Panel para ver los datos
 	 */
 	protected ViewPanel viewPanel;
-	protected JFrame filterFrame = new FilterFrame();
+	/**
+	 * Frame con los géneros de los juegos para filtrar por ellos
+	 */
+	protected JFrame filterFrame;
 
 	/**
 	 * Anchura de la ventana
@@ -55,6 +58,7 @@ public class MainFrame extends JFrame {
 	private final int HEIGHT = 500;
 
 	public JLabel lblStatus;
+	protected boolean admin;
 
 	/**
 	 * Constructor del frame que asignará todas sus opciones, añadirá el tab
@@ -66,6 +70,8 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame(boolean admin) {
 
+		this.admin = admin;
+		
 		// Titulo
 		setTitle(Login._nombre + " - Gamlves");
 
@@ -109,6 +115,8 @@ public class MainFrame extends JFrame {
 			tabPanel.addChangeListener(Actions.refreshTableLibrary);
 		}
 		tabPanel.addChangeListener(Actions.showFilter);
+		
+		filterFrame = new FilterFrame();
 
 		Actions.systemLookAndFeel();
 
