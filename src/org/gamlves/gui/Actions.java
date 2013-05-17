@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
@@ -445,16 +446,21 @@ public class Actions {
 	protected static ChangeListener refreshTablesAdmin = new ChangeListener() {
 
 		@Override
-		public void stateChanged(ChangeEvent arg0) {
-			MainRun.mainFrame.viewPanel.tableViewUsuario.setModel(Datos
-					.getUsuariosMetadata());
-			MainRun.mainFrame.viewPanel.tableViewJuego.setModel(Datos
-					.getJuegosMetadata());
+		public void stateChanged(ChangeEvent e) {
+			if (e.getSource() instanceof JTabbedPane) {
+				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
+						MainRun.mainFrame.viewPanel);
 
-			String user = (String) MainRun.mainFrame.viewPanel.comboUserLibrary
-					.getSelectedItem();
-			MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
-					.getLibraryMetadata(user));
+				MainRun.mainFrame.viewPanel.tableViewUsuario.setModel(Datos
+						.getUsuariosMetadata());
+				MainRun.mainFrame.viewPanel.tableViewJuego.setModel(Datos
+						.getJuegosMetadata());
+
+				String user = (String) MainRun.mainFrame.viewPanel.comboUserLibrary
+						.getSelectedItem();
+				MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+						.getLibraryMetadata(user));
+			}
 
 		}
 
@@ -464,20 +470,28 @@ public class Actions {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
-					.getLibraryMetadata(Login._user));
+			if (e.getSource() instanceof JTabbedPane) {
+				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
+						MainRun.mainFrame.viewPanel);
+				MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+						.getLibraryMetadata(Login._user));
+			}
 
 		}
 
 	};
-	
+
 	protected static ChangeListener showFilter = new ChangeListener() {
 
 		@Override
-		public void stateChanged(ChangeEvent arg0) {
-			// SEGUIR AQuÍ
-			
+		public void stateChanged(ChangeEvent e) {
+			if (e.getSource() instanceof JTabbedPane) {
+				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
+						MainRun.mainFrame.viewPanel);
+
+			}
+
 		}
-		
+
 	};
 }
