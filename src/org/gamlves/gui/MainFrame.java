@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Tab panel para alojar cada JPanel
 	 */
-	private JTabbedPane tabPanel;
+	protected JTabbedPane tabPanel;
 	/**
 	 * Panel para añadir registros a la base de datos Modo admin: añade juegos a
 	 * la tabla Juegos Modo user: añade juegos a la tabla UsuariosJuegos
@@ -43,11 +43,12 @@ public class MainFrame extends JFrame {
 	 * Panel para ver los datos
 	 */
 	protected ViewPanel viewPanel;
+	protected JFrame frameFilter = new FrameFilter();
 
 	/**
 	 * Anchura de la ventana
 	 */
-	private final int WIDTH = 550;
+	protected final static int WIDTH = 550;
 	/**
 	 * Altura de la ventana
 	 */
@@ -107,6 +108,7 @@ public class MainFrame extends JFrame {
 			tabPanel.addTab("Biblioteca", viewPanel);
 			tabPanel.addChangeListener(Actions.refreshTableLibrary);
 		}
+		tabPanel.addChangeListener(Actions.showFilter);
 
 		Actions.systemLookAndFeel();
 

@@ -40,6 +40,9 @@ public class ViewPanel extends JPanel {
 	 * Panel con la tabla con todos los juegos
 	 */
 	private JPanel panelViewJuego;
+	protected JRadioButton rViewUsuario;
+	protected JRadioButton rViewJuego;
+	protected JRadioButton rViewLibrary;
 	/**
 	 * Panel con la tabla con los juegos del usuario elegido en la combobox
 	 */
@@ -83,12 +86,14 @@ public class ViewPanel extends JPanel {
 			JPanel opcionesAdmin = new JPanel();
 			opcionesAdmin.setLayout(new FlowLayout());
 
-			JRadioButton rViewUsuario = new JRadioButton(USUARIO);
+			rViewUsuario = new JRadioButton(USUARIO);
 			rViewUsuario.addActionListener(Actions.showViewUsuario);
-			JRadioButton rViewJuego = new JRadioButton(JUEGO);
+			rViewJuego = new JRadioButton(JUEGO);
 			rViewJuego.addActionListener(Actions.showViewJuego);
-			JRadioButton rViewLibrary = new JRadioButton("Biblioteca");
+			// rViewJuego.addChangeListener(Actions.showFilterAdmin);
+			rViewLibrary = new JRadioButton("Biblioteca");
 			rViewLibrary.addActionListener(Actions.showViewLibrary);
+			// rViewLibrary.addChangeListener(Actions.showFilterAdmin);
 
 			ButtonGroup view = new ButtonGroup();
 			view.add(rViewUsuario);

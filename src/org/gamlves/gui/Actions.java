@@ -448,37 +448,77 @@ public class Actions {
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			if (e.getSource() instanceof JTabbedPane) {
-				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
-						MainRun.mainFrame.viewPanel);
+				if (((JTabbedPane) e.getSource()).getSelectedComponent()
+						.equals(MainRun.mainFrame.viewPanel)) {
 
-				MainRun.mainFrame.viewPanel.tableViewUsuario.setModel(Datos
-						.getUsuariosMetadata());
-				MainRun.mainFrame.viewPanel.tableViewJuego.setModel(Datos
-						.getJuegosMetadata());
+					MainRun.mainFrame.viewPanel.tableViewUsuario.setModel(Datos
+							.getUsuariosMetadata());
+					MainRun.mainFrame.viewPanel.tableViewJuego.setModel(Datos
+							.getJuegosMetadata());
 
-				String user = (String) MainRun.mainFrame.viewPanel.comboUserLibrary
-						.getSelectedItem();
-				MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
-						.getLibraryMetadata(user));
+					String user = (String) MainRun.mainFrame.viewPanel.comboUserLibrary
+							.getSelectedItem();
+					MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+							.getLibraryMetadata(user));
+					// if (MainRun.mainFrame.viewPanel.rViewJuego.isSelected()
+					// || MainRun.mainFrame.viewPanel.rViewLibrary
+					// .isSelected()) {
+					((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
+					MainRun.mainFrame.frameFilter.setVisible(true);
+					// }
+
+				} else {
+					MainRun.mainFrame.frameFilter.setVisible(false);
+				}
 			}
 
 		}
 
 	};
 
+	// protected static ChangeListener showFilterAdmin = new ChangeListener() {
+	//
+	// @Override
+	// public void stateChanged(ChangeEvent e) {
+	//
+	// if (e.getSource() instanceof JRadioButton) {
+	// if (((JRadioButton) e.getSource()).isSelected()
+	// && e.getSource().equals(
+	// MainRun.mainFrame.viewPanel.rViewJuego)) {
+	// ((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
+	// MainRun.mainFrame.frameFilter.setVisible(true);
+	// }
+	// if (((JRadioButton) e.getSource()).isSelected()
+	// && e.getSource().equals(
+	// MainRun.mainFrame.viewPanel.rViewLibrary)) {
+	// ((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
+	// MainRun.mainFrame.frameFilter.setVisible(true);
+	// }
+	// if (((JRadioButton) e.getSource()).isSelected()
+	// && e.getSource().equals(
+	// MainRun.mainFrame.viewPanel.rViewUsuario)) {
+	// MainRun.mainFrame.frameFilter.setVisible(false);
+	// }
+	// }
+	// }
+	// };
+
 	protected static ChangeListener refreshTableLibrary = new ChangeListener() {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			if (e.getSource() instanceof JTabbedPane) {
-				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
-						MainRun.mainFrame.viewPanel);
-				MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
-						.getLibraryMetadata(Login._user));
+				if (((JTabbedPane) e.getSource()).getSelectedComponent()
+						.equals(MainRun.mainFrame.viewPanel)) {
+					MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
+							.getLibraryMetadata(Login._user));
+					((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
+					MainRun.mainFrame.frameFilter.setVisible(true);
+				} else {
+					MainRun.mainFrame.frameFilter.setVisible(false);
+				}
 			}
-
 		}
-
 	};
 
 	protected static ChangeListener showFilter = new ChangeListener() {
@@ -488,9 +528,24 @@ public class Actions {
 			if (e.getSource() instanceof JTabbedPane) {
 				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
 						MainRun.mainFrame.viewPanel);
-
+				MainRun.mainFrame.frameFilter.setVisible(true);
+			} else {
+				MainRun.mainFrame.frameFilter.setVisible(false);
 			}
 
+		}
+
+	};
+
+	protected static ActionListener applyFilter = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (MainRun.mainFrame.tabPanel.getSelectedIndex() != 1) {
+
+			} else {
+				
+			}
 		}
 
 	};
