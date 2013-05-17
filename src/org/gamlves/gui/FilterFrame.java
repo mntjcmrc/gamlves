@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 
 import org.gamlves.data.Datos;
 
-public class FrameFilter extends JFrame {
+public class FilterFrame extends JFrame {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class FrameFilter extends JFrame {
 	private int WIDTH = 150;
 	private int HEIGHT = 280;
 
-	protected FrameFilter() {
+	protected FilterFrame() {
 		setTitle("Filtrado por géneros");
 		setLayout(new BorderLayout());
 

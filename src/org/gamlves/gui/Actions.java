@@ -463,12 +463,12 @@ public class Actions {
 					// if (MainRun.mainFrame.viewPanel.rViewJuego.isSelected()
 					// || MainRun.mainFrame.viewPanel.rViewLibrary
 					// .isSelected()) {
-					((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
-					MainRun.mainFrame.frameFilter.setVisible(true);
+					((FilterFrame) MainRun.mainFrame.filterFrame).resetBounds();
+					MainRun.mainFrame.filterFrame.setVisible(true);
 					// }
 
 				} else {
-					MainRun.mainFrame.frameFilter.setVisible(false);
+					MainRun.mainFrame.filterFrame.setVisible(false);
 				}
 			}
 
@@ -512,15 +512,19 @@ public class Actions {
 						.equals(MainRun.mainFrame.viewPanel)) {
 					MainRun.mainFrame.viewPanel.tableViewLibrary.setModel(Datos
 							.getLibraryMetadata(Login._user));
-					((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
-					MainRun.mainFrame.frameFilter.setVisible(true);
+					((FilterFrame) MainRun.mainFrame.filterFrame).resetBounds();
+					MainRun.mainFrame.filterFrame.setVisible(true);
 				} else {
-					MainRun.mainFrame.frameFilter.setVisible(false);
+					MainRun.mainFrame.filterFrame.setVisible(false);
 				}
 			}
 		}
 	};
 
+	/**
+	 * Muestra el frame con el filtrado por géneros si el usuario entra al tab
+	 * con la vista de datos
+	 */
 	protected static ChangeListener showFilter = new ChangeListener() {
 
 		@Override
@@ -528,25 +532,28 @@ public class Actions {
 			if (e.getSource() instanceof JTabbedPane) {
 				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
 						MainRun.mainFrame.viewPanel);
-				MainRun.mainFrame.frameFilter.setVisible(true);
+				MainRun.mainFrame.filterFrame.setVisible(true);
 			} else {
-				MainRun.mainFrame.frameFilter.setVisible(false);
+				MainRun.mainFrame.filterFrame.setVisible(false);
 			}
 
 		}
 
 	};
 
+	/**
+	 * Se aplica el filtro seleccionado en el frame con los géneros
+	 */
 	protected static ActionListener applyFilter = new ActionListener() {
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent e) {
 			if (MainRun.mainFrame.tabPanel.getSelectedIndex() != 1) {
 
 			} else {
+				Vector<String> generos = new Vector<String>();
 				
 			}
 		}
-
 	};
 }

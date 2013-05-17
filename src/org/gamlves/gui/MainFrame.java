@@ -43,7 +43,7 @@ public class MainFrame extends JFrame {
 	 * Panel para ver los datos
 	 */
 	protected ViewPanel viewPanel;
-	protected JFrame frameFilter = new FrameFilter();
+	protected JFrame filterFrame = new FilterFrame();
 
 	/**
 	 * Anchura de la ventana
