@@ -671,12 +671,24 @@ public class Datos {
 
 		return usuarios;
 	}
-	
-	public static ArrayList<Juego> filterGenero(String[] generos) {
+
+	/**
+	 * @param juegos
+	 *            Array de juegos a filtrar
+	 * @param generos
+	 *            Géneros que hay que mostrar
+	 * @return Array con los juegos de los géneros filtrados
+	 */
+	public static ArrayList<Juego> filterGenero(ArrayList<Juego> juegos,
+			Vector<String> generos) {
 		ArrayList<Juego> juegosFiltered = new ArrayList<Juego>();
-		
-		// PENDIENTE
-		
+
+		for (int i = 0; i < juegos.size(); i++) {
+			if (generos.contains(juegos.get(i).get_genero())) {
+				juegosFiltered.add(juegos.get(i));
+			}
+		}
+
 		return juegosFiltered;
 	}
 }
