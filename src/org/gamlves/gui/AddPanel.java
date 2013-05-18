@@ -56,6 +56,10 @@ public class AddPanel extends JPanel {
 	private JPanel formAddJuego;
 
 	/**
+	 * Campo de texto con el ID del usuario
+	 */
+	private JTextField txtIDUser;
+	/**
 	 * Campo de texto para introducir el nombre del usuario
 	 */
 	private JTextField txtNombreUsuario;
@@ -139,6 +143,9 @@ public class AddPanel extends JPanel {
 			formAddUsuario = new JPanel();
 			SpringLayout springUser = new SpringLayout();
 			formAddUsuario.setLayout(springUser);
+			JLabel lblIDUser = new JLabel("ID: ");
+			txtIDUser = new JTextField(3);
+			txtIDUser.setEnabled(false);
 			JLabel lblNombreUsuario = new JLabel("Nombre: ");
 			txtNombreUsuario = new JTextField(Datos.USUARIONOMBRE);
 			JLabel lblUser = new JLabel("User: ");
@@ -150,17 +157,29 @@ public class AddPanel extends JPanel {
 			txtUser.addActionListener(Actions.addUserAceptar);
 			txtPass.addActionListener(Actions.addUserAceptar);
 
+			formAddUsuario.add(lblIDUser);
+			springUser.putConstraint(SpringLayout.EAST, lblIDUser, 100,
+					SpringLayout.WEST, formAddUsuario);
+			springUser.putConstraint(SpringLayout.NORTH, lblIDUser, 40,
+					SpringLayout.NORTH, formAddUsuario);
+
+			formAddUsuario.add(txtIDUser);
+			springUser.putConstraint(SpringLayout.WEST, txtIDUser, 30,
+					SpringLayout.EAST, lblIDUser);
+			springUser.putConstraint(SpringLayout.NORTH, txtIDUser, 40,
+					SpringLayout.NORTH, formAddUsuario);
+
 			formAddUsuario.add(lblNombreUsuario);
 			springUser.putConstraint(SpringLayout.EAST, lblNombreUsuario, 100,
 					SpringLayout.WEST, formAddUsuario);
 			springUser.putConstraint(SpringLayout.NORTH, lblNombreUsuario, 40,
-					SpringLayout.NORTH, formAddUsuario);
+					SpringLayout.NORTH, lblIDUser);
 
 			formAddUsuario.add(txtNombreUsuario);
 			springUser.putConstraint(SpringLayout.WEST, txtNombreUsuario, 30,
 					SpringLayout.EAST, lblNombreUsuario);
 			springUser.putConstraint(SpringLayout.NORTH, txtNombreUsuario, 40,
-					SpringLayout.NORTH, formAddUsuario);
+					SpringLayout.NORTH, lblIDUser);
 
 			formAddUsuario.add(lblUser);
 			springUser.putConstraint(SpringLayout.EAST, lblUser, 100,
@@ -191,9 +210,20 @@ public class AddPanel extends JPanel {
 			btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
 			JButton btnLimpiarAddUsuario = new JButton("Limpiar");
 			btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
+			JButton btnChangeMode = new JButton("Modificar");
+			btnChangeMode.addActionListener(Actions.changeToModUser);
+			JButton btnPrevious = new JButton("Anterior");
+			btnPrevious.setVisible(false);
+			JButton btnNext = new JButton("Siguiente");
+			btnNext.setVisible(false);
 
+			// BOTONES INVISIBLES
+			
+			btnAddUsuario.add(btnPrevious);
 			btnAddUsuario.add(btnAceptarAddUsuario);
 			btnAddUsuario.add(btnLimpiarAddUsuario);
+			btnAddUsuario.add(btnChangeMode);
+			btnAddUsuario.add(btnNext);
 
 			panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
 			panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
@@ -428,7 +458,7 @@ public class AddPanel extends JPanel {
 	protected String get_comboGeneroJuego() {
 		return (String) this.comboGeneroJuego.getSelectedItem();
 	}
-	
+
 	protected void set_comboGeneroJuego(int i) {
 		this.comboGeneroJuego.setSelectedIndex(i);
 	}

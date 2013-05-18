@@ -285,6 +285,15 @@ public class Actions {
 			MainRun.mainFrame.addPanel.set_txtPass("");
 		}
 	};
+	
+	protected static ActionListener changeToModUser = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// CAMBIA LOS ACTIONLISTENERS POR LOS DE MODIFICAR
+		}
+		
+	};
 
 	/**
 	 * Recoge los datos introducidos por el admin e inicia una transacción para

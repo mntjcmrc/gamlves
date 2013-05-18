@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(boolean admin) {
 
 		this.admin = admin;
-		
+
 		// Titulo
 		setTitle(Login._nombre + " - Gamlves");
 
@@ -110,12 +110,13 @@ public class MainFrame extends JFrame {
 		if (admin) {
 			tabPanel.addTab("Ver datos", viewPanel);
 			tabPanel.addChangeListener(Actions.refreshTablesAdmin);
+
 		} else {
 			tabPanel.addTab("Biblioteca", viewPanel);
 			tabPanel.addChangeListener(Actions.refreshTableLibrary);
 		}
 		tabPanel.addChangeListener(Actions.showFilter);
-		
+
 		filterFrame = new FilterFrame();
 
 		Actions.systemLookAndFeel();
