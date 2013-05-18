@@ -91,7 +91,7 @@ public class LoginFrame extends JFrame {
 
 		// Botones
 		btnAceptar = new JButton("Aceptar");
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Salir");
 
 		btnAceptar.addActionListener(Actions.loginAceptar);
 		btnCancelar.addActionListener(Actions.cerrar);
