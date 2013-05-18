@@ -87,6 +87,9 @@ public class AddPanel extends JPanel {
 
 	protected JList<String> listBuscarUsuarioJuego;
 	protected DefaultListModel<String> modelBuscarUsuarioJuego;
+	protected JButton btnChangeModeUser;
+	protected JButton btnPrevious;
+	protected JButton btnNext;
 
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
@@ -210,19 +213,21 @@ public class AddPanel extends JPanel {
 			btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
 			JButton btnLimpiarAddUsuario = new JButton("Limpiar");
 			btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
-			JButton btnChangeMode = new JButton("Modificar");
-			btnChangeMode.addActionListener(Actions.changeToModUser);
-			JButton btnPrevious = new JButton("Anterior");
+			btnChangeModeUser = new JButton("Modificar");
+			btnChangeModeUser.addActionListener(Actions.changeToModUser);
+			btnPrevious = new JButton("Anterior");
 			btnPrevious.setVisible(false);
-			JButton btnNext = new JButton("Siguiente");
+//			btnPrevious.addActionListener(Actions.previousUser);
+			btnNext = new JButton("Siguiente");
 			btnNext.setVisible(false);
+//			btnNext.addActionListener(Actions.nextUser);
 
 			// BOTONES INVISIBLES
-			
+
 			btnAddUsuario.add(btnPrevious);
 			btnAddUsuario.add(btnAceptarAddUsuario);
 			btnAddUsuario.add(btnLimpiarAddUsuario);
-			btnAddUsuario.add(btnChangeMode);
+			btnAddUsuario.add(btnChangeModeUser);
 			btnAddUsuario.add(btnNext);
 
 			panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
@@ -370,7 +375,7 @@ public class AddPanel extends JPanel {
 			this.add(btns, BorderLayout.PAGE_END);
 
 			// Foco
-			txtBuscarUsuarioJuego.requestFocus();
+			// txtBuscarUsuarioJuego.requestFocus();
 		}
 
 		// this.add(new JLabel("addTest"));
@@ -420,6 +425,14 @@ public class AddPanel extends JPanel {
 	 */
 	protected void set_txtUser(String user) {
 		this.txtUser.setText(user);
+	}
+	
+	protected void enable_txtUser(){
+		this.txtUser.setEnabled(true);
+	}
+	
+	protected void disable_txtUser(){
+		this.txtUser.setEnabled(false);
 	}
 
 	/**

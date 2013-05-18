@@ -285,14 +285,61 @@ public class Actions {
 			MainRun.mainFrame.addPanel.set_txtPass("");
 		}
 	};
-	
+
 	protected static ActionListener changeToModUser = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// CAMBIA LOS ACTIONLISTENERS POR LOS DE MODIFICAR
+
+			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Añadir");
+			MainRun.mainFrame.addPanel.disable_txtUser();
+
+			MainRun.mainFrame.addPanel.btnPrevious.setVisible(true);
+			MainRun.mainFrame.addPanel.btnNext.setVisible(true);
+
+			MainRun.mainFrame.addPanel.btnChangeModeUser
+					.removeActionListener(Actions.changeToModUser);
+			MainRun.mainFrame.addPanel.btnChangeModeUser
+					.addActionListener(Actions.changeToAddUser);
 		}
-		
+
+	};
+
+	protected static ActionListener changeToAddUser = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Modificar");
+			MainRun.mainFrame.addPanel.enable_txtUser();
+
+			MainRun.mainFrame.addPanel.btnPrevious.setVisible(false);
+			MainRun.mainFrame.addPanel.btnNext.setVisible(false);
+
+			MainRun.mainFrame.addPanel.btnChangeModeUser
+					.removeActionListener(Actions.changeToAddUser);
+			MainRun.mainFrame.addPanel.btnChangeModeUser
+					.addActionListener(Actions.changeToModUser);
+		}
+
+	};
+
+	protected static ActionListener changeToModJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+		}
+
+	};
+
+	protected static ActionListener changeToAddJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+		}
+
 	};
 
 	/**
