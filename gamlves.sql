@@ -27,7 +27,7 @@ CREATE DATABASE gamlves;
 
 CREATE USER 'gamlves'@'localhost' IDENTIFIED BY '***';
 
-SET PASSWORD FOR 'gamlves'@'localhost'=PASSWORD('abc123ABC');
+SET PASSWORD FOR 'gamlves'@'localhost' = ''
 
 GRANT USAGE ON * . * TO 'gamlves'@'localhost' IDENTIFIED BY '***' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
 

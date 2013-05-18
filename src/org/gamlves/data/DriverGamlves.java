@@ -16,7 +16,7 @@ public class DriverGamlves {
 	/**
 	 * Base de datos con el login por defecto
 	 */
-	private static DB database = new DB("gamlves", "gamlves", "abc123ABC");
+	private static DB database = new DB("gamlves", "gamlves", "");
 
 	/**
 	 * Mantiene el login por defecto
