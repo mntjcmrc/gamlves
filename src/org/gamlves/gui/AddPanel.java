@@ -110,7 +110,7 @@ public class AddPanel extends JPanel {
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
 	private final String ADDJUEGO = "Juego";
-	
+
 	protected int indexUser = 0;
 	protected int indexJuego = 0;
 
@@ -231,10 +231,10 @@ public class AddPanel extends JPanel {
 			btnChangeModeUser.addActionListener(Actions.changeToModUser);
 			btnPreviousUser = new JButton("Anterior");
 			btnPreviousUser.setVisible(false);
-			// btnPreviousUser.addActionListener(Actions.previousUser);
+			btnPreviousUser.addActionListener(Actions.previousUser);
 			btnNextUser = new JButton("Siguiente");
 			btnNextUser.setVisible(false);
-			// btnNextUser.addActionListener(Actions.nextUser);
+			btnNextUser.addActionListener(Actions.nextUser);
 
 			// BOTONES INVISIBLES
 
@@ -264,7 +264,7 @@ public class AddPanel extends JPanel {
 			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
 
-//			txtNombreJuego.addActionListener(Actions.addUserAceptar);
+			// txtNombreJuego.addActionListener(Actions.addUserAceptar);
 			// comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
 			formAddJuego.add(lblIDJuego);
@@ -312,10 +312,10 @@ public class AddPanel extends JPanel {
 			btnChangeModeJuego.addActionListener(Actions.changeToModJuego);
 			btnPreviousJuego = new JButton("Anterior");
 			btnPreviousJuego.setVisible(false);
-			// btnPreviousjuego.addActionListener(Actions.previousJuego);
+			btnPreviousJuego.addActionListener(Actions.previousJuego);
 			btnNextJuego = new JButton("Siguiente");
 			btnNextJuego.setVisible(false);
-			// btnNextJuego.addActionListener(Actions.nextJuego);
+			btnNextJuego.addActionListener(Actions.nextJuego);
 
 			btnAddJuego.add(btnPreviousJuego);
 			btnAddJuego.add(btnAceptarAddJuego);

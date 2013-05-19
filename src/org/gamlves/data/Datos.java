@@ -368,15 +368,15 @@ public class Datos {
 
 		return usuariojuego;
 	}
-	
-	public static int searchGeneroIndex(String genero){
-		
-		for(int i = 0; i < Datos.GENEROS.length; i++){
-			if(genero.equals(Datos.GENEROS[i])){
+
+	public static int searchGeneroIndex(String genero) {
+
+		for (int i = 0; i < Datos.GENEROS.length; i++) {
+			if (genero.equals(Datos.GENEROS[i])) {
 				return i;
 			}
 		}
-		
+
 		return 0;
 	}
 
@@ -751,7 +751,7 @@ public class Datos {
 	}
 
 	public static Juego get_juegoIndex(int i) {
-		if(i < _juegos.size()) {
+		if (i < _juegos.size()) {
 			return _juegos.get(i);
 		} else {
 			return null;

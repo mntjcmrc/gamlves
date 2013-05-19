@@ -279,6 +279,7 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			// PENDIENTE
 
 		}
 
@@ -289,7 +290,7 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-
+			// PENDIENTE
 		}
 
 	};
@@ -317,12 +318,72 @@ public class Actions {
 		}
 	};
 
+	private static void loadDataUser() {
+		int usuarios = Datos.get_usuariosSize();
+		Usuario usuario;
+		if (MainRun.mainFrame.addPanel.indexUser < 1) {
+			MainRun.mainFrame.addPanel.btnPreviousUser.setEnabled(false);
+		} else {
+			MainRun.mainFrame.addPanel.btnPreviousUser.setEnabled(true);
+		}
+		if (MainRun.mainFrame.addPanel.indexUser == usuarios - 1) {
+			MainRun.mainFrame.addPanel.btnNextUser.setEnabled(false);
+		} else {
+			MainRun.mainFrame.addPanel.btnNextUser.setEnabled(true);
+		}
+		usuario = Datos.get_usuarioIndex(MainRun.mainFrame.addPanel.indexUser);
+
+		MainRun.mainFrame.addPanel.set_txtIDUser(usuario.get_id() + "");
+		MainRun.mainFrame.addPanel.set_txtNombreUsuario(usuario.get_nombre());
+		MainRun.mainFrame.addPanel.set_txtUser(usuario.get_user());
+	}
+
+	private static void loadDataJuego() {
+		int juegos = Datos.get_juegosSize();
+		Juego juego;
+		if (MainRun.mainFrame.addPanel.indexJuego < 1) {
+			MainRun.mainFrame.addPanel.btnPreviousJuego.setEnabled(false);
+		} else {
+			MainRun.mainFrame.addPanel.btnPreviousJuego.setEnabled(true);
+		}
+		if (MainRun.mainFrame.addPanel.indexJuego == juegos - 1) {
+			MainRun.mainFrame.addPanel.btnNextJuego.setEnabled(false);
+		} else {
+			MainRun.mainFrame.addPanel.btnNextJuego.setEnabled(true);
+		}
+		juego = Datos.get_juegoIndex(MainRun.mainFrame.addPanel.indexJuego);
+
+		MainRun.mainFrame.addPanel.set_txtIDJuego(juego.get_id() + "");
+		MainRun.mainFrame.addPanel.set_txtNombreJuego(juego.get_nombre());
+		MainRun.mainFrame.addPanel.set_comboGeneroJuego(Datos
+				.searchGeneroIndex(juego.get_genero()));
+	}
+
+	protected static ActionListener previousUser = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.indexUser--;
+			loadDataUser();
+		}
+
+	};
+
+	protected static ActionListener nextUser = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.indexUser++;
+			loadDataUser();
+		}
+
+	};
+
 	protected static ActionListener changeToModUser = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			int usuarios = Datos.get_usuariosSize();
-			Usuario usuario;
 
 			if (usuarios > 0) {
 
@@ -339,28 +400,37 @@ public class Actions {
 						.removeActionListener(Actions.changeToModUser);
 				MainRun.mainFrame.addPanel.btnChangeModeUser
 						.addActionListener(Actions.changeToAddUser);
-
-				// Carga de datos del primer registro
-				MainRun.mainFrame.addPanel.btnPreviousUser.setEnabled(false);
-				if (usuarios == 1) {
-					MainRun.mainFrame.addPanel.btnNextUser.setEnabled(false);
-				}
-				usuario = Datos.get_usuarioIndex(0);
-
-				MainRun.mainFrame.addPanel.set_txtIDUser(usuario.get_id() + "");
-				MainRun.mainFrame.addPanel.set_txtNombreUsuario(usuario
-						.get_nombre());
-				MainRun.mainFrame.addPanel.set_txtUser(usuario.get_user());
-
 				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
 						.removeActionListener(Actions.addUserAceptar);
 				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
-						.addActionListener(Actions.modUserAceptar);
+						.removeActionListener(Actions.modUserAceptar);
 
+				// Carga de datos del primer registro
+				loadDataUser();
 			} else {
 				JOptionPane.showMessageDialog(MainRun.mainFrame,
 						"No hay registros de usuarios para modificar");
 			}
+		}
+
+	};
+	
+	protected static ActionListener previousJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.indexJuego--;
+			loadDataJuego();
+		}
+
+	};
+
+	protected static ActionListener nextJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.addPanel.indexJuego++;
+			loadDataJuego();
 		}
 
 	};
@@ -370,9 +440,8 @@ public class Actions {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			int juegos = Datos.get_juegosSize();
-			Juego juego;
 
-			if (Datos.get_juegosSize() > 0) {
+			if (juegos > 0) {
 
 				// Cambios visuales y de ActionListeners
 				MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Añadir");
@@ -385,24 +454,13 @@ public class Actions {
 						.removeActionListener(Actions.changeToModJuego);
 				MainRun.mainFrame.addPanel.btnChangeModeJuego
 						.addActionListener(Actions.changeToAddJuego);
-
-				// Carga de datos
-				MainRun.mainFrame.addPanel.btnPreviousJuego.setEnabled(false);
-				if (juegos == 1) {
-					MainRun.mainFrame.addPanel.btnNextJuego.setEnabled(false);
-				}
-
-				juego = Datos.get_juegoIndex(0);
-				MainRun.mainFrame.addPanel.set_txtIDJuego(juego.get_id() + "");
-				MainRun.mainFrame.addPanel.set_txtNombreJuego(juego
-						.get_nombre());
-				MainRun.mainFrame.addPanel.set_comboGeneroJuego(Datos
-						.searchGeneroIndex(juego.get_genero()));
-
 				MainRun.mainFrame.addPanel.btnAceptarAddJuego
 						.removeActionListener(Actions.addJuegoAceptar);
 				MainRun.mainFrame.addPanel.btnAceptarAddJuego
 						.addActionListener(Actions.modJuegoAceptar);
+
+				// Carga de datos
+				loadDataJuego();
 
 			} else {
 				JOptionPane.showMessageDialog(MainRun.mainFrame,
