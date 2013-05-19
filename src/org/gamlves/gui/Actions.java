@@ -274,15 +274,46 @@ public class Actions {
 
 	};
 
+	protected static ActionListener modUserAceptar = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+	};
+
+	protected static ActionListener modJuegoAceptar = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+	};
+
+	private static void limpiarUser() {
+		MainRun.mainFrame.addPanel.set_txtIDUser("");
+		MainRun.mainFrame.addPanel.set_txtNombreUsuario("");
+		MainRun.mainFrame.addPanel.set_txtUser("");
+		MainRun.mainFrame.addPanel.set_txtPass("");
+	}
+
+	private static void limpiarJuego() {
+		MainRun.mainFrame.addPanel.set_txtIDJuego("");
+		MainRun.mainFrame.addPanel.set_txtNombreJuego("");
+		MainRun.mainFrame.addPanel.set_comboGeneroJuego(0);
+	}
+
 	/**
 	 * Limpia los campos de texto del formulario para añadir usuarios
 	 */
 	protected static ActionListener addUserLimpiar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			MainRun.mainFrame.addPanel.set_txtNombreUsuario("");
-			MainRun.mainFrame.addPanel.set_txtUser("");
-			MainRun.mainFrame.addPanel.set_txtPass("");
+			limpiarUser();
 		}
 	};
 
@@ -290,38 +321,94 @@ public class Actions {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			int usuarios = Datos.get_usuariosSize();
+			Usuario usuario;
 
-			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Añadir");
-			MainRun.mainFrame.addPanel.disable_txtUser();
+			if (usuarios > 0) {
 
-			MainRun.mainFrame.addPanel.btnPreviousUser.setVisible(true);
-			MainRun.mainFrame.addPanel.btnNextUser.setVisible(true);
+				// Cambios visuales y de ActionListeners
+				MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Añadir");
+				MainRun.mainFrame.addPanel.disable_txtUser();
 
-			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.removeActionListener(Actions.changeToModUser);
-			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.addActionListener(Actions.changeToAddUser);
+				MainRun.mainFrame.addPanel.btnLimpiarAddUsuario
+						.setVisible(false);
+				MainRun.mainFrame.addPanel.btnPreviousUser.setVisible(true);
+				MainRun.mainFrame.addPanel.btnNextUser.setVisible(true);
+
+				MainRun.mainFrame.addPanel.btnChangeModeUser
+						.removeActionListener(Actions.changeToModUser);
+				MainRun.mainFrame.addPanel.btnChangeModeUser
+						.addActionListener(Actions.changeToAddUser);
+
+				// Carga de datos del primer registro
+				MainRun.mainFrame.addPanel.btnPreviousUser.setEnabled(false);
+				if (usuarios == 1) {
+					MainRun.mainFrame.addPanel.btnNextUser.setEnabled(false);
+				}
+				usuario = Datos.get_usuarioIndex(0);
+
+				MainRun.mainFrame.addPanel.set_txtIDUser(usuario.get_id() + "");
+				MainRun.mainFrame.addPanel.set_txtNombreUsuario(usuario
+						.get_nombre());
+				MainRun.mainFrame.addPanel.set_txtUser(usuario.get_user());
+
+				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
+						.removeActionListener(Actions.addUserAceptar);
+				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
+						.addActionListener(Actions.modUserAceptar);
+
+			} else {
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"No hay registros de usuarios para modificar");
+			}
 		}
 
 	};
-	
+
 	protected static ActionListener changeToModJuego = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Añadir");
+			int juegos = Datos.get_juegosSize();
+			Juego juego;
 
-			MainRun.mainFrame.addPanel.btnPreviousJuego.setVisible(true);
-			MainRun.mainFrame.addPanel.btnNextJuego.setVisible(true);
+			if (Datos.get_juegosSize() > 0) {
 
-			MainRun.mainFrame.addPanel.btnChangeModeJuego
-					.removeActionListener(Actions.changeToModJuego);
-			MainRun.mainFrame.addPanel.btnChangeModeJuego
-					.addActionListener(Actions.changeToAddJuego);
-			
+				// Cambios visuales y de ActionListeners
+				MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Añadir");
+
+				MainRun.mainFrame.addPanel.btnLimpiarAddJuego.setVisible(false);
+				MainRun.mainFrame.addPanel.btnPreviousJuego.setVisible(true);
+				MainRun.mainFrame.addPanel.btnNextJuego.setVisible(true);
+
+				MainRun.mainFrame.addPanel.btnChangeModeJuego
+						.removeActionListener(Actions.changeToModJuego);
+				MainRun.mainFrame.addPanel.btnChangeModeJuego
+						.addActionListener(Actions.changeToAddJuego);
+
+				// Carga de datos
+				MainRun.mainFrame.addPanel.btnPreviousJuego.setEnabled(false);
+				if (juegos == 1) {
+					MainRun.mainFrame.addPanel.btnNextJuego.setEnabled(false);
+				}
+
+				juego = Datos.get_juegoIndex(0);
+				MainRun.mainFrame.addPanel.set_txtIDJuego(juego.get_id() + "");
+				MainRun.mainFrame.addPanel.set_txtNombreJuego(juego
+						.get_nombre());
+				MainRun.mainFrame.addPanel.set_comboGeneroJuego(Datos
+						.searchGeneroIndex(juego.get_genero()));
+
+				MainRun.mainFrame.addPanel.btnAceptarAddJuego
+						.removeActionListener(Actions.addJuegoAceptar);
+				MainRun.mainFrame.addPanel.btnAceptarAddJuego
+						.addActionListener(Actions.modJuegoAceptar);
+
+			} else {
+				JOptionPane.showMessageDialog(MainRun.mainFrame,
+						"No hay registros de juegos para modificar");
+			}
 		}
-
 	};
 
 	protected static ActionListener changeToAddUser = new ActionListener() {
@@ -332,26 +419,30 @@ public class Actions {
 			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Modificar");
 			MainRun.mainFrame.addPanel.enable_txtUser();
 
+			MainRun.mainFrame.addPanel.btnLimpiarAddUsuario.setVisible(true);
 			MainRun.mainFrame.addPanel.btnPreviousUser.setVisible(false);
 			MainRun.mainFrame.addPanel.btnNextUser.setVisible(false);
 
 			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.removeActionListener(Actions.changeToAddJuego);
+					.removeActionListener(Actions.changeToAddUser);
 			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.addActionListener(Actions.changeToModJuego);
+					.addActionListener(Actions.changeToModUser);
+			MainRun.mainFrame.addPanel.btnAceptarAddUsuario
+					.addActionListener(Actions.addUserAceptar);
+
+			limpiarUser();
 		}
 
 	};
-
-
 
 	protected static ActionListener changeToAddJuego = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Modificar");
 
+			MainRun.mainFrame.addPanel.btnLimpiarAddJuego.setVisible(true);
 			MainRun.mainFrame.addPanel.btnPreviousJuego.setVisible(false);
 			MainRun.mainFrame.addPanel.btnNextJuego.setVisible(false);
 
@@ -359,6 +450,9 @@ public class Actions {
 					.removeActionListener(Actions.changeToAddJuego);
 			MainRun.mainFrame.addPanel.btnChangeModeJuego
 					.addActionListener(Actions.changeToModJuego);
+			MainRun.mainFrame.addPanel.btnAceptarAddJuego
+					.addActionListener(Actions.addJuegoAceptar);
+			limpiarJuego();
 		}
 
 	};
@@ -426,8 +520,7 @@ public class Actions {
 	protected static ActionListener addJuegoLimpiar = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			MainRun.mainFrame.addPanel.set_txtNombreJuego("");
-			MainRun.mainFrame.addPanel.set_comboGeneroJuego(0);
+			limpiarJuego();
 		}
 	};
 

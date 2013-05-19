@@ -91,6 +91,10 @@ public class AddPanel extends JPanel {
 
 	protected JList<String> listBuscarUsuarioJuego;
 	protected DefaultListModel<String> modelBuscarUsuarioJuego;
+	protected JButton btnAceptarAddUsuario;
+	protected JButton btnLimpiarAddUsuario;
+	protected JButton btnAceptarAddJuego;
+	protected JButton btnLimpiarAddJuego;
 	protected JButton btnChangeModeUser;
 	protected JButton btnPreviousUser;
 	protected JButton btnNextUser;
@@ -106,6 +110,9 @@ public class AddPanel extends JPanel {
 	 * Constante para que nombre mantener en los triggers de los paneles
 	 */
 	private final String ADDJUEGO = "Juego";
+	
+	protected int indexUser = 0;
+	protected int indexJuego = 0;
 
 	/**
 	 * Crea el panel para añadir registros. Modo admin: se pueden añadir
@@ -163,9 +170,9 @@ public class AddPanel extends JPanel {
 			JLabel lblPass = new JLabel("Contraseña: ");
 			txtPass = new JPasswordField(15);
 
-			txtNombreUsuario.addActionListener(Actions.addUserAceptar);
-			txtUser.addActionListener(Actions.addUserAceptar);
-			txtPass.addActionListener(Actions.addUserAceptar);
+			// txtNombreUsuario.addActionListener(Actions.addUserAceptar);
+			// txtUser.addActionListener(Actions.addUserAceptar);
+			// txtPass.addActionListener(Actions.addUserAceptar);
 
 			formAddUsuario.add(lblIDUser);
 			springUser.putConstraint(SpringLayout.EAST, lblIDUser, 100,
@@ -216,9 +223,9 @@ public class AddPanel extends JPanel {
 					SpringLayout.NORTH, txtUser);
 
 			JPanel btnAddUsuario = new JPanel(new FlowLayout());
-			JButton btnAceptarAddUsuario = new JButton("Aceptar");
+			btnAceptarAddUsuario = new JButton("Aceptar");
 			btnAceptarAddUsuario.addActionListener(Actions.addUserAceptar);
-			JButton btnLimpiarAddUsuario = new JButton("Limpiar");
+			btnLimpiarAddUsuario = new JButton("Limpiar");
 			btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
 			btnChangeModeUser = new JButton("Modificar");
 			btnChangeModeUser.addActionListener(Actions.changeToModUser);
@@ -257,7 +264,7 @@ public class AddPanel extends JPanel {
 			comboGeneroJuego = new JComboBox<String>(Datos.GENEROS);
 			comboGeneroJuego.setEditable(false);
 
-			txtNombreJuego.addActionListener(Actions.addUserAceptar);
+//			txtNombreJuego.addActionListener(Actions.addUserAceptar);
 			// comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
 			formAddJuego.add(lblIDJuego);
@@ -297,9 +304,9 @@ public class AddPanel extends JPanel {
 					SpringLayout.NORTH, txtNombreJuego);
 
 			JPanel btnAddJuego = new JPanel(new FlowLayout());
-			JButton btnAceptarAddJuego = new JButton("Aceptar");
+			btnAceptarAddJuego = new JButton("Aceptar");
 			btnAceptarAddJuego.addActionListener(Actions.addJuegoAceptar);
-			JButton btnLimpiarAddJuego = new JButton("Limpiar");
+			btnLimpiarAddJuego = new JButton("Limpiar");
 			btnLimpiarAddJuego.addActionListener(Actions.addJuegoLimpiar);
 			btnChangeModeJuego = new JButton("Modificar");
 			btnChangeModeJuego.addActionListener(Actions.changeToModJuego);
@@ -430,6 +437,14 @@ public class AddPanel extends JPanel {
 		layout.show(panelCards, ADDJUEGO);
 	}
 
+	protected String get_txtIDUser() {
+		return this.txtIDUser.getText();
+	}
+
+	protected void set_txtIDUser(String ID) {
+		this.txtIDUser.setText(ID);
+	}
+
 	/**
 	 * @return Nombre del usuario escrito en su campo de texto
 	 */
@@ -481,6 +496,14 @@ public class AddPanel extends JPanel {
 	 */
 	protected void set_txtPass(String pass) {
 		this.txtPass.setText(pass);
+	}
+
+	protected String get_txtIDJuego() {
+		return this.txtNombreJuego.getText();
+	}
+
+	protected void set_txtIDJuego(String ID) {
+		this.txtIDJuego.setText(ID);
 	}
 
 	/**

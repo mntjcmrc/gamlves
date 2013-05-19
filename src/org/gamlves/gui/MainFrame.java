@@ -105,7 +105,7 @@ public class MainFrame extends JFrame {
 		this.add(tabPanel, BorderLayout.CENTER);
 		addPanel = new AddPanel(admin);
 
-		tabPanel.addTab("Añadir", addPanel);
+		tabPanel.addTab("Añadir/Modificar", addPanel);
 		viewPanel = new ViewPanel(admin);
 		if (admin) {
 			tabPanel.addTab("Ver datos", viewPanel);

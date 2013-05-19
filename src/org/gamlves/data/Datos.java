@@ -231,6 +231,18 @@ public class Datos {
 		return usuariojuego;
 	}
 
+	public static Usuario searchUser(int ID) {
+		Usuario usuario = null;
+
+		for (int i = 0; i < _usuarios.size(); i++) {
+			if (ID == _usuarios.get(i).get_id()) {
+				usuario = _usuarios.get(i);
+			}
+		}
+
+		return usuario;
+	}
+
 	/**
 	 * Devuelve un usuario con el username dado, el usuario es buscado en los
 	 * arrays en memoria
@@ -355,6 +367,17 @@ public class Datos {
 		}
 
 		return usuariojuego;
+	}
+	
+	public static int searchGeneroIndex(String genero){
+		
+		for(int i = 0; i < Datos.GENEROS.length; i++){
+			if(genero.equals(Datos.GENEROS[i])){
+				return i;
+			}
+		}
+		
+		return 0;
 	}
 
 	/**
@@ -630,8 +653,8 @@ public class Datos {
 
 		return juegosMD;
 	}
-	
-	public static DefaultTableModel getJuegosMetadata(ArrayList<Juego> juegos){
+
+	public static DefaultTableModel getJuegosMetadata(ArrayList<Juego> juegos) {
 		DefaultTableModel juegosMD = new DefaultTableModel();
 		int size = juegos.size();
 
@@ -647,7 +670,7 @@ public class Datos {
 			juegosMD.addRow(row);
 		}
 
-		return juegosMD;		
+		return juegosMD;
 	}
 
 	/**
@@ -709,5 +732,29 @@ public class Datos {
 		}
 
 		return juegosFiltered;
+	}
+
+	public static int get_usuariosSize() {
+		return _usuarios.size();
+	}
+
+	public static int get_juegosSize() {
+		return _juegos.size();
+	}
+
+	public static Usuario get_usuarioIndex(int i) {
+		if (i < _usuarios.size()) {
+			return _usuarios.get(i);
+		} else {
+			return null;
+		}
+	}
+
+	public static Juego get_juegoIndex(int i) {
+		if(i < _juegos.size()) {
+			return _juegos.get(i);
+		} else {
+			return null;
+		}
 	}
 }
