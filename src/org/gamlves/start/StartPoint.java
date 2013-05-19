@@ -28,7 +28,7 @@ public class StartPoint {
 	 */
 	public static void main(String[] args) {
 		showSplash();
-		
+
 		try {
 			SwingUtilities.invokeLater(new LoadRun());
 			Datos.loadData();

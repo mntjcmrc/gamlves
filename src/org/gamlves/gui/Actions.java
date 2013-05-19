@@ -57,6 +57,9 @@ public class Actions {
 					Usuario usuario = Datos.searchUser(user);
 					Login._user = user;
 					Login._nombre = usuario.get_nombre();
+					
+					LoginRun.loginFrame.set_txtUser("");
+					LoginRun.loginFrame.set_txtPass("");
 
 					if (user.equals("admin")) {
 						MainRun.mainFrame = new MainFrame(true);
@@ -897,5 +900,15 @@ public class Actions {
 				}
 			}
 		}
+	};
+	
+	protected static ActionListener logout = new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			MainRun.mainFrame.dispose();
+			LoginRun.loginFrame.setVisible(true);
+		}
+		
 	};
 }

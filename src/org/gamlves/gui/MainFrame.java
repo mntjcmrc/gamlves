@@ -82,8 +82,11 @@ public class MainFrame extends JFrame {
 		JMenuBar mb = new JMenuBar();
 		// Archivo
 		JMenu archivo = new JMenu("Archivo");
+		JMenuItem logout = new JMenuItem("Logout");
 		JMenuItem salir = new JMenuItem("Salir");
+		logout.addActionListener(Actions.logout);
 		salir.addActionListener(Actions.cerrar);
+		archivo.add(logout);
 		archivo.add(salir);
 
 		mb.add(archivo);
