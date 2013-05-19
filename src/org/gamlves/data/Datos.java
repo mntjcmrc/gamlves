@@ -455,6 +455,51 @@ public class Datos {
 
 	}
 
+	public static int userTransaction(int ID, String nombre, String user,
+			String pass, boolean changePass) {
+		int transaction = 0;
+
+		Usuario usuario;
+		Usuario usuarioDatabase;
+
+		usuarioDatabase = searchUser(ID);
+		if (changePass) {
+			String passHash;
+			passHash = Seguridad.createHash(pass);
+			usuario = new Usuario(nombre, user, passHash);
+			usuario.set_id(ID);
+		} else {
+			usuario = new Usuario(nombre, user, usuarioDatabase.get_pass());
+			usuario.set_id(ID);
+		}
+
+		if (usuarioDatabase.equals(usuario)) {
+			// No ha habido modificaciones
+			transaction = 1;
+			return transaction;
+		} else {
+			// Ha habido modificaciones
+			try {
+				DriverGamlves.modUser(usuario, changePass);
+			} catch (SQLException e) {
+				// Error al modificar el registro en la base de datos
+				transaction = 2;
+				JOptionPane.showMessageDialog(null,
+						"SQL Error: " + e.getErrorCode()
+								+ "\nAvise al administrador");
+				return transaction;
+			} finally {
+				DriverGamlves.disconnect();
+			}
+			// Se cambia en memoria
+			int i = _usuarios.indexOf(usuarioDatabase);
+			_usuarios.set(i, usuario);
+
+			return transaction;
+		}
+
+	}
+
 	/**
 	 * Aglutina todos los pasos al crear un juego en el sistema, estos son:
 	 * comprobar si ya existe un juego con ese nombre, crear un objeto del

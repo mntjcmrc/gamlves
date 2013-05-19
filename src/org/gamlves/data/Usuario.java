@@ -65,4 +65,11 @@ public class Usuario {
 	public void set_id(int id) {
 		this._id = id;
 	}
+
+	public boolean equals(Usuario usuario) {
+		return (this._id == usuario.get_id())
+				&& (this._nombre.equals(usuario.get_nombre()))
+				&& this._user.equals(usuario.get_user())
+				&& this._pass.equals(usuario.get_pass());
+	}
 }

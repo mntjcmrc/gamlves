@@ -278,8 +278,39 @@ public class Actions {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			// PENDIENTE
+			int ID = MainRun.mainFrame.addPanel.get_txtIDUser();
+			String nombre = MainRun.mainFrame.addPanel.get_txtNombreUsuario();
+			String user = MainRun.mainFrame.addPanel.get_txtUser();
+			String pass = MainRun.mainFrame.addPanel.get_txtPass();
+			boolean changePass;
+			if (pass.length() < 1) {
+				changePass = false;
+			} else {
+				changePass = true;
+			}
+			int transaction;
+			transaction = Datos.userTransaction(ID, nombre, user, pass,
+					changePass);
+			String message;
+
+			switch (transaction) {
+
+			case 0:
+				message = "El usuario " + user
+						+ " se ha modificado correctamente";
+				break;
+			case 1:
+				message = "No hay nada que modificar";
+				break;
+			case 2:
+				message = "Ha habido un error al conectar con la base de datos";
+				break;
+			default:
+				message = "Situación inesperada";
+				break;
+			}
+
+			JOptionPane.showMessageDialog(MainRun.mainFrame, message);
 
 		}
 
@@ -403,7 +434,7 @@ public class Actions {
 				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
 						.removeActionListener(Actions.addUserAceptar);
 				MainRun.mainFrame.addPanel.btnAceptarAddUsuario
-						.removeActionListener(Actions.modUserAceptar);
+						.addActionListener(Actions.modUserAceptar);
 
 				// Carga de datos del primer registro
 				loadDataUser();
@@ -414,7 +445,7 @@ public class Actions {
 		}
 
 	};
-	
+
 	protected static ActionListener previousJuego = new ActionListener() {
 
 		@Override

@@ -437,8 +437,8 @@ public class AddPanel extends JPanel {
 		layout.show(panelCards, ADDJUEGO);
 	}
 
-	protected String get_txtIDUser() {
-		return this.txtIDUser.getText();
+	protected int get_txtIDUser() {
+		return Integer.parseInt(this.txtIDUser.getText());
 	}
 
 	protected void set_txtIDUser(String ID) {

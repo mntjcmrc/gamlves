@@ -270,6 +270,27 @@ public class DriverGamlves {
 		return add;
 	}
 
+	protected static boolean modUser(Usuario usuario, boolean changePass)
+			throws SQLException {
+		boolean mod = false;
+		int ID;
+		String nombre, pass;
+		String update;
+
+		ID = usuario.get_id();
+		nombre = usuario.get_nombre();
+		pass = usuario.get_pass();
+		if (changePass) {
+			update = "UPDATE Usuarios SET Nombre='" + nombre + "', Pass='" + pass +  "' WHERE ID=" + ID;
+		} else {
+			update = "UPDATE Usuarios SET Nombre='" + nombre + "' WHERE ID=" + ID;
+		}
+		
+		mod = database.makeUpdate(update);
+
+		return mod;
+	}
+
 	/**
 	 * Añade un registro de juego a la base de datos
 	 * 
