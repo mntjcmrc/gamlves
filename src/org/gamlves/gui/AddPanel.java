@@ -72,6 +72,10 @@ public class AddPanel extends JPanel {
 	 */
 	private JTextField txtPass;
 	/**
+	 * Campo de texto con el ID del juego
+	 */
+	private JTextField txtIDJuego;
+	/**
 	 * Campo de texto para introducir el nombre del juego
 	 */
 	private JTextField txtNombreJuego;
@@ -88,8 +92,11 @@ public class AddPanel extends JPanel {
 	protected JList<String> listBuscarUsuarioJuego;
 	protected DefaultListModel<String> modelBuscarUsuarioJuego;
 	protected JButton btnChangeModeUser;
-	protected JButton btnPrevious;
-	protected JButton btnNext;
+	protected JButton btnPreviousUser;
+	protected JButton btnNextUser;
+	protected JButton btnChangeModeJuego;
+	protected JButton btnPreviousJuego;
+	protected JButton btnNextJuego;
 
 	/**
 	 * Constante para que nombre mantener en los triggers de los paneles
@@ -215,20 +222,20 @@ public class AddPanel extends JPanel {
 			btnLimpiarAddUsuario.addActionListener(Actions.addUserLimpiar);
 			btnChangeModeUser = new JButton("Modificar");
 			btnChangeModeUser.addActionListener(Actions.changeToModUser);
-			btnPrevious = new JButton("Anterior");
-			btnPrevious.setVisible(false);
-//			btnPrevious.addActionListener(Actions.previousUser);
-			btnNext = new JButton("Siguiente");
-			btnNext.setVisible(false);
-//			btnNext.addActionListener(Actions.nextUser);
+			btnPreviousUser = new JButton("Anterior");
+			btnPreviousUser.setVisible(false);
+			// btnPreviousUser.addActionListener(Actions.previousUser);
+			btnNextUser = new JButton("Siguiente");
+			btnNextUser.setVisible(false);
+			// btnNextUser.addActionListener(Actions.nextUser);
 
 			// BOTONES INVISIBLES
 
-			btnAddUsuario.add(btnPrevious);
+			btnAddUsuario.add(btnPreviousUser);
 			btnAddUsuario.add(btnAceptarAddUsuario);
 			btnAddUsuario.add(btnLimpiarAddUsuario);
 			btnAddUsuario.add(btnChangeModeUser);
-			btnAddUsuario.add(btnNext);
+			btnAddUsuario.add(btnNextUser);
 
 			panelAddUsuario.add(formAddUsuario, BorderLayout.CENTER);
 			panelAddUsuario.add(btnAddUsuario, BorderLayout.PAGE_END);
@@ -241,6 +248,9 @@ public class AddPanel extends JPanel {
 			formAddJuego = new JPanel();
 			SpringLayout springJuego = new SpringLayout();
 			formAddJuego.setLayout(springJuego);
+			JLabel lblIDJuego = new JLabel("ID: ");
+			txtIDJuego = new JTextField(3);
+			txtIDJuego.setEnabled(false);
 			JLabel lblNombreJuego = new JLabel("Nombre: ");
 			txtNombreJuego = new JTextField(Datos.JUEGONOMBRE);
 			JLabel lblGeneroJuego = new JLabel("Género: ");
@@ -250,17 +260,29 @@ public class AddPanel extends JPanel {
 			txtNombreJuego.addActionListener(Actions.addUserAceptar);
 			// comboGeneroJuego.addActionListener(Actions.addUserAceptar);
 
+			formAddJuego.add(lblIDJuego);
+			springJuego.putConstraint(SpringLayout.EAST, lblIDJuego, 100,
+					SpringLayout.WEST, formAddJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, lblIDJuego, 40,
+					SpringLayout.NORTH, formAddJuego);
+
+			formAddJuego.add(txtIDJuego);
+			springJuego.putConstraint(SpringLayout.WEST, txtIDJuego, 30,
+					SpringLayout.EAST, lblIDJuego);
+			springJuego.putConstraint(SpringLayout.NORTH, txtIDJuego, 40,
+					SpringLayout.NORTH, formAddJuego);
+
 			formAddJuego.add(lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblNombreJuego, 100,
 					SpringLayout.WEST, formAddJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, lblNombreJuego, 40,
-					SpringLayout.NORTH, formAddJuego);
+					SpringLayout.NORTH, lblIDJuego);
 
 			formAddJuego.add(txtNombreJuego);
 			springJuego.putConstraint(SpringLayout.WEST, txtNombreJuego, 30,
 					SpringLayout.EAST, lblNombreJuego);
 			springJuego.putConstraint(SpringLayout.NORTH, txtNombreJuego, 40,
-					SpringLayout.NORTH, formAddJuego);
+					SpringLayout.NORTH, txtIDJuego);
 
 			formAddJuego.add(lblGeneroJuego);
 			springJuego.putConstraint(SpringLayout.EAST, lblGeneroJuego, 100,
@@ -279,9 +301,20 @@ public class AddPanel extends JPanel {
 			btnAceptarAddJuego.addActionListener(Actions.addJuegoAceptar);
 			JButton btnLimpiarAddJuego = new JButton("Limpiar");
 			btnLimpiarAddJuego.addActionListener(Actions.addJuegoLimpiar);
+			btnChangeModeJuego = new JButton("Modificar");
+			btnChangeModeJuego.addActionListener(Actions.changeToModJuego);
+			btnPreviousJuego = new JButton("Anterior");
+			btnPreviousJuego.setVisible(false);
+			// btnPreviousjuego.addActionListener(Actions.previousJuego);
+			btnNextJuego = new JButton("Siguiente");
+			btnNextJuego.setVisible(false);
+			// btnNextJuego.addActionListener(Actions.nextJuego);
 
+			btnAddJuego.add(btnPreviousJuego);
 			btnAddJuego.add(btnAceptarAddJuego);
 			btnAddJuego.add(btnLimpiarAddJuego);
+			btnAddJuego.add(btnChangeModeJuego);
+			btnAddJuego.add(btnNextJuego);
 
 			panelAddJuego.add(formAddJuego, BorderLayout.CENTER);
 			panelAddJuego.add(btnAddJuego, BorderLayout.PAGE_END);
@@ -426,12 +459,12 @@ public class AddPanel extends JPanel {
 	protected void set_txtUser(String user) {
 		this.txtUser.setText(user);
 	}
-	
-	protected void enable_txtUser(){
+
+	protected void enable_txtUser() {
 		this.txtUser.setEnabled(true);
 	}
-	
-	protected void disable_txtUser(){
+
+	protected void disable_txtUser() {
 		this.txtUser.setEnabled(false);
 	}
 

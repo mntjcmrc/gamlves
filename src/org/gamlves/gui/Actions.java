@@ -294,13 +294,32 @@ public class Actions {
 			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Añadir");
 			MainRun.mainFrame.addPanel.disable_txtUser();
 
-			MainRun.mainFrame.addPanel.btnPrevious.setVisible(true);
-			MainRun.mainFrame.addPanel.btnNext.setVisible(true);
+			MainRun.mainFrame.addPanel.btnPreviousUser.setVisible(true);
+			MainRun.mainFrame.addPanel.btnNextUser.setVisible(true);
 
 			MainRun.mainFrame.addPanel.btnChangeModeUser
 					.removeActionListener(Actions.changeToModUser);
 			MainRun.mainFrame.addPanel.btnChangeModeUser
 					.addActionListener(Actions.changeToAddUser);
+		}
+
+	};
+	
+	protected static ActionListener changeToModJuego = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Añadir");
+
+			MainRun.mainFrame.addPanel.btnPreviousJuego.setVisible(true);
+			MainRun.mainFrame.addPanel.btnNextJuego.setVisible(true);
+
+			MainRun.mainFrame.addPanel.btnChangeModeJuego
+					.removeActionListener(Actions.changeToModJuego);
+			MainRun.mainFrame.addPanel.btnChangeModeJuego
+					.addActionListener(Actions.changeToAddJuego);
+			
 		}
 
 	};
@@ -313,31 +332,33 @@ public class Actions {
 			MainRun.mainFrame.addPanel.btnChangeModeUser.setText("Modificar");
 			MainRun.mainFrame.addPanel.enable_txtUser();
 
-			MainRun.mainFrame.addPanel.btnPrevious.setVisible(false);
-			MainRun.mainFrame.addPanel.btnNext.setVisible(false);
+			MainRun.mainFrame.addPanel.btnPreviousUser.setVisible(false);
+			MainRun.mainFrame.addPanel.btnNextUser.setVisible(false);
 
 			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.removeActionListener(Actions.changeToAddUser);
+					.removeActionListener(Actions.changeToAddJuego);
 			MainRun.mainFrame.addPanel.btnChangeModeUser
-					.addActionListener(Actions.changeToModUser);
+					.addActionListener(Actions.changeToModJuego);
 		}
 
 	};
 
-	protected static ActionListener changeToModJuego = new ActionListener() {
 
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-
-		}
-
-	};
 
 	protected static ActionListener changeToAddJuego = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			MainRun.mainFrame.addPanel.btnChangeModeJuego.setText("Modificar");
 
+			MainRun.mainFrame.addPanel.btnPreviousJuego.setVisible(false);
+			MainRun.mainFrame.addPanel.btnNextJuego.setVisible(false);
+
+			MainRun.mainFrame.addPanel.btnChangeModeJuego
+					.removeActionListener(Actions.changeToAddJuego);
+			MainRun.mainFrame.addPanel.btnChangeModeJuego
+					.addActionListener(Actions.changeToModJuego);
 		}
 
 	};
