@@ -314,6 +314,23 @@ public class DriverGamlves {
 
 		return add;
 	}
+	
+	protected static boolean modJuego(Juego juego) throws SQLException {
+		boolean mod = false;
+		int ID;
+		String nombre, genero;
+		String update;
+
+		ID = juego.get_id();
+		nombre = juego.get_nombre();
+		genero = juego.get_genero();
+		
+		update = "UPDATE Juegos SET Nombre='" + nombre + "', Genero='" + genero + "' WHERE ID=" + ID;
+		
+		mod = database.makeUpdate(update);
+
+		return mod;
+	}
 
 	/**
 	 * Añade un registro de una relación entre usuario y juego a la base de

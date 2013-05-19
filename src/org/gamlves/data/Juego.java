@@ -70,4 +70,10 @@ public class Juego {
 	public String toString() {
 		return this._nombre;
 	}
+
+	public boolean equals(Juego juego) {
+		return (this._id == juego.get_id())
+				&& (this._nombre.equals(juego.get_nombre()))
+				&& (this._genero.equals(juego.get_genero()));
+	}
 }

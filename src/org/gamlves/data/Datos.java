@@ -570,6 +570,45 @@ public class Datos {
 		return transaction;
 
 	}
+	
+	public static int juegoTransaction(int ID, String nombre, String genero) {
+		int transaction = 0;
+
+		Juego juego;
+		Juego juegoDatabase;
+
+		juegoDatabase = searchJuego(ID);
+		
+		juego = new Juego(nombre, genero);
+		juego.set_id(ID);
+		
+
+		if (juegoDatabase.equals(juego)) {
+			// No ha habido modificaciones
+			transaction = 1;
+			return transaction;
+		} else {
+			// Ha habido modificaciones
+			try {
+				DriverGamlves.modJuego(juego);
+			} catch (SQLException e) {
+				// Error al modificar el registro en la base de datos
+				transaction = 2;
+				JOptionPane.showMessageDialog(null,
+						"SQL Error: " + e.getErrorCode()
+								+ "\nAvise al administrador");
+				return transaction;
+			} finally {
+				DriverGamlves.disconnect();
+			}
+			// Se cambia en memoria
+			int i = _juegos.indexOf(juegoDatabase);
+			_juegos.set(i, juego);
+
+			return transaction;
+		}
+
+	}
 
 	/**
 	 * Aglutina todos los pasos al crear un juego en el sistema, estos son:

@@ -498,8 +498,8 @@ public class AddPanel extends JPanel {
 		this.txtPass.setText(pass);
 	}
 
-	protected String get_txtIDJuego() {
-		return this.txtNombreJuego.getText();
+	protected int get_txtIDJuego() {
+		return Integer.parseInt(this.txtIDJuego.getText());
 	}
 
 	protected void set_txtIDJuego(String ID) {

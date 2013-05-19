@@ -320,8 +320,33 @@ public class Actions {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			// PENDIENTE
+			int ID = MainRun.mainFrame.addPanel.get_txtIDJuego();
+			String nombre = MainRun.mainFrame.addPanel.get_txtNombreJuego();
+			String genero = MainRun.mainFrame.addPanel.get_comboGeneroJuego();
+			
+			int transaction;
+			transaction = Datos.juegoTransaction(ID, nombre, genero);
+			String message;
+
+			switch (transaction) {
+
+			case 0:
+				message = "El juego se ha modificado correctamente";
+				break;
+			case 1:
+				message = "No hay nada que modificar";
+				break;
+			case 2:
+				message = "Ha habido un error al conectar con la base de datos";
+				break;
+			default:
+				message = "Situación inesperada";
+				break;
+			}
+
+			JOptionPane.showMessageDialog(MainRun.mainFrame, message);
+
+
 		}
 
 	};
