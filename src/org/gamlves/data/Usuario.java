@@ -8,9 +8,21 @@ package org.gamlves.data;
  * 
  */
 public class Usuario {
+	/**
+	 * ID único que identifica al usuario
+	 */
 	private int _id;
+	/**
+	 * Nombre del usuario
+	 */
 	private String _nombre;
+	/**
+	 * Username único que identifica al usuario
+	 */
 	private String _user;
+	/**
+	 * Contraseña guardada en un hash MD5
+	 */
 	private String _pass;
 
 	/**
@@ -66,6 +78,13 @@ public class Usuario {
 		this._id = id;
 	}
 
+	/**
+	 * Comprueba que dos objetos Usuario son idénticos
+	 * 
+	 * @param usuario
+	 *            Usuario a comprobar con él mismo
+	 * @return Si son iguales o no
+	 */
 	public boolean equals(Usuario usuario) {
 		return (this._id == usuario.get_id())
 				&& (this._nombre.equals(usuario.get_nombre()))

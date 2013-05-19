@@ -231,6 +231,15 @@ public class Datos {
 		return usuariojuego;
 	}
 
+	/**
+	 * Devuelve un usuario con el ID dado, el usuario es buscado en los arrays
+	 * en memoria
+	 * 
+	 * @param ID
+	 *            ID del usuario
+	 * @return Un objeto de tipo usuario con los datos necesarios, null si no
+	 *         existe
+	 */
 	public static Usuario searchUser(int ID) {
 		Usuario usuario = null;
 
@@ -369,6 +378,13 @@ public class Datos {
 		return usuariojuego;
 	}
 
+	/**
+	 * Busca cual es el índice en el array de géneros del género dado
+	 * 
+	 * @param genero
+	 *            Género del que buscar su índice
+	 * @return El índice en el array de géneros del género dado
+	 */
 	public static int searchGeneroIndex(String genero) {
 
 		for (int i = 0; i < Datos.GENEROS.length; i++) {
@@ -455,6 +471,27 @@ public class Datos {
 
 	}
 
+	/**
+	 * Aglutina todos los pasos para modificar los datos de un usuario, estos
+	 * son: crear el nuevo hash si se está cambiando la contraseña, comprobar
+	 * que efectivamente hay cambios comparando con los datos en memoria, mandar
+	 * la modificación a la base de datos y cambiar en memoria el objeto
+	 * modificado
+	 * 
+	 * @param ID
+	 *            ID del usuario a modificar
+	 * @param nombre
+	 *            Nombre del usuario, puede ser nuevo
+	 * @param user
+	 *            Username del usuario a modificar
+	 * @param pass
+	 *            Nueva contraseña del usuario a modificar, si está vacía es que
+	 *            no se cambia
+	 * @param changePass
+	 *            Si se está cambiando la contraseña o no
+	 * @return 0 si no ha habido ningún problema, 1 si no hay modificaciones en
+	 *         los datos, 2 si falla en la conexión con la base de datos
+	 */
 	public static int userTransaction(int ID, String nombre, String user,
 			String pass, boolean changePass) {
 		int transaction = 0;
@@ -570,7 +607,22 @@ public class Datos {
 		return transaction;
 
 	}
-	
+
+	/**
+	 * Aglutina todos los pasos para modificar los datos de un juego, estos son:
+	 * comprobar que efectivamente hay cambios comparando con los datos en
+	 * memoria, mandar la modificación a la base de datos y cambiar en memoria
+	 * el objeto modificado
+	 * 
+	 * @param ID
+	 *            ID del juego a modificar
+	 * @param nombre
+	 *            Nombre del juego, puede ser nuevo
+	 * @param genero
+	 *            Género del juego, puede ser nuevo
+	 * @return 0 si no ha habido ningún problema, 1 si no hay modificaciones en
+	 *         los datos, 2 si falla en la conexión con la base de datos
+	 */
 	public static int juegoTransaction(int ID, String nombre, String genero) {
 		int transaction = 0;
 
@@ -578,10 +630,9 @@ public class Datos {
 		Juego juegoDatabase;
 
 		juegoDatabase = searchJuego(ID);
-		
+
 		juego = new Juego(nombre, genero);
 		juego.set_id(ID);
-		
 
 		if (juegoDatabase.equals(juego)) {
 			// No ha habido modificaciones
@@ -664,20 +715,6 @@ public class Datos {
 					DriverGamlves.disconnect();
 				}
 
-				// No es necesario aplicar id en este caso
-				// try {
-				// usuariojuegoDatabase = DriverGamlves
-				// .get_usuariojuego(usuariojuego.get_idJuego(),
-				// usuariojuego.get_user());
-				// } catch (SQLException e) {
-				// // Error al pedir los datos de la relación
-				// transaction = 4;
-				// return transaction;
-				// // e.printStackTrace();
-				// } finally {
-				// DriverGamlves.disconnect();
-				// }
-
 				_usuariosjuegos.add(usuariojuego);
 
 			} else {
@@ -738,6 +775,12 @@ public class Datos {
 		return juegosMD;
 	}
 
+	/**
+	 * 
+	 * @param juegos
+	 *            Juegos de los que hacer el modelo
+	 * @return Metadatos para crear una tabla con los juegos dados en arraylist
+	 */
 	public static DefaultTableModel getJuegosMetadata(ArrayList<Juego> juegos) {
 		DefaultTableModel juegosMD = new DefaultTableModel();
 		int size = juegos.size();
@@ -818,14 +861,25 @@ public class Datos {
 		return juegosFiltered;
 	}
 
+	/**
+	 * @return Tamaño del array de usuarios en memoria
+	 */
 	public static int get_usuariosSize() {
 		return _usuarios.size();
 	}
 
+	/**
+	 * @return Tamaño del array de juegos en memoria
+	 */
 	public static int get_juegosSize() {
 		return _juegos.size();
 	}
 
+	/**
+	 * @param i
+	 *            Índice en el que buscar el usuario
+	 * @return Usuario en el índice dado
+	 */
 	public static Usuario get_usuarioIndex(int i) {
 		if (i < _usuarios.size()) {
 			return _usuarios.get(i);
@@ -834,6 +888,11 @@ public class Datos {
 		}
 	}
 
+	/**
+	 * @param i
+	 *            Índice en el que buscar el juego
+	 * @return Juego en el índice dado
+	 */
 	public static Juego get_juegoIndex(int i) {
 		if (i < _juegos.size()) {
 			return _juegos.get(i);

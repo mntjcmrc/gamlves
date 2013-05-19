@@ -24,6 +24,9 @@ public class StartPoint {
 	public static Splash splash;
 
 	/**
+	 * Muestra el splash, carga los datos en memoria y lanza la ejecución del
+	 * frame de login
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

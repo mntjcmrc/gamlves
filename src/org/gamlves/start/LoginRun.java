@@ -5,8 +5,7 @@ import javax.swing.JFrame;
 import org.gamlves.gui.LoginFrame;
 
 /**
- * Desde aquí se ejecuta el frame de login, antes se cargan los datos de la base
- * de datos en memoria
+ * Ejecución del frame de login
  * 
  * @author mntjcmrc
  * 

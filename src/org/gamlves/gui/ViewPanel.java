@@ -40,8 +40,17 @@ public class ViewPanel extends JPanel {
 	 * Panel con la tabla con todos los juegos
 	 */
 	private JPanel panelViewJuego;
+	/**
+	 * Utilizado para visualizar el panel con los datos de los usuarios
+	 */
 	protected JRadioButton rViewUsuario;
+	/**
+	 * Utilizado para visualizar el panel con los datos de los juegos
+	 */
 	protected JRadioButton rViewJuego;
+	/**
+	 * Utilizado para visualizar el panel con los datos de las bibliotecas
+	 */
 	protected JRadioButton rViewLibrary;
 	/**
 	 * Panel con la tabla con los juegos del usuario elegido en la combobox
@@ -51,7 +60,13 @@ public class ViewPanel extends JPanel {
 	 * Combobox para elegir de que usuario se quieren ver los juegos
 	 */
 	protected JComboBox<String> comboUserLibrary;
+	/**
+	 * Tabla con los datos de los usuarios
+	 */
 	protected JTable tableViewUsuario;
+	/**
+	 * Tabla con los datos de los juegos
+	 */
 	protected JTable tableViewJuego;
 	/**
 	 * Tabla con los juegos de un usuario concreto
@@ -75,6 +90,13 @@ public class ViewPanel extends JPanel {
 	 */
 	private final String LIBRARY = "Biblioteca";
 
+	/**
+	 * Creará el panel con las tablas de datos
+	 * 
+	 * @param admin
+	 *            Si el panel tiene que iniciarse en modo admin o para un
+	 *            usuario normal
+	 */
 	protected ViewPanel(boolean admin) {
 		if (admin) {
 			// Modo admin

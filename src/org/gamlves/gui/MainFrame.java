@@ -57,7 +57,13 @@ public class MainFrame extends JFrame {
 	 */
 	private final int HEIGHT = 500;
 
+	/**
+	 * Etiqueta de estado que estará en la parte inferior del frame
+	 */
 	public JLabel lblStatus;
+	/**
+	 * Si el logueado es el admin o no
+	 */
 	protected boolean admin;
 
 	/**

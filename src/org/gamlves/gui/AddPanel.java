@@ -89,17 +89,61 @@ public class AddPanel extends JPanel {
 	 */
 	private JTextField txtBuscarUsuarioJuego;
 
+	/**
+	 * Lista en la que saldrán los resultados de la búsqueda de juegos en el
+	 * modo user
+	 */
 	protected JList<String> listBuscarUsuarioJuego;
+	/**
+	 * Modelo de la lista en la que saldrán los resultados de la búsqueda de
+	 * juegos en el modo user
+	 */
 	protected DefaultListModel<String> modelBuscarUsuarioJuego;
+	/**
+	 * Botón para aceptar añadir/modificar usuarios. Modo admin
+	 */
 	protected JButton btnAceptarAddUsuario;
+	/**
+	 * Botón para limpiar el formulario de añadir usuarios. Modo admin
+	 */
 	protected JButton btnLimpiarAddUsuario;
+	/**
+	 * Botón para aceptar añadir/modificar juegos. Modo admin
+	 */
 	protected JButton btnAceptarAddJuego;
+	/**
+	 * Botón para limpìar el formulario de añadir juegos. Modo admin
+	 */
 	protected JButton btnLimpiarAddJuego;
+	/**
+	 * Botón para cambiar entre añadir/modificar del panel de usuarios. Modo
+	 * admin
+	 */
 	protected JButton btnChangeModeUser;
+	/**
+	 * Botón para que se carguen los datos del anterior registro de usuario.
+	 * Modo admin
+	 */
 	protected JButton btnPreviousUser;
+	/**
+	 * Botón para que se carguen los datos del siguiente registro de usuario.
+	 * Modo admin
+	 */
 	protected JButton btnNextUser;
+	/**
+	 * Botón para cambiar entre añadir/modificar del panel de usuarios. Modo
+	 * admin
+	 */
 	protected JButton btnChangeModeJuego;
+	/**
+	 * Botón para que se carguen los datos del anterior registro de juego. Modo
+	 * admin
+	 */
 	protected JButton btnPreviousJuego;
+	/**
+	 * Botón para que se carguen los datos del siguiente registro de juego. Modo
+	 * admin
+	 */
 	protected JButton btnNextJuego;
 
 	/**
@@ -111,13 +155,19 @@ public class AddPanel extends JPanel {
 	 */
 	private final String ADDJUEGO = "Juego";
 
+	/**
+	 * Índice en el que se encuentra el modo modificar de usuarios
+	 */
 	protected int indexUser = 0;
+	/**
+	 * Índice en el que se encuentra el modo modificar de usuarios
+	 */
 	protected int indexJuego = 0;
 
 	/**
-	 * Crea el panel para añadir registros. Modo admin: se pueden añadir
-	 * usuarios o juegos. Modo user: se pueden añadir juegos a la biblioteca del
-	 * usuario logueado.
+	 * Crea el panel para añadir registros. Modo admin: se pueden
+	 * añadir/modificar usuarios o juegos. Modo user: se pueden añadir juegos a
+	 * la biblioteca del usuario logueado.
 	 * 
 	 * @param admin
 	 *            Con esto sabremos fácilmente si el usuario logueado es el
@@ -437,10 +487,17 @@ public class AddPanel extends JPanel {
 		layout.show(panelCards, ADDJUEGO);
 	}
 
+	/**
+	 * @return ID en el TextField de usuario
+	 */
 	protected int get_txtIDUser() {
 		return Integer.parseInt(this.txtIDUser.getText());
 	}
 
+	/**
+	 * @param ID
+	 *            Texto a asignar en el TexField del ID del usuario
+	 */
 	protected void set_txtIDUser(String ID) {
 		this.txtIDUser.setText(ID);
 	}
@@ -475,10 +532,16 @@ public class AddPanel extends JPanel {
 		this.txtUser.setText(user);
 	}
 
+	/**
+	 * Habilita el TexField del username
+	 */
 	protected void enable_txtUser() {
 		this.txtUser.setEnabled(true);
 	}
 
+	/**
+	 * Deshabilita el TextField del username
+	 */
 	protected void disable_txtUser() {
 		this.txtUser.setEnabled(false);
 	}
@@ -498,10 +561,17 @@ public class AddPanel extends JPanel {
 		this.txtPass.setText(pass);
 	}
 
+	/**
+	 * @return ID en el TextField de juego
+	 */
 	protected int get_txtIDJuego() {
 		return Integer.parseInt(this.txtIDJuego.getText());
 	}
 
+	/**
+	 * @param ID
+	 *            Texto a asignar en el TexField del ID del juego
+	 */
 	protected void set_txtIDJuego(String ID) {
 		this.txtIDJuego.setText(ID);
 	}
@@ -528,6 +598,11 @@ public class AddPanel extends JPanel {
 		return (String) this.comboGeneroJuego.getSelectedItem();
 	}
 
+	/**
+	 * @param i
+	 *            Índice a asignar en la combobox de elección de género del
+	 *            panel de juegos
+	 */
 	protected void set_comboGeneroJuego(int i) {
 		this.comboGeneroJuego.setSelectedIndex(i);
 	}

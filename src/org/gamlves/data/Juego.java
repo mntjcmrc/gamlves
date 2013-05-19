@@ -71,6 +71,13 @@ public class Juego {
 		return this._nombre;
 	}
 
+	/**
+	 * Comprueba que dos objetos Juego son idénticos
+	 * 
+	 * @param juego
+	 *            Juego a comprobar con él mismo
+	 * @return Si son iguales o no
+	 */
 	public boolean equals(Juego juego) {
 		return (this._id == juego.get_id())
 				&& (this._nombre.equals(juego.get_nombre()))

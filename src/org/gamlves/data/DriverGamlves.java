@@ -270,6 +270,16 @@ public class DriverGamlves {
 		return add;
 	}
 
+	/**
+	 * Modifica el registro de un usuario con los nuevos datos
+	 * 
+	 * @param usuario
+	 *            Objeto con los nuevos datos del usuario
+	 * @param changePass
+	 *            Si se cambia la contraseña o no
+	 * @return Si se ha modificado correctamente el registro o no
+	 * @throws SQLException
+	 */
 	protected static boolean modUser(Usuario usuario, boolean changePass)
 			throws SQLException {
 		boolean mod = false;
@@ -281,11 +291,13 @@ public class DriverGamlves {
 		nombre = usuario.get_nombre();
 		pass = usuario.get_pass();
 		if (changePass) {
-			update = "UPDATE Usuarios SET Nombre='" + nombre + "', Pass='" + pass +  "' WHERE ID=" + ID;
+			update = "UPDATE Usuarios SET Nombre='" + nombre + "', Pass='"
+					+ pass + "' WHERE ID=" + ID;
 		} else {
-			update = "UPDATE Usuarios SET Nombre='" + nombre + "' WHERE ID=" + ID;
+			update = "UPDATE Usuarios SET Nombre='" + nombre + "' WHERE ID="
+					+ ID;
 		}
-		
+
 		mod = database.makeUpdate(update);
 
 		return mod;
@@ -314,7 +326,15 @@ public class DriverGamlves {
 
 		return add;
 	}
-	
+
+	/**
+	 * Modifica el registro de un juego
+	 * 
+	 * @param juego
+	 *            Objeto con los nuevos datos del juego
+	 * @return Si se ha modificado correctamente o no
+	 * @throws SQLException
+	 */
 	protected static boolean modJuego(Juego juego) throws SQLException {
 		boolean mod = false;
 		int ID;
@@ -324,9 +344,10 @@ public class DriverGamlves {
 		ID = juego.get_id();
 		nombre = juego.get_nombre();
 		genero = juego.get_genero();
-		
-		update = "UPDATE Juegos SET Nombre='" + nombre + "', Genero='" + genero + "' WHERE ID=" + ID;
-		
+
+		update = "UPDATE Juegos SET Nombre='" + nombre + "', Genero='" + genero
+				+ "' WHERE ID=" + ID;
+
 		mod = database.makeUpdate(update);
 
 		return mod;

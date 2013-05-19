@@ -47,8 +47,6 @@ public class LoginFrame extends JFrame {
 	 */
 	private JButton btnCancelar;
 
-	// private String usuario, pass;
-
 	/**
 	 * Crea el frame de login con las etiquetas, campos de texto y botones
 	 */

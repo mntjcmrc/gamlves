@@ -21,10 +21,23 @@ public class FilterFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 2891889069831606564L;
+	/**
+	 * Anchura del frame
+	 */
 	private int WIDTH = 150;
+	/**
+	 * Altura del frame
+	 */
 	private int HEIGHT = 280;
+	/**
+	 * Array con los JCheckbox
+	 */
 	protected static ArrayList<JCheckBox> checkboxes;
 
+	/**
+	 * Crea el frame, lo sitúa exactamente a la izquierda del frame principal,
+	 * teniendo todos las chekboxes marcadas
+	 */
 	protected FilterFrame() {
 		setTitle("Géneros");
 		setLayout(new BorderLayout());
@@ -62,16 +75,23 @@ public class FilterFrame extends JFrame {
 		Actions.systemLookAndFeel();
 	}
 
+	/**
+	 * @return Vector con los géneros que hay que mostrar
+	 */
 	protected static Vector<String> getFilterGeneros() {
 		Vector<String> generos = new Vector<String>();
-		for (JCheckBox cb : checkboxes){
-			if(cb.isSelected()){
+		for (JCheckBox cb : checkboxes) {
+			if (cb.isSelected()) {
 				generos.add(cb.getText());
 			}
 		}
 		return generos;
 	}
 
+	/**
+	 * Reinicia la posición del frame, se hace esto porque al desparecer y
+	 * aparecer se solía reiniciar a la posición 0,0
+	 */
 	protected void resetBounds() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 

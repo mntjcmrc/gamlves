@@ -28,7 +28,7 @@ import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
 
 /**
- * Aquí estarán todos los ActionListener necesarios
+ * Aquí estarán todos los ActionListener y métodos necesarios
  * 
  * @author mntjcmrc
  * 
@@ -40,7 +40,7 @@ public class Actions {
 	 * hecho saldrá un mensaje avisándolo. En caso de hacerlo, se comprobará si
 	 * se tienen esos datos en memoria. Si no están, avisará de usuario y/o
 	 * contraseña incorrectos. Si están procederá a loguearse, cerrar el frame
-	 * de login y lanzar el frame principal.
+	 * de login y finalmente crear y lanzar el frame principal.
 	 */
 	protected static ActionListener loginAceptar = new ActionListener() {
 
@@ -57,7 +57,7 @@ public class Actions {
 					Usuario usuario = Datos.searchUser(user);
 					Login._user = user;
 					Login._nombre = usuario.get_nombre();
-					
+
 					LoginRun.loginFrame.set_txtUser("");
 					LoginRun.loginFrame.set_txtPass("");
 
@@ -86,7 +86,7 @@ public class Actions {
 	};
 
 	/**
-	 * Acción a ejecutar cuando el botón cancelar del frame de login es pulsado.
+	 * Acción a ejecutar cuando el botón cerrar del frame de login es pulsado.
 	 * Cierra el programa.
 	 */
 	protected static ActionListener cerrar = new ActionListener() {
@@ -203,7 +203,7 @@ public class Actions {
 	}
 
 	/**
-	 * Aplicará el LookAndFeel del sistema al frame
+	 * Aplicará el LookAndFeel del sistema
 	 */
 	protected static void systemLookAndFeel() {
 		try {
@@ -277,6 +277,11 @@ public class Actions {
 
 	};
 
+	/**
+	 * Recoge los datos introducidos por el admin e inicia una transacción para
+	 * modificar un usuario en la base de datos y en memoria. Saldrán mensajes
+	 * por cada error posible
+	 */
 	protected static ActionListener modUserAceptar = new ActionListener() {
 
 		@Override
@@ -319,6 +324,11 @@ public class Actions {
 
 	};
 
+	/**
+	 * Recoge los datos introducidos por el admin e inicia una transacción para
+	 * modificar un juego en la base de datos y en memoria. Saldrán mensajes por
+	 * cada error posible
+	 */
 	protected static ActionListener modJuegoAceptar = new ActionListener() {
 
 		@Override
@@ -326,7 +336,7 @@ public class Actions {
 			int ID = MainRun.mainFrame.addPanel.get_txtIDJuego();
 			String nombre = MainRun.mainFrame.addPanel.get_txtNombreJuego();
 			String genero = MainRun.mainFrame.addPanel.get_comboGeneroJuego();
-			
+
 			int transaction;
 			transaction = Datos.juegoTransaction(ID, nombre, genero);
 			String message;
@@ -349,11 +359,13 @@ public class Actions {
 
 			JOptionPane.showMessageDialog(MainRun.mainFrame, message);
 
-
 		}
 
 	};
 
+	/**
+	 * Limpia los TexFields del panel de usuario
+	 */
 	private static void limpiarUser() {
 		MainRun.mainFrame.addPanel.set_txtIDUser("");
 		MainRun.mainFrame.addPanel.set_txtNombreUsuario("");
@@ -361,6 +373,9 @@ public class Actions {
 		MainRun.mainFrame.addPanel.set_txtPass("");
 	}
 
+	/**
+	 * Limpia los TexFields y ComboBox del panel de juego
+	 */
 	private static void limpiarJuego() {
 		MainRun.mainFrame.addPanel.set_txtIDJuego("");
 		MainRun.mainFrame.addPanel.set_txtNombreJuego("");
@@ -377,6 +392,11 @@ public class Actions {
 		}
 	};
 
+	/**
+	 * Carga los datos del usuario en el índice
+	 * MainRun.mainFrame.addPanel.indexUser además de controlar que botones
+	 * están activos
+	 */
 	private static void loadDataUser() {
 		int usuarios = Datos.get_usuariosSize();
 		Usuario usuario;
@@ -397,6 +417,11 @@ public class Actions {
 		MainRun.mainFrame.addPanel.set_txtUser(usuario.get_user());
 	}
 
+	/**
+	 * Carga los datos del juego en el índice
+	 * MainRun.mainFrame.addPanel.indexJuego además de controlar que botones
+	 * están activos
+	 */
 	private static void loadDataJuego() {
 		int juegos = Datos.get_juegosSize();
 		Juego juego;
@@ -418,6 +443,9 @@ public class Actions {
 				.searchGeneroIndex(juego.get_genero()));
 	}
 
+	/**
+	 * Carga el anterior usuario
+	 */
 	protected static ActionListener previousUser = new ActionListener() {
 
 		@Override
@@ -428,6 +456,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Carga el siguiente usuario
+	 */
 	protected static ActionListener nextUser = new ActionListener() {
 
 		@Override
@@ -438,6 +469,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Cambia el modo del panel a modificar usuarios
+	 */
 	protected static ActionListener changeToModUser = new ActionListener() {
 
 		@Override
@@ -474,6 +508,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Carga el anterior juego
+	 */
 	protected static ActionListener previousJuego = new ActionListener() {
 
 		@Override
@@ -484,6 +521,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Carga el siguiente juego
+	 */
 	protected static ActionListener nextJuego = new ActionListener() {
 
 		@Override
@@ -494,6 +534,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Cambia el modo del panel a modificar juegos
+	 */
 	protected static ActionListener changeToModJuego = new ActionListener() {
 
 		@Override
@@ -528,6 +571,9 @@ public class Actions {
 		}
 	};
 
+	/**
+	 * Cambia el modo del panel a añadir usuarios
+	 */
 	protected static ActionListener changeToAddUser = new ActionListener() {
 
 		@Override
@@ -552,6 +598,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Cambia el modo del panel a añadir juegos
+	 */
 	protected static ActionListener changeToAddJuego = new ActionListener() {
 
 		@Override
@@ -732,6 +781,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Actualiza las tablas con la vista de datos del admin
+	 */
 	protected static ChangeListener refreshTablesAdmin = new ChangeListener() {
 
 		@Override
@@ -765,33 +817,9 @@ public class Actions {
 
 	};
 
-	// protected static ChangeListener showFilterAdmin = new ChangeListener() {
-	//
-	// @Override
-	// public void stateChanged(ChangeEvent e) {
-	//
-	// if (e.getSource() instanceof JRadioButton) {
-	// if (((JRadioButton) e.getSource()).isSelected()
-	// && e.getSource().equals(
-	// MainRun.mainFrame.viewPanel.rViewJuego)) {
-	// ((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
-	// MainRun.mainFrame.frameFilter.setVisible(true);
-	// }
-	// if (((JRadioButton) e.getSource()).isSelected()
-	// && e.getSource().equals(
-	// MainRun.mainFrame.viewPanel.rViewLibrary)) {
-	// ((FrameFilter) MainRun.mainFrame.frameFilter).resetBounds();
-	// MainRun.mainFrame.frameFilter.setVisible(true);
-	// }
-	// if (((JRadioButton) e.getSource()).isSelected()
-	// && e.getSource().equals(
-	// MainRun.mainFrame.viewPanel.rViewUsuario)) {
-	// MainRun.mainFrame.frameFilter.setVisible(false);
-	// }
-	// }
-	// }
-	// };
-
+	/**
+	 * Actualiza la tabla de la biblioteca de juegos del usuario
+	 */
 	protected static ChangeListener refreshTableLibrary = new ChangeListener() {
 
 		@Override
@@ -901,14 +929,20 @@ public class Actions {
 			}
 		}
 	};
-	
-	protected static ActionListener logout = new ActionListener(){
+
+	/**
+	 * El usuario logueado en la aplicación sale de ella y vuelve a mostrarse la
+	 * ventana de login
+	 */
+	protected static ActionListener logout = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			MainRun.mainFrame.dispose();
+			Login._user = "";
+			Login._nombre = "";
 			LoginRun.loginFrame.setVisible(true);
 		}
-		
+
 	};
 }

@@ -33,7 +33,6 @@ public class Seguridad {
 		}
 	}
 
-	// Sin testear
 	/**
 	 * Comprueba que la contraseña dada es del usuario que se está logeando en
 	 * la aplicación.

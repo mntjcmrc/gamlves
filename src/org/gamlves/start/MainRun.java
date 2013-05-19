@@ -4,6 +4,12 @@ import javax.swing.JFrame;
 
 import org.gamlves.gui.MainFrame;
 
+/**
+ * Ejecución del frame principal
+ * 
+ * @author mntjcmrc
+ * 
+ */
 public class MainRun implements Runnable {
 	public static MainFrame mainFrame;
 
@@ -11,6 +17,9 @@ public class MainRun implements Runnable {
 		show();
 	}
 
+	/**
+	 * Muestra el frame y pide el foco
+	 */
 	private void show() {
 		mainFrame.setVisible(true);
 		mainFrame.requestFocus();
