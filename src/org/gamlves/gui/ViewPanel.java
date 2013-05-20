@@ -180,7 +180,8 @@ public class ViewPanel extends JPanel {
 
 		} else {
 			// Modo user
-
+			
+			this.setLayout(new BorderLayout());
 			panelCards = new JPanel(new CardLayout());
 
 			panelViewLibrary = new JPanel(new BorderLayout());
