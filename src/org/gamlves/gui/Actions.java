@@ -941,6 +941,7 @@ public class Actions {
 			MainRun.mainFrame.dispose();
 			Login._user = "";
 			Login._nombre = "";
+			MainRun.mainFrame.filterFrame.setVisible(false);
 			LoginRun.loginFrame.setVisible(true);
 		}
 
