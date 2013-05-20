@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -137,6 +136,8 @@ public class ViewPanel extends JPanel {
 			JScrollPane scrollTableUsuario = new JScrollPane();
 			tableViewUsuario = new JTable(Datos.getUsuariosMetadata());
 			tableViewUsuario.setEnabled(false);
+			tableViewUsuario.getTableHeader().setReorderingAllowed(false);
+			tableViewUsuario.getTableHeader().setResizingAllowed(false);
 
 			scrollTableUsuario.getViewport().add(tableViewUsuario);
 
@@ -147,6 +148,8 @@ public class ViewPanel extends JPanel {
 			JScrollPane scrollTableJuego = new JScrollPane();
 			tableViewJuego = new JTable(Datos.getJuegosMetadata());
 			tableViewJuego.setEnabled(false);
+			tableViewJuego.getTableHeader().setReorderingAllowed(false);
+			tableViewJuego.getTableHeader().setResizingAllowed(false);
 
 			scrollTableJuego.getViewport().add(tableViewJuego);
 
@@ -161,6 +164,8 @@ public class ViewPanel extends JPanel {
 					Datos.getLibraryMetadata((String) comboUserLibrary
 							.getSelectedItem()));
 			tableViewLibrary.setEnabled(false);
+			tableViewLibrary.getTableHeader().setReorderingAllowed(false);
+			tableViewLibrary.getTableHeader().setResizingAllowed(false);
 
 			scrollTableLibrary.getViewport().add(tableViewLibrary);
 			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
@@ -176,17 +181,20 @@ public class ViewPanel extends JPanel {
 		} else {
 			// Modo user
 
+			panelCards = new JPanel(new CardLayout());
+
 			panelViewLibrary = new JPanel(new BorderLayout());
 			JScrollPane scrollTableLibrary = new JScrollPane();
 			tableViewLibrary = new JTable(Datos.getLibraryMetadata(Login._user));
 			tableViewLibrary.setEnabled(false);
+			tableViewLibrary.getTableHeader().setReorderingAllowed(false);
+			tableViewLibrary.getTableHeader().setResizingAllowed(false);
+			
 			scrollTableLibrary.getViewport().add(tableViewLibrary);
 			panelViewLibrary.add(scrollTableLibrary, BorderLayout.CENTER);
 
-			this.add(new JLabel("Biblioteca de " + Login._nombre),
-					BorderLayout.PAGE_START);
-			this.add(panelViewLibrary, BorderLayout.CENTER);
-			this.add(new JLabel("    "), BorderLayout.PAGE_END);
+			panelCards.add(panelViewLibrary, LIBRARY);
+			this.add(panelCards, BorderLayout.CENTER);
 		}
 	}
 
