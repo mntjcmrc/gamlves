@@ -22,8 +22,6 @@ GRANT USAGE ON *.* TO 'gamlves'@'localhost' IDENTIFIED BY PASSWORD '*B1920BDF7B2
 
 GRANT ALL PRIVILEGES ON `gamlves`.* TO 'gamlves'@'localhost' WITH GRANT OPTION;
 
-USE gamlves;
-
 --
 -- Table structure for table `Juegos`
 --
