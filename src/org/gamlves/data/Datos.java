@@ -862,10 +862,24 @@ public class Datos {
 	}
 
 	/**
+	 * @return Los datos de todos los usuarios
+	 */
+	protected static ArrayList<Usuario> get_usuarios(){
+		return _usuarios;
+	}
+	
+	/**
 	 * @return Tamaño del array de usuarios en memoria
 	 */
 	public static int get_usuariosSize() {
 		return _usuarios.size();
+	}
+	
+	/**
+	 * @return Los datos de todos los juegos
+	 */
+	protected static ArrayList<Juego> get_juegos(){
+		return _juegos;
 	}
 
 	/**
