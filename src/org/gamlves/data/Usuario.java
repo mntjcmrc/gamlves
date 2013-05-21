@@ -77,6 +77,11 @@ public class Usuario {
 	public void set_id(int id) {
 		this._id = id;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + this._id + "\nNombre: " + this._nombre + "\nUsername: " + this._user;
+	}
 
 	/**
 	 * Comprueba que dos objetos Usuario son idénticos

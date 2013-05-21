@@ -67,8 +67,9 @@ public class Juego {
 		this._id = id;
 	}
 
+	@Override
 	public String toString() {
-		return this._nombre;
+		return "ID: " + this._id + "\nNombre: " + this._nombre + "\nGénero: " + this._genero;
 	}
 
 	/**

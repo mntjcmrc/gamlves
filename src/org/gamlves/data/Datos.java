@@ -328,7 +328,7 @@ public class Datos {
 		int size = _juegos.size();
 		for (int i = 0; i < size; i++) {
 			if (_juegos.get(i).get_nombre().contains(nombre)) {
-				juegos.add(_juegos.get(i).toString());
+				juegos.add(_juegos.get(i).get_nombre());
 			}
 		}
 
