@@ -842,19 +842,19 @@ public class Actions {
 	 * Muestra el frame con el filtrado por géneros si el usuario entra al tab
 	 * con la vista de datos
 	 */
-	protected static ChangeListener showFilter = new ChangeListener() {
-
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			if (e.getSource() instanceof JTabbedPane) {
-				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
-						MainRun.mainFrame.viewPanel);
-				MainRun.mainFrame.filterFrame.setVisible(true);
-			} else {
-				MainRun.mainFrame.filterFrame.setVisible(false);
-			}
-		}
-	};
+//	protected static ChangeListener showFilter = new ChangeListener() {
+//
+//		@Override
+//		public void stateChanged(ChangeEvent e) {
+//			if (e.getSource() instanceof JTabbedPane) {
+//				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
+//						MainRun.mainFrame.viewPanel);
+//				MainRun.mainFrame.filterFrame.setVisible(true);
+//			} else {
+//				MainRun.mainFrame.filterFrame.setVisible(false);
+//			}
+//		}
+//	};
 
 	/**
 	 * Se aplica el filtro seleccionado en el frame con los géneros

@@ -44,6 +44,10 @@ public class MainFrame extends JFrame {
 	 */
 	protected ViewPanel viewPanel;
 	/**
+	 * Panel para importar los datos a archivos de texto
+	 */
+	protected ToTextPanel toTextPanel;
+	/**
 	 * Frame con los géneros de los juegos para filtrar por ellos
 	 */
 	protected JFrame filterFrame;
@@ -116,15 +120,17 @@ public class MainFrame extends JFrame {
 
 		tabPanel.addTab("Añadir/Modificar", addPanel);
 		viewPanel = new ViewPanel(admin);
+		toTextPanel = new ToTextPanel();
 		if (admin) {
 			tabPanel.addTab("Ver datos", viewPanel);
 			tabPanel.addChangeListener(Actions.refreshTablesAdmin);
+			tabPanel.addTab("Datos a texto", toTextPanel);
 
 		} else {
 			tabPanel.addTab("Biblioteca", viewPanel);
 			tabPanel.addChangeListener(Actions.refreshTableLibrary);
 		}
-		tabPanel.addChangeListener(Actions.showFilter);
+//		tabPanel.addChangeListener(Actions.showFilter);
 
 		filterFrame = new FilterFrame();
 
