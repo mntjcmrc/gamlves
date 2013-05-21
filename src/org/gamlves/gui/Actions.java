@@ -948,6 +948,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Importa los datos de los usuarios en memoria a un fichero de texto
+	 */
 	protected static ActionListener importUsuarios = new ActionListener() {
 
 		@Override
@@ -957,6 +960,9 @@ public class Actions {
 
 	};
 
+	/**
+	 * Importa los datos de los juegos en memoria a un fichero de texto
+	 */
 	protected static ActionListener importJuegos = new ActionListener() {
 
 		@Override
