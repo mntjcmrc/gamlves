@@ -23,6 +23,7 @@ import org.gamlves.data.Datos;
 import org.gamlves.data.Juego;
 import org.gamlves.data.Login;
 import org.gamlves.data.Seguridad;
+import org.gamlves.data.ToText;
 import org.gamlves.data.Usuario;
 import org.gamlves.start.LoginRun;
 import org.gamlves.start.MainRun;
@@ -842,19 +843,19 @@ public class Actions {
 	 * Muestra el frame con el filtrado por géneros si el usuario entra al tab
 	 * con la vista de datos
 	 */
-//	protected static ChangeListener showFilter = new ChangeListener() {
-//
-//		@Override
-//		public void stateChanged(ChangeEvent e) {
-//			if (e.getSource() instanceof JTabbedPane) {
-//				((JTabbedPane) e.getSource()).getSelectedComponent().equals(
-//						MainRun.mainFrame.viewPanel);
-//				MainRun.mainFrame.filterFrame.setVisible(true);
-//			} else {
-//				MainRun.mainFrame.filterFrame.setVisible(false);
-//			}
-//		}
-//	};
+	// protected static ChangeListener showFilter = new ChangeListener() {
+	//
+	// @Override
+	// public void stateChanged(ChangeEvent e) {
+	// if (e.getSource() instanceof JTabbedPane) {
+	// ((JTabbedPane) e.getSource()).getSelectedComponent().equals(
+	// MainRun.mainFrame.viewPanel);
+	// MainRun.mainFrame.filterFrame.setVisible(true);
+	// } else {
+	// MainRun.mainFrame.filterFrame.setVisible(false);
+	// }
+	// }
+	// };
 
 	/**
 	 * Se aplica el filtro seleccionado en el frame con los géneros
@@ -943,6 +944,24 @@ public class Actions {
 			Login._nombre = "";
 			MainRun.mainFrame.filterFrame.setVisible(false);
 			LoginRun.loginFrame.setVisible(true);
+		}
+
+	};
+
+	protected static ActionListener importUsuarios = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			ToText.dataToText(true);
+		}
+
+	};
+
+	protected static ActionListener importJuegos = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ToText.dataToText(false);
 		}
 
 	};
